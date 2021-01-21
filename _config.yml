@@ -6,23 +6,25 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: HyG
+title: Centrarium
 brief-intro: Front-end Dev Engineer
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://gaohaoyang.github.io" # the base hostname & protocol for your site
+url: "https://kimsoonil.github.io" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
 
+
 # other links
+name: kimsoonil
 twitter_username:
 facebook_username:
 github_username:  kimsoonil
 email: rlatnsdlf158@naver.com
-
+description: 'Zoom in Coding from the Basic.'
 
 # comments
 duoshuo_shortname: #hygblog
-disqus_shortname: gaohaoyang
+disqus_shortname: kimsoonil
 
 baidu_tongji_id: cf8506e0ef223e57ff6239944e5d46a4
 google_analytics_id: UA-72449510-4 # google 分析追踪id
