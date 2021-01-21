@@ -5,8 +5,8 @@
     <description>Zoom in Coding from the Basic.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 21 Jan 2021 17:13:07 +0900</pubDate>
-    <lastBuildDate>Thu, 21 Jan 2021 17:13:07 +0900</lastBuildDate>
+    <pubDate>Thu, 21 Jan 2021 17:33:45 +0900</pubDate>
+    <lastBuildDate>Thu, 21 Jan 2021 17:33:45 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -37,12 +37,9 @@
     
       <item>
         <title>React Microsoft login</title>
-        <description>
+        <description>https://github.com/alexandrtovmach/react-microsoft-login 해당 라이브러리를 적용하였습니다.
+
 https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps 에서 앱을 등록하고 clientId 추출
-
-내앱 → 인증 → ID 토큰 , 모든 조직 디렉터리의 계정 체크
-
-내앱 → 매니페스트 “oauth2AllowIdTokenImplicitFlow”  false → true 변경
 
 </description>
         <pubDate>Thu, 21 Jan 2021 00:00:00 +0900</pubDate>

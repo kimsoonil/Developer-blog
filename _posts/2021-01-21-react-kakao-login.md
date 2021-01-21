@@ -9,14 +9,14 @@ author: kimsoonil
 * content
 {:toc}
 
-https://github.com/wonism/react-kakao-login 해당 라이브러리를 적용하였습니다.
+ https://github.com/wonism/react-kakao-login 해당 라이브러리를 적용하였습니다.
 
  https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용
 
 
 
 
-
+[kakao](https://kimsoonil.github.io/img/kakao_appkey.png)
 Kakao Login → Activation Settings 활성화, Redirect URI url 등록
 
  해당 프로젝트에서 npm install react-kakao-login  or yarn add react-kakao-login 추가
