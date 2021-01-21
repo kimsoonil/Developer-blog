@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>React Google login</title>
-    <meta name="description" content="https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출">
+    <title>React Microsoft login</title>
+    <meta name="description" content="  functionhttps://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps 에서 앱을 등록하고 clientId 추출내앱 → 인증 → ID 토큰 , 모든 조직 디렉터리의 계정 체크...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2021/01/21/react-google-login/">
+    <link rel="canonical" href="http://localhost:4000/2021/01/21/react-microsoft-login/">
     <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml ">
 
 
@@ -149,7 +149,7 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>React Google login</h1>
+        <h1>React Microsoft login</h1>
         <div class="label">
 
             <div class="label-card">
@@ -213,88 +213,56 @@
   <li><a href="#function" id="markdown-toc-function">function</a></li>
 </ul>
 
-<p>https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출</p>
+<p>https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps 에서 앱을 등록하고 clientId 추출</p>
 
-<p>해당 프로젝트에  <code class="language-plaintext highlighter-rouge">npm install react-google-login</code>  or <code class="language-plaintext highlighter-rouge">yarn add react-google-login</code> 추가</p>
+<p>내앱 → 인증 → ID 토큰 , 모든 조직 디렉터리의 계정 체크</p>
+
+<p>내앱 → 매니페스트 “oauth2AllowIdTokenImplicitFlow”  false → true 변경</p>
+
+<p>해당 프로젝트에 <code class="language-plaintext highlighter-rouge">npm install react-microsoft-login</code> or <code class="language-plaintext highlighter-rouge">yarn add react-microsoft-login</code> 추가</p>
 
 <h3 id="function">function</h3>
 
-<p>google.js</p>
+<p>facebook.js</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseGoogle</span> <span class="o">=</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span><span class="p">{</span> 
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
-    <span class="p">}</span>
-    
- <span class="o">&lt;</span><span class="nx">GoogleLogin</span>
-    <span class="nx">clientId</span><span class="o">=</span><span class="p">{</span><span class="nx">clientId</span><span class="p">}</span>
-    <span class="nx">onSuccess</span><span class="o">=</span><span class="p">{</span><span class="nx">responseGoogle</span><span class="p">}</span>
-    <span class="nx">onFailure</span><span class="o">=</span><span class="p">{</span><span class="nx">responseGoogle</span><span class="p">}</span>
-    <span class="nx">cookiePolicy</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">single_host_origin</span><span class="dl">'</span><span class="p">}</span>
-  <span class="sr">/&gt;</span><span class="err">,
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseMicrosoft</span> <span class="o">=</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">};</span>
+  
+<span class="o">&lt;</span><span class="nx">MicrosoftLogin</span> <span class="nx">clientId</span><span class="o">=</span><span class="p">{</span><span class="nx">clientId</span><span class="p">}</span> <span class="nx">authCallback</span><span class="o">=</span><span class="p">{</span><span class="nx">responseFacebook</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
 </span>
 </code></pre></div></div>
 
 <p>response</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Bc</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nl">access_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ya29.a0AfH6SMDox9Gz26d5g_GiTwW-hzxIMyYkpmbIR498Ukz9fSSD4Jd5ugTaPZZ49b73K9rBWm4eqpIyf1262KyqKd1k88kUiRqJ8qTvERzyFf-B9x9ybcSpHuqiIlBQd2bEMuC_FC4IyBtX00qH0muSRcIHq1IvrYrFO7BxsugLzsM</span><span class="dl">"</span>
-    <span class="nx">expires_at</span><span class="p">:</span> <span class="mi">1610517650513</span>
-    <span class="nx">expires_in</span><span class="p">:</span> <span class="mi">3599</span>
-    <span class="nx">first_issued_at</span><span class="p">:</span> <span class="mi">1610514051513</span>
-    <span class="nx">id_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc4M2VjMDMxYzU5ZTExZjI1N2QwZWMxNTcxNGVmNjA3Y2U2YTJhNmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE2MzkyNzQ1MDg2MDQxMDk0MTYyIiwiaGQiOiJzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbCI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlozcnJnTXN2cmFIUXl6MG9XRkRyVXciLCJuYW1lIjoi6rmA7Iic7J28IiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tMjdKY3hrNjAxaWsvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbHpZV19sSDhmdmRaVjBtTkx5aHQ2blh3dGFRZy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoi7Iic7J28IiwiZmFtaWx5X25hbWUiOiLquYAiLCJsb2NhbGUiOiJrbyIsImlhdCI6MTYxMDUxNDA1MSwiZXhwIjoxNjEwNTE3NjUxLCJqdGkiOiJmMTFjNzExN2IzMDFlYTMzYzk0ZmM5NGQzZjRmMjU3N2U5MjIyYWZkIn0.Qv6K2fnoDsK4BqVRRUb5EKsSb6Iu8DPgIdiYLH47qPQXqCaSKrMqPUhbeP1UnaO_P-r97z5bJn-22-K8GzegT2m_EBbVP3z2bKEgbOIsGTTmDaJKzMQzeob9naUv7yAC5mgh4sCloGNhbxHH_l6NzdUgiv03v5oNoL1yQerrdF5pE0plQl6ScFuFKO-lX3OgGsoKXoTOiHmBwZfQ1Z8JLt833erKog0_j7kfPdtHwAGlsXLy_9DNew5fLuy59zg5A8rX-wcyyeLrf4Z7kkbbl4dX1jHx3A_oQUnsbVRARt5x6vMZ23YgTJrhM98RlZuv5IXpqf3m6T9U-fgej26J8Q</span><span class="dl">"</span>
-    <span class="nx">idpId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">google</span><span class="dl">"</span>
-    <span class="nx">login_hint</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AJDLj6JUa8yxXrhHdWRHIV0S13cANl8hcyMb6KMyPvHdtUmBomxn_ugOAGOrV6dcWoJZJBTqwfYmpUtEZ0j6rQoebB-fkc2V4A</span><span class="dl">"</span>
-    <span class="nx">scope</span><span class="p">:</span> <span class="dl">"</span><span class="s2">email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email</span><span class="dl">"</span>
-    <span class="nx">session_state</span><span class="p">:</span>
-    <span class="nx">extraQueryParams</span><span class="p">:</span> <span class="p">{</span><span class="nl">authuser</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">}</span>
-    <span class="nl">__proto__</span><span class="p">:</span> <span class="nb">Object</span>
-    <span class="nx">token_type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer</span><span class="dl">"</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">accessToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJ0eXAiOiJKV1QiLCJub25jZSI6Il9VeWxsaWdST1pXUkw3ZDNmSndmV0tpWDFkYk5YeERkZkZOMHFLdUM5eVkiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNjMwY2RiMC1mYjUzLTQxZjgtYmEyMi0wMzM5OWNlNWIwNDYvIiwiaWF0IjoxNjEwNTA1NjU2LCJuYmYiOjE2MTA1MDU2NTYsImV4cCI6MTYxMDUwOTU1NiwiYWNjdCI6MCwiYWNyIjoiMSIsImFjcnMiOlsidXJuOnVzZXI6cmVnaXN0ZXJzZWN1cml0eWluZm8iLCJ1cm46bWljcm9zb2Z0OnJlcTEiLCJ1cm46bWljcm9zb2Z0OnJlcTIiLCJ1cm46bWljcm9zb2Z0OnJlcTMiLCJjMSIsImMyIiwiYzMiLCJjNCIsImM1IiwiYzYiLCJjNyIsImM4IiwiYzkiLCJjMTAiLCJjMTEiLCJjMTIiLCJjMTMiLCJjMTQiLCJjMTUiLCJjMTYiLCJjMTciLCJjMTgiLCJjMTkiLCJjMjAiLCJjMjEiLCJjMjIiLCJjMjMiLCJjMjQiLCJjMjUiXSwiYWlvIjoiRTJKZ1lIaFlKK0VpWE5VdSsxQlRNRU5uMFU1QnRRMFJNNDVaWGpqMmY4N1pUYmthak5jQiIsImFtciI6WyJwd2QiXSwiYXBwX2Rpc3BsYXluYW1lIjoicmVhY3QtbWljcm9zb2Z0LWxvZ2luIiwiYXBwaWQiOiJkZGE5ZGM5Ni0wNjNlLTQzMDItYmY0Ny0wZDk4NTE5NDFiOTQiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6Iuq5gCIsImdpdmVuX25hbWUiOiLsiJzsnbwiLCJpZHR5cCI6InVzZXIiLCJpcGFkZHIiOiIxMjEuMTM0LjE1OC4zNCIsIm5hbWUiOiLquYDsiJzsnbwiLCJvaWQiOiI5NjYzYjA3NS1mNzZmLTRhNGItOTIwMi1lM2ExZjhmYTk4MDYiLCJwbGF0ZiI6IjUiLCJwdWlkIjoiMTAwMzIwMDBGNEQ2MjQyMyIsInJoIjoiMC5BU29Bc00wdzFsUDctRUc2SWdNNW5PV3dScGJjcWQwLUJnSkR2MGNObUZHVUc1UXFBRzQuIiwic2NwIjoib3BlbmlkIHByb2ZpbGUgVXNlci5SZWFkIGVtYWlsIiwic2lnbmluX3N0YXRlIjpbImttc2kiXSwic3ViIjoiTlpiazYtYlBLTUZ2LU9rUnlPajhZS3duMWRKeG5tcUNkcnAxVVlmVWE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImQ2MzBjZGIwLWZiNTMtNDFmOC1iYTIyLTAzMzk5Y2U1YjA0NiIsInVuaXF1ZV9uYW1lIjoic3VuaWwua2ltQHNvZnR3YXJlaW5saWZlLmNvbSIsInVwbiI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJ1dGkiOiJZT1Rzb0RqSUFVT0dLUC0ybkEwVEFBIiwidmVyIjoiMS4wIiwieG1zX3N0Ijp7InN1YiI6Ii05M1ZreWFoN3RURWx6T1d0dzBJSG9iNjMzeU9FX00yRE1kZTRmcVdCUE0ifSwieG1zX3RjZHQiOjE1NTQ0MzkxNjV9.Lgn3bRVT2wq-ae9h1Ql2uqjtnizElvXP5WwiccsW_J0V93CqxUSoMrSeDpYXRk0NYgZQce7fAsINU_phxjzA3ozEWCo8Gfy5WkW4BRCYkM8wkg0e-V9gYF8KcyZeHp-dWU2VgThiqLvP3p8qzSh5KA1BTjh4Vs7p8OFeIiKNMfsdMDx_7-2f9B2UoinOCuZ_x7TxjV15J_76Df7B56GnRxjDbybPINxYgkP_dC61Bap_bGDViyDbC_MitvhknG-3zu1n7n_s7vL_Y9ZSn3C1BNN2rufdWFbLiPWpjaWOBUMw3ceNuoelLPH3yjg7-kEkVRP8Ac8sadbWuUySbh8eqg</span><span class="dl">"</span>
+  <span class="nx">account</span><span class="p">:</span> <span class="nx">Account</span> <span class="p">{</span>
+    <span class="nl">accountIdentifier</span><span class="p">:</span> <span class="dl">"</span><span class="s2">9663b075-f76f-4a4b-9202-e3a1f8fa9806</span><span class="dl">"</span>
+    <span class="nx">environment</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span>
+    <span class="nx">homeAccountIdentifier</span><span class="p">:</span> <span class="dl">"</span><span class="s2">OTY2M2IwNzUtZjc2Zi00YTRiLTkyMDItZTNhMWY4ZmE5ODA2.ZDYzMGNkYjAtZmI1My00MWY4LWJhMjItMDMzOTljZTViMDQ2</span><span class="dl">"</span>
+    <span class="nx">idToken</span><span class="p">:</span> <span class="p">{</span><span class="nl">aud</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dda9dc96-063e-4302-bf47-0d9851941b94</span><span class="dl">"</span><span class="p">,</span> <span class="nx">iss</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span><span class="p">,</span> <span class="nx">iat</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="nx">nbf</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="nx">exp</span><span class="p">:</span> <span class="mi">1610509555</span><span class="p">,</span> <span class="err">…</span><span class="p">}</span>
+    <span class="nl">idTokenClaims</span><span class="p">:</span> <span class="p">{</span><span class="na">aud</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dda9dc96-063e-4302-bf47-0d9851941b94</span><span class="dl">"</span><span class="p">,</span> <span class="na">iss</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span><span class="p">,</span> <span class="na">iat</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="na">nbf</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="na">exp</span><span class="p">:</span> <span class="mi">1610509555</span><span class="p">,</span> <span class="err">…</span><span class="p">}</span>
+    <span class="nl">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
+    <span class="nx">sid</span><span class="p">:</span> <span class="kc">undefined</span>
+    <span class="nx">userName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sunil.kim@softwareinlife.com</span><span class="dl">"</span>
   <span class="p">}</span>
-<span class="nl">Ea</span><span class="p">:</span> <span class="dl">"</span><span class="s2">116392745086041094162</span><span class="dl">"</span>
-<span class="nx">Nt</span><span class="p">:</span> <span class="nx">Vw</span> <span class="p">{</span>
-  <span class="nl">EW</span><span class="p">:</span> <span class="dl">"</span><span class="s2">순일</span><span class="dl">"</span>
-  <span class="nx">Ed</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
-  <span class="nx">IU</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김</span><span class="dl">"</span>
-  <span class="nx">aV</span><span class="p">:</span> <span class="dl">"</span><span class="s2">116392745086041094162</span><span class="dl">"</span>
-  <span class="nx">fL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://lh6.googleusercontent.com/-27Jcxk601ik/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclzYW_lH8fvdZV0mNLyht6nXwtaQg/s96-c/photo.jpg</span><span class="dl">"</span>
-  <span class="nx">uu</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sunil.kim@softwareinlife.com</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="nl">accessToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ya29.a0AfH6SMDox9Gz26d5g_GiTwW-hzxIMyYkpmbIR498Ukz9fSSD4Jd5ugTaPZZ49b73K9rBWm4eqpIyf1262KyqKd1k88kUiRqJ8qTvERzyFf-B9x9ybcSpHuqiIlBQd2bEMuC_FC4IyBtX00qH0muSRcIHq1IvrYrFO7BxsugLzsM</span><span class="dl">"</span>
-<span class="nx">googleId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">116392745086041094162</span><span class="dl">"</span>
-<span class="nx">profileObj</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nl">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sunil.kim@softwareinlife.com</span><span class="dl">"</span>
-    <span class="nx">familyName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김</span><span class="dl">"</span>
-    <span class="nx">givenName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">순일</span><span class="dl">"</span>
-    <span class="nx">googleId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">116392745086041094162</span><span class="dl">"</span>
-    <span class="nx">imageUrl</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://lh6.googleusercontent.com/-27Jcxk601ik/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclzYW_lH8fvdZV0mNLyht6nXwtaQg/s96-c/photo.jpg</span><span class="dl">"</span>
-    <span class="nx">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="nl">tokenId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc4M2VjMDMxYzU5ZTExZjI1N2QwZWMxNTcxNGVmNjA3Y2U2YTJhNmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE2MzkyNzQ1MDg2MDQxMDk0MTYyIiwiaGQiOiJzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbCI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlozcnJnTXN2cmFIUXl6MG9XRkRyVXciLCJuYW1lIjoi6rmA7Iic7J28IiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tMjdKY3hrNjAxaWsvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbHpZV19sSDhmdmRaVjBtTkx5aHQ2blh3dGFRZy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoi7Iic7J28IiwiZmFtaWx5X25hbWUiOiLquYAiLCJsb2NhbGUiOiJrbyIsImlhdCI6MTYxMDUxNDA1MSwiZXhwIjoxNjEwNTE3NjUxLCJqdGkiOiJmMTFjNzExN2IzMDFlYTMzYzk0ZmM5NGQzZjRmMjU3N2U5MjIyYWZkIn0.Qv6K2fnoDsK4BqVRRUb5EKsSb6Iu8DPgIdiYLH47qPQXqCaSKrMqPUhbeP1UnaO_P-r97z5bJn-22-K8GzegT2m_EBbVP3z2bKEgbOIsGTTmDaJKzMQzeob9naUv7yAC5mgh4sCloGNhbxHH_l6NzdUgiv03v5oNoL1yQerrdF5pE0plQl6ScFuFKO-lX3OgGsoKXoTOiHmBwZfQ1Z8JLt833erKog0_j7kfPdtHwAGlsXLy_9DNew5fLuy59zg5A8rX-wcyyeLrf4Z7kkbbl4dX1jHx3A_oQUnsbVRARt5x6vMZ23YgTJrhM98RlZuv5IXpqf3m6T9U-fgej26J8Q</span><span class="dl">"</span>
-<span class="nx">tokenObj</span><span class="p">:{</span>
-  <span class="nl">access_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ya29.a0AfH6SMDox9Gz26d5g_GiTwW-hzxIMyYkpmbIR498Ukz9fSSD4Jd5ugTaPZZ49b73K9rBWm4eqpIyf1262KyqKd1k88kUiRqJ8qTvERzyFf-B9x9ybcSpHuqiIlBQd2bEMuC_FC4IyBtX00qH0muSRcIHq1IvrYrFO7BxsugLzsM</span><span class="dl">"</span>
-  <span class="nx">expires_at</span><span class="p">:</span> <span class="mi">1610517650513</span>
-  <span class="nx">expires_in</span><span class="p">:</span> <span class="mi">3599</span>
-  <span class="nx">first_issued_at</span><span class="p">:</span> <span class="mi">1610514051513</span>
-  <span class="nx">id_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc4M2VjMDMxYzU5ZTExZjI1N2QwZWMxNTcxNGVmNjA3Y2U2YTJhNmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE2MzkyNzQ1MDg2MDQxMDk0MTYyIiwiaGQiOiJzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbCI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlozcnJnTXN2cmFIUXl6MG9XRkRyVXciLCJuYW1lIjoi6rmA7Iic7J28IiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tMjdKY3hrNjAxaWsvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbHpZV19sSDhmdmRaVjBtTkx5aHQ2blh3dGFRZy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoi7Iic7J28IiwiZmFtaWx5X25hbWUiOiLquYAiLCJsb2NhbGUiOiJrbyIsImlhdCI6MTYxMDUxNDA1MSwiZXhwIjoxNjEwNTE3NjUxLCJqdGkiOiJmMTFjNzExN2IzMDFlYTMzYzk0ZmM5NGQzZjRmMjU3N2U5MjIyYWZkIn0.Qv6K2fnoDsK4BqVRRUb5EKsSb6Iu8DPgIdiYLH47qPQXqCaSKrMqPUhbeP1UnaO_P-r97z5bJn-22-K8GzegT2m_EBbVP3z2bKEgbOIsGTTmDaJKzMQzeob9naUv7yAC5mgh4sCloGNhbxHH_l6NzdUgiv03v5oNoL1yQerrdF5pE0plQl6ScFuFKO-lX3OgGsoKXoTOiHmBwZfQ1Z8JLt833erKog0_j7kfPdtHwAGlsXLy_9DNew5fLuy59zg5A8rX-wcyyeLrf4Z7kkbbl4dX1jHx3A_oQUnsbVRARt5x6vMZ23YgTJrhM98RlZuv5IXpqf3m6T9U-fgej26J8Q</span><span class="dl">"</span>
-  <span class="nx">idpId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">google</span><span class="dl">"</span>
-  <span class="nx">login_hint</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AJDLj6JUa8yxXrhHdWRHIV0S13cANl8hcyMb6KMyPvHdtUmBomxn_ugOAGOrV6dcWoJZJBTqwfYmpUtEZ0j6rQoebB-fkc2V4A</span><span class="dl">"</span>
-  <span class="nx">scope</span><span class="p">:</span> <span class="dl">"</span><span class="s2">email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email</span><span class="dl">"</span>
-  <span class="nx">session_state</span><span class="p">:</span>
-  <span class="nx">extraQueryParams</span><span class="p">:</span> <span class="p">{</span><span class="nl">authuser</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">}</span>
-  <span class="nl">__proto__</span><span class="p">:</span> <span class="nb">Object</span>
-  <span class="nx">token_type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer</span><span class="dl">"</span>
+  <span class="nl">accountState</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJpZCI6Ijk0OWY3MmJlLWI1ZDQtNDIyOS1iODQ1LTIwZGYzYmI1N2Y3YSIsInRzIjoxNjEwNTA1OTU2LCJtZXRob2QiOiJwb3B1cEludGVyYWN0aW9uIn0=</span><span class="dl">"</span>
+  <span class="nx">expiresOn</span><span class="p">:</span> <span class="nx">Wed</span> <span class="nx">Jan</span> <span class="mi">13</span> <span class="mi">2021</span> <span class="mi">12</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">55</span> <span class="nx">GMT</span><span class="o">+</span><span class="mi">0900</span> <span class="p">(</span><span class="nx">대한민국</span> <span class="nx">표준시</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="nl">fromCache</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="nx">idToken</span><span class="p">:</span> <span class="nx">IdToken</span> <span class="p">{</span><span class="nl">rawIdToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Im5Pbz…SS6LcfeKCK2wXzuJ4tl4qHkUddomxAghDSz7YdbslwbKVwtjw</span><span class="dl">"</span><span class="p">,</span> <span class="nx">claims</span><span class="p">:</span> <span class="p">{</span><span class="err">…</span><span class="p">},</span> <span class="nx">issuer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span><span class="p">,</span> <span class="nx">objectId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">9663b075-f76f-4a4b-9202-e3a1f8fa9806</span><span class="dl">"</span><span class="p">,</span> <span class="nx">subject</span><span class="p">:</span> <span class="dl">"</span><span class="s2">-93Vkyah7tTElzOWtw0IHob633yOE_M2DMde4fqWBPM</span><span class="dl">"</span><span class="p">,</span> <span class="err">…</span><span class="p">}</span>
+  <span class="nl">idTokenClaims</span><span class="p">:</span> <span class="p">{</span><span class="na">aud</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dda9dc96-063e-4302-bf47-0d9851941b94</span><span class="dl">"</span><span class="p">,</span> <span class="na">iss</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span><span class="p">,</span> <span class="na">iat</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="na">nbf</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="na">exp</span><span class="p">:</span> <span class="mi">1610509555</span><span class="p">,</span> <span class="err">…</span><span class="p">}</span>
+  <span class="nl">scopes</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">[</span><span class="dl">"</span><span class="s2">openid</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">profile</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">User.Read</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">]</span>
+  <span class="nx">tenantId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">d630cdb0-fb53-41f8-ba22-03399ce5b046</span><span class="dl">"</span>
+  <span class="nx">tokenType</span><span class="p">:</span> <span class="dl">"</span><span class="s2">access_token</span><span class="dl">"</span>
+  <span class="nx">uniqueId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">9663b075-f76f-4a4b-9202-e3a1f8fa9806</span><span class="dl">"</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Logout</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nc">GoogleLogout</span>
-      <span class="na">clientId</span><span class="p">=</span><span class="si">{</span><span class="nx">clientId</span><span class="si">}</span>
-      <span class="na">buttonText</span><span class="p">=</span><span class="s">"Logout"</span>
-      <span class="na">onLogoutSuccess</span><span class="p">=</span><span class="si">{</span><span class="nx">logout</span><span class="si">}</span>
-    <span class="p">&gt;</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">msalInstance</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
 
-export default App
 </code></pre></div></div>
 
 
@@ -312,7 +280,7 @@ export default App
                         <ul>
                         
                         <li class="relatedPost">
-                            <a href="/2021/01/21/react-microsoft-login/">React Microsoft login
+                            <a href="/2021/01/21/react-kakao-login/">React Kakao login
                             
                             </a>
                         </li>
@@ -348,7 +316,7 @@ export default App
                     
                         
                         <li class="relatedPost">
-                            <a href="/2021/01/21/react-kakao-login/">React Kakao login
+                            <a href="/2021/01/21/react-google-login/">React Google login
                             
                             </a>
                         </li>
@@ -581,13 +549,11 @@ export default App
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2021/01/21/react-facebook-login/">React Facebook login</a></p>
+        <p><strong>上一篇</strong> <a href="/2021/01/21/react-kakao-login/">React Kakao login</a></p>
         
     </div>
     <div class="nex">
 
-        
-        <p><strong>下一篇</strong> <a href="/2021/01/21/react-kakao-login/">React Kakao login</a></p>
         
     </div>
 </div>
@@ -605,8 +571,8 @@ export default App
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2021/01/21/react-google-login/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2021/01/21/react-google-login/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2021/01/21/react-microsoft-login/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2021/01/21/react-microsoft-login/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

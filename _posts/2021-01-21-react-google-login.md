@@ -13,7 +13,7 @@ https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 �
 
 
 
-해당 프로젝트에  npm install react-google-login  or yarn add react-google-login 추가
+해당 프로젝트에  ``npm install react-google-login``  or ``yarn add react-google-login`` 추가
 
 ### function 
 

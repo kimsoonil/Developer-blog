@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>React Google login</title>
-    <meta name="description" content="https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출">
+    <title>React Kakao login</title>
+    <meta name="description" content="https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용Kakao Login → Activation Settings 활성화, Redirect URI url 등록해당 프로젝트에서 npm i...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2021/01/21/react-hooks8-customHooks-copy/">
+    <link rel="canonical" href="http://localhost:4000/2021/01/21/react-kakao-login/">
     <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml ">
 
 
@@ -149,7 +149,7 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>React Google login</h1>
+        <h1>React Kakao login</h1>
         <div class="label">
 
             <div class="label-card">
@@ -213,88 +213,72 @@
   <li><a href="#function" id="markdown-toc-function">function</a></li>
 </ul>
 
-<p>https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출</p>
+<p>https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용</p>
 
-<p>해당 프로젝트에  npm install react-google-login  or yarn add react-google-login 추가</p>
+<p>Kakao Login → Activation Settings 활성화, Redirect URI url 등록</p>
+
+<p>해당 프로젝트에서 npm install react-kakao-login  or yarn add react-kakao-login 추가</p>
+
+<p>해당 프로젝트에 <code class="language-plaintext highlighter-rouge">npm install react-kakao-login</code> or <code class="language-plaintext highlighter-rouge">yarn add react-kakao-login</code> 추가</p>
 
 <h3 id="function">function</h3>
 
-<p>google.js</p>
+<p>facebook.js</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseGoogle</span> <span class="o">=</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span><span class="p">{</span> 
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
-    <span class="p">}</span>
-    
- <span class="o">&lt;</span><span class="nx">GoogleLogin</span>
-    <span class="nx">clientId</span><span class="o">=</span><span class="p">{</span><span class="nx">clientId</span><span class="p">}</span>
-    <span class="nx">onSuccess</span><span class="o">=</span><span class="p">{</span><span class="nx">responseGoogle</span><span class="p">}</span>
-    <span class="nx">onFailure</span><span class="o">=</span><span class="p">{</span><span class="nx">responseGoogle</span><span class="p">}</span>
-    <span class="nx">cookiePolicy</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">single_host_origin</span><span class="dl">'</span><span class="p">}</span>
-  <span class="sr">/&gt;</span><span class="err">,
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseFacebook</span> <span class="o">=</span> <span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">}</span>
+  
+  <span class="k">return</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">KakaoLogin</span> 
+    <span class="nx">token</span><span class="o">=</span><span class="p">{</span><span class="nx">token</span><span class="p">}</span> 
+    <span class="nx">onSuccess</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">}</span> 
+    <span class="nx">onFail</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">}</span> 
+    <span class="nx">onLogout</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">}</span> 
+    <span class="sr">/</span><span class="err">&gt;
 </span>
 </code></pre></div></div>
 
 <p>response</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Bc</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nl">access_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ya29.a0AfH6SMDox9Gz26d5g_GiTwW-hzxIMyYkpmbIR498Ukz9fSSD4Jd5ugTaPZZ49b73K9rBWm4eqpIyf1262KyqKd1k88kUiRqJ8qTvERzyFf-B9x9ybcSpHuqiIlBQd2bEMuC_FC4IyBtX00qH0muSRcIHq1IvrYrFO7BxsugLzsM</span><span class="dl">"</span>
-    <span class="nx">expires_at</span><span class="p">:</span> <span class="mi">1610517650513</span>
-    <span class="nx">expires_in</span><span class="p">:</span> <span class="mi">3599</span>
-    <span class="nx">first_issued_at</span><span class="p">:</span> <span class="mi">1610514051513</span>
-    <span class="nx">id_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc4M2VjMDMxYzU5ZTExZjI1N2QwZWMxNTcxNGVmNjA3Y2U2YTJhNmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE2MzkyNzQ1MDg2MDQxMDk0MTYyIiwiaGQiOiJzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbCI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlozcnJnTXN2cmFIUXl6MG9XRkRyVXciLCJuYW1lIjoi6rmA7Iic7J28IiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tMjdKY3hrNjAxaWsvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbHpZV19sSDhmdmRaVjBtTkx5aHQ2blh3dGFRZy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoi7Iic7J28IiwiZmFtaWx5X25hbWUiOiLquYAiLCJsb2NhbGUiOiJrbyIsImlhdCI6MTYxMDUxNDA1MSwiZXhwIjoxNjEwNTE3NjUxLCJqdGkiOiJmMTFjNzExN2IzMDFlYTMzYzk0ZmM5NGQzZjRmMjU3N2U5MjIyYWZkIn0.Qv6K2fnoDsK4BqVRRUb5EKsSb6Iu8DPgIdiYLH47qPQXqCaSKrMqPUhbeP1UnaO_P-r97z5bJn-22-K8GzegT2m_EBbVP3z2bKEgbOIsGTTmDaJKzMQzeob9naUv7yAC5mgh4sCloGNhbxHH_l6NzdUgiv03v5oNoL1yQerrdF5pE0plQl6ScFuFKO-lX3OgGsoKXoTOiHmBwZfQ1Z8JLt833erKog0_j7kfPdtHwAGlsXLy_9DNew5fLuy59zg5A8rX-wcyyeLrf4Z7kkbbl4dX1jHx3A_oQUnsbVRARt5x6vMZ23YgTJrhM98RlZuv5IXpqf3m6T9U-fgej26J8Q</span><span class="dl">"</span>
-    <span class="nx">idpId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">google</span><span class="dl">"</span>
-    <span class="nx">login_hint</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AJDLj6JUa8yxXrhHdWRHIV0S13cANl8hcyMb6KMyPvHdtUmBomxn_ugOAGOrV6dcWoJZJBTqwfYmpUtEZ0j6rQoebB-fkc2V4A</span><span class="dl">"</span>
-    <span class="nx">scope</span><span class="p">:</span> <span class="dl">"</span><span class="s2">email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email</span><span class="dl">"</span>
-    <span class="nx">session_state</span><span class="p">:</span>
-    <span class="nx">extraQueryParams</span><span class="p">:</span> <span class="p">{</span><span class="nl">authuser</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">}</span>
-    <span class="nl">__proto__</span><span class="p">:</span> <span class="nb">Object</span>
-    <span class="nx">token_type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer</span><span class="dl">"</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">profile</span><span class="p">:{</span>
+  <span class="nl">connected_at</span><span class="p">:</span> <span class="dl">"</span><span class="s2">2021-01-14T08:38:17Z</span><span class="dl">"</span>
+  <span class="nx">id</span><span class="p">:</span> <span class="mi">1595444908</span>
+  <span class="nx">kakao_account</span><span class="p">:</span>
+  <span class="nx">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">slskdkfdl@naver.com</span><span class="dl">"</span>
+  <span class="nx">email_needs_agreement</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="nx">has_email</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="nx">is_email_valid</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="nx">is_email_verified</span><span class="p">:</span> <span class="nx">tr</span>
+  <span class="nx">ue</span>
+  
+  <span class="nx">profile</span><span class="p">:{</span>
+    <span class="nl">nickname</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
+    <span class="nx">profile_image_url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://k.kakaocdn.net/dn/c4bGi6/btqMvqZJWma/MeeLd8DhpsNIivRINNVA80/img_640x640.jpg</span><span class="dl">"</span>
+    <span class="nx">thumbnail_image_url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://k.kakaocdn.net/dn/c4bGi6/btqMvqZJWma/MeeLd8DhpsNIivRINNVA80/img_110x110.jpg</span><span class="dl">"</span>
+    <span class="nx">profile_needs_agreement</span><span class="p">:</span> <span class="kc">false</span>
   <span class="p">}</span>
-<span class="nl">Ea</span><span class="p">:</span> <span class="dl">"</span><span class="s2">116392745086041094162</span><span class="dl">"</span>
-<span class="nx">Nt</span><span class="p">:</span> <span class="nx">Vw</span> <span class="p">{</span>
-  <span class="nl">EW</span><span class="p">:</span> <span class="dl">"</span><span class="s2">순일</span><span class="dl">"</span>
-  <span class="nx">Ed</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
-  <span class="nx">IU</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김</span><span class="dl">"</span>
-  <span class="nx">aV</span><span class="p">:</span> <span class="dl">"</span><span class="s2">116392745086041094162</span><span class="dl">"</span>
-  <span class="nx">fL</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://lh6.googleusercontent.com/-27Jcxk601ik/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclzYW_lH8fvdZV0mNLyht6nXwtaQg/s96-c/photo.jpg</span><span class="dl">"</span>
-  <span class="nx">uu</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sunil.kim@softwareinlife.com</span><span class="dl">"</span>
+  <span class="nl">properties</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">nickname</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span><span class="p">,</span> 
+    <span class="na">profile_image</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://k.kakaocdn.net/dn/c4bGi6/btqMvqZJWma/MeeLd8DhpsNIivRINNVA80/img_640x640.jpg</span><span class="dl">"</span><span class="p">,</span> 
+    <span class="na">thumbnail_image</span><span class="p">:</span> <span class="dl">"</span><span class="s2">http://k.kakaocdn.net/dn/c4bGi6/btqMvqZJWma/MeeLd8DhpsNIivRINNVA80/img_110x110.jpg</span><span class="dl">"</span>
   <span class="p">}</span>
-<span class="nl">accessToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ya29.a0AfH6SMDox9Gz26d5g_GiTwW-hzxIMyYkpmbIR498Ukz9fSSD4Jd5ugTaPZZ49b73K9rBWm4eqpIyf1262KyqKd1k88kUiRqJ8qTvERzyFf-B9x9ybcSpHuqiIlBQd2bEMuC_FC4IyBtX00qH0muSRcIHq1IvrYrFO7BxsugLzsM</span><span class="dl">"</span>
-<span class="nx">googleId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">116392745086041094162</span><span class="dl">"</span>
-<span class="nx">profileObj</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nl">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sunil.kim@softwareinlife.com</span><span class="dl">"</span>
-    <span class="nx">familyName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김</span><span class="dl">"</span>
-    <span class="nx">givenName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">순일</span><span class="dl">"</span>
-    <span class="nx">googleId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">116392745086041094162</span><span class="dl">"</span>
-    <span class="nx">imageUrl</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://lh6.googleusercontent.com/-27Jcxk601ik/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclzYW_lH8fvdZV0mNLyht6nXwtaQg/s96-c/photo.jpg</span><span class="dl">"</span>
-    <span class="nx">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
-  <span class="p">}</span>
-<span class="nl">tokenId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc4M2VjMDMxYzU5ZTExZjI1N2QwZWMxNTcxNGVmNjA3Y2U2YTJhNmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE2MzkyNzQ1MDg2MDQxMDk0MTYyIiwiaGQiOiJzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbCI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlozcnJnTXN2cmFIUXl6MG9XRkRyVXciLCJuYW1lIjoi6rmA7Iic7J28IiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tMjdKY3hrNjAxaWsvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbHpZV19sSDhmdmRaVjBtTkx5aHQ2blh3dGFRZy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoi7Iic7J28IiwiZmFtaWx5X25hbWUiOiLquYAiLCJsb2NhbGUiOiJrbyIsImlhdCI6MTYxMDUxNDA1MSwiZXhwIjoxNjEwNTE3NjUxLCJqdGkiOiJmMTFjNzExN2IzMDFlYTMzYzk0ZmM5NGQzZjRmMjU3N2U5MjIyYWZkIn0.Qv6K2fnoDsK4BqVRRUb5EKsSb6Iu8DPgIdiYLH47qPQXqCaSKrMqPUhbeP1UnaO_P-r97z5bJn-22-K8GzegT2m_EBbVP3z2bKEgbOIsGTTmDaJKzMQzeob9naUv7yAC5mgh4sCloGNhbxHH_l6NzdUgiv03v5oNoL1yQerrdF5pE0plQl6ScFuFKO-lX3OgGsoKXoTOiHmBwZfQ1Z8JLt833erKog0_j7kfPdtHwAGlsXLy_9DNew5fLuy59zg5A8rX-wcyyeLrf4Z7kkbbl4dX1jHx3A_oQUnsbVRARt5x6vMZ23YgTJrhM98RlZuv5IXpqf3m6T9U-fgej26J8Q</span><span class="dl">"</span>
-<span class="nx">tokenObj</span><span class="p">:{</span>
-  <span class="nl">access_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ya29.a0AfH6SMDox9Gz26d5g_GiTwW-hzxIMyYkpmbIR498Ukz9fSSD4Jd5ugTaPZZ49b73K9rBWm4eqpIyf1262KyqKd1k88kUiRqJ8qTvERzyFf-B9x9ybcSpHuqiIlBQd2bEMuC_FC4IyBtX00qH0muSRcIHq1IvrYrFO7BxsugLzsM</span><span class="dl">"</span>
-  <span class="nx">expires_at</span><span class="p">:</span> <span class="mi">1610517650513</span>
-  <span class="nx">expires_in</span><span class="p">:</span> <span class="mi">3599</span>
-  <span class="nx">first_issued_at</span><span class="p">:</span> <span class="mi">1610514051513</span>
-  <span class="nx">id_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc4M2VjMDMxYzU5ZTExZjI1N2QwZWMxNTcxNGVmNjA3Y2U2YTJhNmYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiNzY3NDQzNTgzNTI2LWJiZmpoMnZrOTE5NnJuYWFrY3BndnZqcDR2dW5pdmp0LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTE2MzkyNzQ1MDg2MDQxMDk0MTYyIiwiaGQiOiJzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbCI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlozcnJnTXN2cmFIUXl6MG9XRkRyVXciLCJuYW1lIjoi6rmA7Iic7J28IiwicGljdHVyZSI6Imh0dHBzOi8vbGg2Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tMjdKY3hrNjAxaWsvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbHpZV19sSDhmdmRaVjBtTkx5aHQ2blh3dGFRZy9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoi7Iic7J28IiwiZmFtaWx5X25hbWUiOiLquYAiLCJsb2NhbGUiOiJrbyIsImlhdCI6MTYxMDUxNDA1MSwiZXhwIjoxNjEwNTE3NjUxLCJqdGkiOiJmMTFjNzExN2IzMDFlYTMzYzk0ZmM5NGQzZjRmMjU3N2U5MjIyYWZkIn0.Qv6K2fnoDsK4BqVRRUb5EKsSb6Iu8DPgIdiYLH47qPQXqCaSKrMqPUhbeP1UnaO_P-r97z5bJn-22-K8GzegT2m_EBbVP3z2bKEgbOIsGTTmDaJKzMQzeob9naUv7yAC5mgh4sCloGNhbxHH_l6NzdUgiv03v5oNoL1yQerrdF5pE0plQl6ScFuFKO-lX3OgGsoKXoTOiHmBwZfQ1Z8JLt833erKog0_j7kfPdtHwAGlsXLy_9DNew5fLuy59zg5A8rX-wcyyeLrf4Z7kkbbl4dX1jHx3A_oQUnsbVRARt5x6vMZ23YgTJrhM98RlZuv5IXpqf3m6T9U-fgej26J8Q</span><span class="dl">"</span>
-  <span class="nx">idpId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">google</span><span class="dl">"</span>
-  <span class="nx">login_hint</span><span class="p">:</span> <span class="dl">"</span><span class="s2">AJDLj6JUa8yxXrhHdWRHIV0S13cANl8hcyMb6KMyPvHdtUmBomxn_ugOAGOrV6dcWoJZJBTqwfYmpUtEZ0j6rQoebB-fkc2V4A</span><span class="dl">"</span>
-  <span class="nx">scope</span><span class="p">:</span> <span class="dl">"</span><span class="s2">email profile openid https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email</span><span class="dl">"</span>
-  <span class="nx">session_state</span><span class="p">:</span>
-  <span class="nx">extraQueryParams</span><span class="p">:</span> <span class="p">{</span><span class="nl">authuser</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">}</span>
-  <span class="nl">__proto__</span><span class="p">:</span> <span class="nb">Object</span>
-  <span class="nx">token_type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Bearer</span><span class="dl">"</span>
+<span class="p">}</span>
+
+<span class="nl">response</span><span class="p">:{</span>
+  <span class="na">access_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">NmErbZVl9t5br4h1bgxm0iExiZQtJ7nZS1isOwopcNEAAAF3BGdmmg</span><span class="dl">"</span>
+  <span class="na">expires_in</span><span class="p">:</span> <span class="mi">7199</span>
+  <span class="na">refresh_token</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dvwQ8xUxi11kPC33Q6WiCrKIPwuKFk2eSSckUAopcNEAAAF3BGdmmA</span><span class="dl">"</span>
+  <span class="na">refresh_token_expires_in</span><span class="p">:</span> <span class="mi">5183999</span>
+  <span class="na">scope</span><span class="p">:</span> <span class="dl">"</span><span class="s2">account_email profile</span><span class="dl">"</span>
+  <span class="na">token_type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">bearer</span><span class="dl">"</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
 <p>Logout</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">&lt;</span><span class="nc">GoogleLogout</span>
-      <span class="na">clientId</span><span class="p">=</span><span class="si">{</span><span class="nx">clientId</span><span class="si">}</span>
-      <span class="na">buttonText</span><span class="p">=</span><span class="s">"Logout"</span>
-      <span class="na">onLogoutSuccess</span><span class="p">=</span><span class="si">{</span><span class="nx">logout</span><span class="si">}</span>
-    <span class="p">&gt;</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Kakao</span><span class="p">.</span><span class="nx">Auth</span><span class="p">.</span><span class="nx">logout</span><span class="p">()</span>
 
-export default App
 </code></pre></div></div>
 
 
@@ -312,7 +296,79 @@ export default App
                         <ul>
                         
                         <li class="relatedPost">
+                            <a href="/2021/01/21/react-microsoft-login/">React Microsoft login
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
                             <a href="/2021/01/21/react-google-login/">React Google login
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2021/01/21/react-facebook-login/">React Facebook login
                             
                             </a>
                         </li>
@@ -430,62 +486,6 @@ export default App
             
                 
                     
-                        
-                        <li class="relatedPost">
-                            <a href="/2020/05/18/react-hooks5-useCallback/">React Hooks 系列之5 useCallback
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                        
-                        <li class="relatedPost">
-                            <a href="/2020/05/13/react-hooks4-useReducer/">React Hooks 系列之4 useReducer
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
                 
                     
                 
@@ -571,6 +571,8 @@ export default App
     <div class="nex">
 
         
+        <p><strong>下一篇</strong> <a href="/2021/01/21/react-microsoft-login/">React Microsoft login</a></p>
+        
     </div>
 </div>
 
@@ -587,8 +589,8 @@ export default App
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2021/01/21/react-hooks8-customHooks-copy/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2021/01/21/react-hooks8-customHooks-copy/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2021/01/21/react-kakao-login/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2021/01/21/react-kakao-login/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

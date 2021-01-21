@@ -155,7 +155,126 @@
             
               <li>
                 <h2>
-                  <a class="post-link" href="/2021/01/21/react-hooks8-customHooks-copy/">React Google login</a>
+                  <a class="post-link" href="/2021/01/21/react-microsoft-login/">React Microsoft login</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2021-01-21
+                    </div>
+                    <div class="label-card">
+                        <i class="fa fa-user"></i>kimsoonil
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#JavaScript" title="Category: JavaScript" rel="category">JavaScript</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
+    
+        <a href="/tag/#Social" title="Tag: Social" rel="tag">Social</a>&nbsp;
+    
+        <a href="/tag/#login" title="Tag: login" rel="tag">login</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    <ul id="markdown-toc">
+  <li><a href="#function" id="markdown-toc-function">function</a></li>
+</ul>
+
+<p>https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps 에서 앱을 등록하고 clientId 추출</p>
+
+<p>내앱 → 인증 → ID 토큰 , 모든 조직 디렉터리의 계정 체크</p>
+
+<p>내앱 → 매니페스트 “oauth2AllowIdTokenImplicitFlow”  false → true 변경</p>
+
+<p>해당 프로젝트에 <code class="language-plaintext highlighter-rouge">npm install react-microsoft-login</code> or <code class="language-plaintext highlighter-rouge">yarn add react-microsoft-login</code> 추가</p>
+
+<h3 id="function">function</h3>
+
+<p>facebook.js</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseMicrosoft</span> <span class="o">=</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">};</span>
+  
+<span class="o">&lt;</span><span class="nx">MicrosoftLogin</span> <span class="nx">clientId</span><span class="o">=</span><span class="p">{</span><span class="nx">clientId</span><span class="p">}</span> <span class="nx">authCallback</span><span class="o">=</span><span class="p">{</span><span class="nx">responseFacebook</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>
+</code></pre></div></div>
+
+<p>response</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">accessToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJ0eXAiOiJKV1QiLCJub25jZSI6Il9VeWxsaWdST1pXUkw3ZDNmSndmV0tpWDFkYk5YeERkZkZOMHFLdUM5eVkiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNjMwY2RiMC1mYjUzLTQxZjgtYmEyMi0wMzM5OWNlNWIwNDYvIiwiaWF0IjoxNjEwNTA1NjU2LCJuYmYiOjE2MTA1MDU2NTYsImV4cCI6MTYxMDUwOTU1NiwiYWNjdCI6MCwiYWNyIjoiMSIsImFjcnMiOlsidXJuOnVzZXI6cmVnaXN0ZXJzZWN1cml0eWluZm8iLCJ1cm46bWljcm9zb2Z0OnJlcTEiLCJ1cm46bWljcm9zb2Z0OnJlcTIiLCJ1cm46bWljcm9zb2Z0OnJlcTMiLCJjMSIsImMyIiwiYzMiLCJjNCIsImM1IiwiYzYiLCJjNyIsImM4IiwiYzkiLCJjMTAiLCJjMTEiLCJjMTIiLCJjMTMiLCJjMTQiLCJjMTUiLCJjMTYiLCJjMTciLCJjMTgiLCJjMTkiLCJjMjAiLCJjMjEiLCJjMjIiLCJjMjMiLCJjMjQiLCJjMjUiXSwiYWlvIjoiRTJKZ1lIaFlKK0VpWE5VdSsxQlRNRU5uMFU1QnRRMFJNNDVaWGpqMmY4N1pUYmthak5jQiIsImFtciI6WyJwd2QiXSwiYXBwX2Rpc3BsYXluYW1lIjoicmVhY3QtbWljcm9zb2Z0LWxvZ2luIiwiYXBwaWQiOiJkZGE5ZGM5Ni0wNjNlLTQzMDItYmY0Ny0wZDk4NTE5NDFiOTQiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6Iuq5gCIsImdpdmVuX25hbWUiOiLsiJzsnbwiLCJpZHR5cCI6InVzZXIiLCJpcGFkZHIiOiIxMjEuMTM0LjE1OC4zNCIsIm5hbWUiOiLquYDsiJzsnbwiLCJvaWQiOiI5NjYzYjA3NS1mNzZmLTRhNGItOTIwMi1lM2ExZjhmYTk4MDYiLCJwbGF0ZiI6IjUiLCJwdWlkIjoiMTAwMzIwMDBGNEQ2MjQyMyIsInJoIjoiMC5BU29Bc00wdzFsUDctRUc2SWdNNW5PV3dScGJjcWQwLUJnSkR2MGNObUZHVUc1UXFBRzQuIiwic2NwIjoib3BlbmlkIHByb2ZpbGUgVXNlci5SZWFkIGVtYWlsIiwic2lnbmluX3N0YXRlIjpbImttc2kiXSwic3ViIjoiTlpiazYtYlBLTUZ2LU9rUnlPajhZS3duMWRKeG5tcUNkcnAxVVlmVWE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImQ2MzBjZGIwLWZiNTMtNDFmOC1iYTIyLTAzMzk5Y2U1YjA0NiIsInVuaXF1ZV9uYW1lIjoic3VuaWwua2ltQHNvZnR3YXJlaW5saWZlLmNvbSIsInVwbiI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJ1dGkiOiJZT1Rzb0RqSUFVT0dLUC0ybkEwVEFBIiwidmVyIjoiMS4wIiwieG1zX3N0Ijp7InN1YiI6Ii05M1ZreWFoN3RURWx6T1d0dzBJSG9iNjMzeU9FX00yRE1kZTRmcVdCUE0ifSwieG1zX3RjZHQiOjE1NTQ0MzkxNjV9.Lgn3bRVT2wq-ae9h1Ql2uqjtnizElvXP5WwiccsW_J0V93CqxUSoMrSeDpYXRk0NYgZQce7fAsINU_phxjzA3ozEWCo8Gfy5WkW4BRCYkM8wkg0e-V9gYF8KcyZeHp-dWU2VgThiqLvP3p8qzSh5KA1BTjh4Vs7p8OFeIiKNMfsdMDx_7-2f9B2UoinOCuZ_x7TxjV15J_76Df7B56GnRxjDbybPINxYgkP_dC61Bap_bGDViyDbC_MitvhknG-3zu1n7n_s7vL_Y9ZSn3C1BNN2rufdWFbLiPWpjaWOBUMw3ceNuoelLPH3yjg7-kEkVRP8Ac8sadbWuUySbh8eqg</span><span class="dl">"</span>
+  <span class="nx">account</span><span class="p">:</span> <span class="nx">Account</span> <span class="p">{</span>
+    <span class="nl">accountIdentifier</span><span class="p">:</span> <span class="dl">"</span><span class="s2">9663b075-f76f-4a4b-9202-e3a1f8fa9806</span><span class="dl">"</span>
+    <span class="nx">environment</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span>
+    <span class="nx">homeAccountIdentifier</span><span class="p">:</span> <span class="dl">"</span><span class="s2">OTY2M2IwNzUtZjc2Zi00YTRiLTkyMDItZTNhMWY4ZmE5ODA2.ZDYzMGNkYjAtZmI1My00MWY4LWJhMjItMDMzOTljZTViMDQ2</span><span class="dl">"</span>
+    <span class="nx">idToken</span><span class="p">:</span> <span class="p">{</span><span class="nl">aud</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dda9dc96-063e-4302-bf47-0d9851941b94</span><span class="dl">"</span><span class="p">,</span> <span class="nx">iss</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span><span class="p">,</span> <span class="nx">iat</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="nx">nbf</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="nx">exp</span><span class="p">:</span> <span class="mi">1610509555</span><span class="p">,</span> <span class="err">…</span><span class="p">}</span>
+    <span class="nl">idTokenClaims</span><span class="p">:</span> <span class="p">{</span><span class="na">aud</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dda9dc96-063e-4302-bf47-0d9851941b94</span><span class="dl">"</span><span class="p">,</span> <span class="na">iss</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span><span class="p">,</span> <span class="na">iat</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="na">nbf</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="na">exp</span><span class="p">:</span> <span class="mi">1610509555</span><span class="p">,</span> <span class="err">…</span><span class="p">}</span>
+    <span class="nl">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
+    <span class="nx">sid</span><span class="p">:</span> <span class="kc">undefined</span>
+    <span class="nx">userName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">sunil.kim@softwareinlife.com</span><span class="dl">"</span>
+  <span class="p">}</span>
+  <span class="nl">accountState</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJpZCI6Ijk0OWY3MmJlLWI1ZDQtNDIyOS1iODQ1LTIwZGYzYmI1N2Y3YSIsInRzIjoxNjEwNTA1OTU2LCJtZXRob2QiOiJwb3B1cEludGVyYWN0aW9uIn0=</span><span class="dl">"</span>
+  <span class="nx">expiresOn</span><span class="p">:</span> <span class="nx">Wed</span> <span class="nx">Jan</span> <span class="mi">13</span> <span class="mi">2021</span> <span class="mi">12</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">55</span> <span class="nx">GMT</span><span class="o">+</span><span class="mi">0900</span> <span class="p">(</span><span class="nx">대한민국</span> <span class="nx">표준시</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="nl">fromCache</span><span class="p">:</span> <span class="kc">false</span>
+  <span class="nx">idToken</span><span class="p">:</span> <span class="nx">IdToken</span> <span class="p">{</span><span class="nl">rawIdToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Im5Pbz…SS6LcfeKCK2wXzuJ4tl4qHkUddomxAghDSz7YdbslwbKVwtjw</span><span class="dl">"</span><span class="p">,</span> <span class="nx">claims</span><span class="p">:</span> <span class="p">{</span><span class="err">…</span><span class="p">},</span> <span class="nx">issuer</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span><span class="p">,</span> <span class="nx">objectId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">9663b075-f76f-4a4b-9202-e3a1f8fa9806</span><span class="dl">"</span><span class="p">,</span> <span class="nx">subject</span><span class="p">:</span> <span class="dl">"</span><span class="s2">-93Vkyah7tTElzOWtw0IHob633yOE_M2DMde4fqWBPM</span><span class="dl">"</span><span class="p">,</span> <span class="err">…</span><span class="p">}</span>
+  <span class="nl">idTokenClaims</span><span class="p">:</span> <span class="p">{</span><span class="na">aud</span><span class="p">:</span> <span class="dl">"</span><span class="s2">dda9dc96-063e-4302-bf47-0d9851941b94</span><span class="dl">"</span><span class="p">,</span> <span class="na">iss</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0</span><span class="dl">"</span><span class="p">,</span> <span class="na">iat</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="na">nbf</span><span class="p">:</span> <span class="mi">1610505655</span><span class="p">,</span> <span class="na">exp</span><span class="p">:</span> <span class="mi">1610509555</span><span class="p">,</span> <span class="err">…</span><span class="p">}</span>
+  <span class="nl">scopes</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="p">[</span><span class="dl">"</span><span class="s2">openid</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">profile</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">User.Read</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">email</span><span class="dl">"</span><span class="p">]</span>
+  <span class="nx">tenantId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">d630cdb0-fb53-41f8-ba22-03399ce5b046</span><span class="dl">"</span>
+  <span class="nx">tokenType</span><span class="p">:</span> <span class="dl">"</span><span class="s2">access_token</span><span class="dl">"</span>
+  <span class="nx">uniqueId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">9663b075-f76f-4a4b-9202-e3a1f8fa9806</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Logout</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">msalInstance</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
+
+</code></pre></div></div>
+
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2021/01/21/react-microsoft-login/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2021/01/21/react-kakao-login/">React Kakao login</a>
                 </h2>
                 <div class="label">
                     <div class="label-card">
@@ -209,12 +328,16 @@
                 </div>
                 <div class="excerpt">
                     
-<p>https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출</p>
+<p>https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용</p>
+
+<p>Kakao Login → Activation Settings 활성화, Redirect URI url 등록</p>
+
+<p>해당 프로젝트에서 npm install react-kakao-login  or yarn add react-kakao-login 추가</p>
 
 
                 </div>
                 <div class="read-all">
-                    <a  href="/2021/01/21/react-hooks8-customHooks-copy/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                    <a  href="/2021/01/21/react-kakao-login/"><i class="fa fa-newspaper-o"></i>Read All</a>
                 </div>
                 <hr>
               </li>
@@ -281,6 +404,72 @@
                 </div>
                 <div class="read-all">
                     <a  href="/2021/01/21/react-google-login/"><i class="fa fa-newspaper-o"></i>Read All</a>
+                </div>
+                <hr>
+              </li>
+            
+              <li>
+                <h2>
+                  <a class="post-link" href="/2021/01/21/react-facebook-login/">React Facebook login</a>
+                </h2>
+                <div class="label">
+                    <div class="label-card">
+                        <i class="fa fa-calendar"></i>2021-01-21
+                    </div>
+                    <div class="label-card">
+                        <i class="fa fa-user"></i>kimsoonil
+                        
+                    </div>
+                    <div class="label-card">
+                        
+                    </div>
+
+                    <div class="label-card">
+                    
+
+
+<!-- <span class="point">•</span> -->
+<span class="categories">
+  <i class="fa fa-th-list"></i>
+  
+    
+        <a href="/category/#JavaScript" title="Category: JavaScript" rel="category">JavaScript</a>
+    
+  
+
+  <!-- <span class="point">•</span> -->
+</span>
+
+
+                    </div>
+
+                    <div class="label-card">
+                    
+<!-- <span class="point">•</span> -->
+<span class="pageTag">
+  <i class="fa fa-tags"></i>
+  
+    
+        <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
+    
+        <a href="/tag/#Social" title="Tag: Social" rel="tag">Social</a>&nbsp;
+    
+        <a href="/tag/#login" title="Tag: login" rel="tag">login</a>
+    
+  
+
+</span>
+
+                    </div>
+                </div>
+                <div class="excerpt">
+                    
+<p>https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출</p>
+
+
+                </div>
+                <div class="read-all">
+                    <a  href="/2021/01/21/react-facebook-login/"><i class="fa fa-newspaper-o"></i>Read All</a>
                 </div>
                 <hr>
               </li>
@@ -687,153 +876,6 @@
                 <hr>
               </li>
             
-              <li>
-                <h2>
-                  <a class="post-link" href="/2020/05/11/react-hooks2-useEffect/">React Hooks 系列之2 useEffect</a>
-                </h2>
-                <div class="label">
-                    <div class="label-card">
-                        <i class="fa fa-calendar"></i>2020-05-11
-                    </div>
-                    <div class="label-card">
-                        <i class="fa fa-user"></i>HyG
-                        
-                    </div>
-                    <div class="label-card">
-                        
-                    </div>
-
-                    <div class="label-card">
-                    
-
-
-<!-- <span class="point">•</span> -->
-<span class="categories">
-  <i class="fa fa-th-list"></i>
-  
-    
-        <a href="/category/#JavaScript" title="Category: JavaScript" rel="category">JavaScript</a>
-    
-  
-
-  <!-- <span class="point">•</span> -->
-</span>
-
-
-                    </div>
-
-                    <div class="label-card">
-                    
-<!-- <span class="point">•</span> -->
-<span class="pageTag">
-  <i class="fa fa-tags"></i>
-  
-    
-        <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
-    
-        <a href="/tag/#hooks" title="Tag: hooks" rel="tag">hooks</a>
-    
-  
-
-</span>
-
-                    </div>
-                </div>
-                <div class="excerpt">
-                    
-<p>掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。</p>
-
-<p>今天我们讲讲 useEffect 的使用方法。</p>
-
-
-                </div>
-                <div class="read-all">
-                    <a  href="/2020/05/11/react-hooks2-useEffect/"><i class="fa fa-newspaper-o"></i>Read All</a>
-                </div>
-                <hr>
-              </li>
-            
-              <li>
-                <h2>
-                  <a class="post-link" href="/2020/03/01/react-hooks1-useState/">React Hooks 系列之1 useState</a>
-                </h2>
-                <div class="label">
-                    <div class="label-card">
-                        <i class="fa fa-calendar"></i>2020-03-01
-                    </div>
-                    <div class="label-card">
-                        <i class="fa fa-user"></i>HyG
-                        
-                    </div>
-                    <div class="label-card">
-                        
-                    </div>
-
-                    <div class="label-card">
-                    
-
-
-<!-- <span class="point">•</span> -->
-<span class="categories">
-  <i class="fa fa-th-list"></i>
-  
-    
-        <a href="/category/#JavaScript" title="Category: JavaScript" rel="category">JavaScript</a>
-    
-  
-
-  <!-- <span class="point">•</span> -->
-</span>
-
-
-                    </div>
-
-                    <div class="label-card">
-                    
-<!-- <span class="point">•</span> -->
-<span class="pageTag">
-  <i class="fa fa-tags"></i>
-  
-    
-        <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
-    
-        <a href="/tag/#hooks" title="Tag: hooks" rel="tag">hooks</a>
-    
-  
-
-</span>
-
-                    </div>
-                </div>
-                <div class="excerpt">
-                    
-<p>本系列将讲述 React Hooks 的使用方法，从 useState 开始，将包含如下内容：</p>
-
-<ul>
-  <li><a href="https://juejin.im/post/5e8324ade51d45470921f86a">useState</a></li>
-  <li><a href="https://juejin.im/post/5eb910b35188256d58312c7e">useEffect</a></li>
-  <li><a href="https://juejin.im/post/5eb912246fb9a0436e47f947">useContext</a></li>
-  <li><a href="https://juejin.im/post/5ebba47fe51d454dd5062f5b">useReducer</a></li>
-  <li><a href="https://juejin.im/post/5ec2465a5188256d841a552a">useCallback</a></li>
-  <li><a href="https://juejin.im/post/5ec293a55188256d754876fc">useMemo</a></li>
-  <li><a href="https://juejin.im/post/5ecbf486f265da7711699c3a">useRef</a></li>
-  <li><a href="https://juejin.im/post/5ecd4c86f265da76ff6d0f16">custom hooks</a></li>
-</ul>
-
-<p>掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。</p>
-
-<p>前提，需要会使用 React Class 的写法，会使用 <code class="language-plaintext highlighter-rouge">setState()</code> 和 props。</p>
-
-<p>下面从第一个例子开始吧。</p>
-
-
-                </div>
-                <div class="read-all">
-                    <a  href="/2020/03/01/react-hooks1-useState/"><i class="fa fa-newspaper-o"></i>Read All</a>
-                </div>
-                <hr>
-              </li>
-            
         </ul>
 
 
@@ -861,9 +903,13 @@
                 </div>
                 <ul class="content-ul" recent>
                     
-                        <li><a href="/2021/01/21/react-hooks8-customHooks-copy/">React Google login</a></li>
+                        <li><a href="/2021/01/21/react-microsoft-login/">React Microsoft login</a></li>
+                    
+                        <li><a href="/2021/01/21/react-kakao-login/">React Kakao login</a></li>
                     
                         <li><a href="/2021/01/21/react-google-login/">React Google login</a></li>
+                    
+                        <li><a href="/2021/01/21/react-facebook-login/">React Facebook login</a></li>
                     
                         <li><a href="/2020/05/27/react-hooks8-customHooks/">React Hooks 系列之8 custom Hook</a></li>
                     
@@ -876,10 +922,6 @@
                         <li><a href="/2020/05/13/react-hooks4-useReducer/">React Hooks 系列之4 useReducer</a></li>
                     
                         <li><a href="/2020/05/12/react-hooks3-useContext/">React Hooks 系列之3 useContext</a></li>
-                    
-                        <li><a href="/2020/05/11/react-hooks2-useEffect/">React Hooks 系列之2 useEffect</a></li>
-                    
-                        <li><a href="/2020/03/01/react-hooks1-useState/">React Hooks 系列之1 useState</a></li>
                     
                 </ul>
             </div>
@@ -897,7 +939,7 @@
                             <span class="name">
                                 JavaScript
                             </span>
-                            <span class="badge">13</span>
+                            <span class="badge">15</span>
                         </a>
                     </li>
                     
@@ -1000,21 +1042,21 @@
                       
                       
                       
-                      <a href="/tag/#hooks" style="font-size: 16pt; color: #222;">hooks</a>
+                      <a href="/tag/#hooks" style="font-size: 14.5pt; color: #333;">hooks</a>
                     
                       
                       
                       
                       
                       
-                      <a href="/tag/#Social" style="font-size: 10pt; color: #888;">Social</a>
+                      <a href="/tag/#Social" style="font-size: 11.5pt; color: #777;">Social</a>
                     
                       
                       
                       
                       
                       
-                      <a href="/tag/#login" style="font-size: 10pt; color: #888;">login</a>
+                      <a href="/tag/#login" style="font-size: 11.5pt; color: #777;">login</a>
                     
                 </div>
             </div>

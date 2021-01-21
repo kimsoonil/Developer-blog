@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>vscode 插件 markdown-schedule-snippet</title>
-    <meta name="description" content="  起因起因不知道大家是怎样安排自己的日常计划的，我习惯是建立一个仓库，按照年/周记录在 markdown 里，平时这个仓库也写点简单的 demo，目录类似如下：week├── 2016├── 2017├── 2018│   ├── 20180102.md│   ├── 20180108.md│   ├── 20...">
+    <title>React Facebook login</title>
+    <meta name="description" content="https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2018/10/10/vscode-plugin-schedule/">
+    <link rel="canonical" href="http://localhost:4000/2021/01/21/react-facebook-login/">
     <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml ">
 
 
@@ -149,15 +149,15 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>vscode 插件 markdown-schedule-snippet</h1>
+        <h1>React Facebook login</h1>
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>2018-10-10
+                <i class="fa fa-calendar"></i>2021-01-21
             </div>
 
             <div class="label-card">
-                <i class="fa fa-user"></i>HyG
+                <i class="fa fa-user"></i>kimsoonil
                 
             </div>
 
@@ -191,14 +191,14 @@
   <i class="fa fa-tags"></i>
   
     
-        <!--a href="/tag/#%E6%95%88%E7%8E%87" title="Tag: 效率" rel="tag">效率</a-->
-        <a href="/tag/#效率" title="Tag: 效率" rel="tag">效率</a>&nbsp;
+        <!--a href="/tag/#React" title="Tag: React" rel="tag">React</a-->
+        <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
     
-        <!--a href="/tag/#vscode" title="Tag: vscode" rel="tag">vscode</a-->
-        <a href="/tag/#vscode" title="Tag: vscode" rel="tag">vscode</a>&nbsp;
+        <!--a href="/tag/#Social" title="Tag: Social" rel="tag">Social</a-->
+        <a href="/tag/#Social" title="Tag: Social" rel="tag">Social</a>&nbsp;
     
-        <!--a href="/tag/#markdown" title="Tag: markdown" rel="tag">markdown</a-->
-        <a href="/tag/#markdown" title="Tag: markdown" rel="tag">markdown</a>
+        <!--a href="/tag/#login" title="Tag: login" rel="tag">login</a-->
+        <a href="/tag/#login" title="Tag: login" rel="tag">login</a>
     
   
 
@@ -210,76 +210,59 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#起因" id="markdown-toc-起因">起因</a></li>
-  <li><a href="#markdown-schedule-snippet" id="markdown-toc-markdown-schedule-snippet">markdown-schedule-snippet</a></li>
+  <li><a href="#function" id="markdown-toc-function">function</a></li>
 </ul>
 
-<h2 id="起因">起因</h2>
+<p>https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출</p>
 
-<p>不知道大家是怎样安排自己的日常计划的，我习惯是建立一个仓库，按照年/周记录在 markdown 里，平时这个仓库也写点简单的 demo，目录类似如下：</p>
+<p>해당 프로젝트에 <code class="language-plaintext highlighter-rouge">npm install react-facebook-login</code> or <code class="language-plaintext highlighter-rouge">yarn add react-facebook-login</code> 추가</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>week
-├── 2016
-├── 2017
-├── 2018
-│   ├── 20180102.md
-│   ├── 20180108.md
-│   ├── 20180115.md
-│   ├── 20180122.md
-│   ├── 20180126.md
-│   ├── ...
-│   ├── ...
-│   ├── ...
-│   ├── 20181007.md
-│   ├── pixi.md
-│   ├── schedule.md
-│   ├── temp.css
-│   ├── temp.html
-│   ├── temp.js
-│   ├── temp.json
-│   └── temp.md
-├── package.json
-└── yarn.lock
-</code></pre></div></div>
+<h3 id="function">function</h3>
 
-<p>当然每个人有自己习惯的方式记录着日常工作与生活。我平时是使用这种方式，当然这个记录里涉及了很多工作上的信息，目前仅在内部的 gitlab 上托管着。</p>
+<p>facebook.js</p>
 
-<p>对于每一个 md 文件内部，我习惯按照星期几来记录，类似如下：</p>
-
-<p><img src="https://user-gold-cdn.xitu.io/2018/10/10/1665ccd109702abc?w=903&amp;h=893&amp;f=png&amp;s=151884" alt="" /></p>
-
-<h2 id="markdown-schedule-snippet">markdown-schedule-snippet</h2>
-
-<p>可以看到每次写这些星期几的缩略都很麻烦，于是开发了一个简单的 vscode 插件 markdown-schedule-snippet，正是本文的标题，输入 <code class="language-plaintext highlighter-rouge">we</code> 自动生成如下代码</p>
-
-<p>插件地址 <a href="https://marketplace.visualstudio.com/items?itemName=HyG.schedule">https://marketplace.visualstudio.com/items?itemName=HyG.schedule</a></p>
-
-<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="gu">## Mon.</span>
-
-<span class="gu">## Tue.</span>
-
-<span class="gu">## Wed.</span>
-
-<span class="gu">## Thur.</span>
-
-<span class="gu">## Fri.</span>
-
-<span class="gu">## Sat.</span>
-
-<span class="gu">## Sun.</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseFacebook</span> <span class="o">=</span> <span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">}</span>
+  
+  <span class="k">return</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">FacebookLogin</span>
+    <span class="nx">appId</span><span class="o">=</span><span class="dl">"</span><span class="s2">앱ID</span><span class="dl">"</span>
+    <span class="nx">autoLoad</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span> <span class="c1">// 실행과 동시에 자동으로 로그인 팝업창이 뜸</span>
+    <span class="nx">fields</span><span class="o">=</span><span class="dl">"</span><span class="s2">name,email,picture</span><span class="dl">"</span> <span class="c1">// 어떤정보를 받아올지 입력하는 필드</span>
+    <span class="nx">callback</span><span class="o">=</span><span class="p">{</span><span class="nx">responseFacebook</span><span class="p">}</span> <span class="sr">/</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 
 </code></pre></div></div>
 
-<p>还有我自己设计的 logo，哈哈哈</p>
+<p>response</p>
 
-<p><img src="https://user-gold-cdn.xitu.io/2018/10/10/1665d564192bc6bb?w=256&amp;h=256&amp;f=png&amp;s=51734" alt="" /></p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">accessToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">EAAC8Lo5zQewBAN4W710ZAy6NDQWWw2VI2NZCWBgNg3wl3J6sjZAaaVcaKtsEzpYmenZCtj3aZAFDUSyodqZBSDkqRFBfUsfRHZBpYDig0rftTJQkD5akZAXR6jADFkb0TdeaLh76SB1UU04pKZAepRkTMUfcFLohZARgx59jpRq479cZBm6GIxAT7flkqwmLZCYRmngXZA3MJBk0aaQZDZD</span><span class="dl">"</span>
+  <span class="nx">data_access_expiration_time</span><span class="p">:</span> <span class="mi">1618276974</span>
+  <span class="nx">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">slskdkfdl@naver.com</span><span class="dl">"</span>
+  <span class="nx">expiresIn</span><span class="p">:</span> <span class="mi">5826</span>
+  <span class="nx">graphDomain</span><span class="p">:</span> <span class="dl">"</span><span class="s2">facebook</span><span class="dl">"</span>
+  <span class="nx">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">3820135101398199</span><span class="dl">"</span>
+  <span class="nx">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
+  <span class="nx">picture</span><span class="p">:</span> 
+    <span class="nx">data</span><span class="p">:{</span>
+      <span class="nl">height</span><span class="p">:</span> <span class="mi">50</span>
+      <span class="nx">is_silhouette</span><span class="p">:</span> <span class="kc">false</span>
+      <span class="nx">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=3820135101398199&amp;height=50&amp;width=50&amp;ext=1613094362&amp;hash=AeQJYMpEBMsBwNwCzZQ</span><span class="dl">"</span>
+      <span class="nx">width</span><span class="p">:</span> <span class="mi">50</span>
+     <span class="p">}</span>
+  <span class="nl">signedRequest</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Urywddab952I8d5IHY0WVFiWccYkTOnucSo98x6BVuk.eyJ1c2VyX2lkIjoiMzgyMDEzNTEwMTM5ODE5OSIsImNvZGUiOiJBUUJFamFjQTJxc3hrRmt5c3ZaWmxEN1ZxUGxYS01meHkzb0s1X1RiTmFZblF1SER1U2RWTU45Zk9LU3hKY19SMGJvWWN0YkpSc2FJZmFFVndlT1pLeXBndGkxU1QtNFdNVnpiY3d2NXVNQmFQOHVaNi1YdFVPNVJHUVpyOXZ6MEQtRnNjSV9WazdjR21STEpRVTVkU0pzWmhOSzdibFE5TkwwTGMtNWtOajg3VlJLZDhiaWJlbWhEUWRKOHZxa3d3cTZseUYyaUxHQ2x0MUZzYktsZmxOcWEzR2N2SnU5MWktN2VWZ1hLOEczelJjaG9yX2FkMm51UHJ4dG9oUUxyZS01N216NU0yQ3lVckwwbEZLVFB2c04xck9raS15aXFiazV5SUFLbUJDYzF0dC1ibUZoelZhZC1RRWdab09LRzEtT3ExM1ItX0VYMnZYMjU0SGVZb2RZeSIsImFsZ29yaXRobSI6IkhNQUMtU0hBMjU2IiwiaXNzdWVkX2F0IjoxNjEwNTAwOTc0fQ</span><span class="dl">"</span>
+  <span class="nx">userID</span><span class="p">:</span> <span class="dl">"</span><span class="s2">3820135101398199</span><span class="dl">"</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
-<p>这个插件仓库地址 <a href="https://github.com/Gaohaoyang/markdown-schedule-snippet">https://github.com/Gaohaoyang/markdown-schedule-snippet</a></p>
+<p>Logout</p>
 
-<p>欢迎大家使用，同时也欢迎小伙伴们为这个仓库贡献一些其他有趣的 markdown snippet，欢迎你的 pr。</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">FB</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
 
-<p>Enjoy it!</p>
+</code></pre></div></div>
+
 
         </article>
         <hr>
@@ -290,11 +273,198 @@
             
                 
                     
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2021/01/21/react-microsoft-login/">React Microsoft login
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
                 
                     
                 
                     
                 
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2021/01/21/react-kakao-login/">React Kakao login
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2021/01/21/react-google-login/">React Google login
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2020/05/27/react-hooks8-customHooks/">React Hooks 系列之8 custom Hook
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2020/05/26/react-hooks7-useRef/">React Hooks 系列之7 useRef
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2020/05/19/react-hooks6-useMemo/">React Hooks 系列之6 useMemo
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
             
                 
                     
@@ -331,68 +501,6 @@
                     
                 
             
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
         
             
             
@@ -432,94 +540,20 @@
                 
             
         
-            
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
         
-            
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
+            </ul>
         
 
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2018/09/10/lottie/">从设计师和开发的角度使用 lottie</a></p>
+        <p><strong>上一篇</strong> <a href="/2020/05/27/react-hooks8-customHooks/">React Hooks 系列之8 custom Hook</a></p>
         
     </div>
     <div class="nex">
 
         
-        <p><strong>下一篇</strong> <a href="/2019/07/18/dialog-queue/">队列在前端弹窗中的应用</a></p>
+        <p><strong>下一篇</strong> <a href="/2021/01/21/react-google-login/">React Google login</a></p>
         
     </div>
 </div>
@@ -537,8 +571,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2018/10/10/vscode-plugin-schedule/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2018/10/10/vscode-plugin-schedule/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2021/01/21/react-facebook-login/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2021/01/21/react-facebook-login/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -567,6 +601,8 @@
                     Content
                 </div>
                 <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
                     
                     <li><a href="#comments">Comments</a></li>
                 </ul>
