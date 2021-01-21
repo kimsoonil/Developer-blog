@@ -2,7 +2,7 @@
 layout: post
 title:  "React Microsoft login"
 categories: JavaScript
-tags: React Social login
+tags: React Microsoft login
 author: kimsoonil
 ---
 
@@ -15,10 +15,13 @@ author: kimsoonil
 
   내앱 → 매니페스트 “oauth2AllowIdTokenImplicitFlow”  false → true 변경
 
+
+
+
 해당 프로젝트에 ``npm install react-microsoft-login`` or ``yarn add react-microsoft-login`` 추가
 
-### function 
 
+### function 
 
 facebook.js
 
@@ -62,6 +65,5 @@ Logout
 
 ``` js
 msalInstance.logout();
-
 ```
 

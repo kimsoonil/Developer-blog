@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>React Google login</title>
-    <meta name="description" content="https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출">
+    <meta name="description" content="https://github.com/anthonyjgrove/react-google-login 해당 라이브러리를 적용하였습니다.https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Au...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
@@ -194,8 +194,8 @@
         <!--a href="/tag/#React" title="Tag: React" rel="tag">React</a-->
         <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
     
-        <!--a href="/tag/#Social" title="Tag: Social" rel="tag">Social</a-->
-        <a href="/tag/#Social" title="Tag: Social" rel="tag">Social</a>&nbsp;
+        <!--a href="/tag/#Google" title="Tag: Google" rel="tag">Google</a-->
+        <a href="/tag/#Google" title="Tag: Google" rel="tag">Google</a>&nbsp;
     
         <!--a href="/tag/#login" title="Tag: login" rel="tag">login</a-->
         <a href="/tag/#login" title="Tag: login" rel="tag">login</a>
@@ -212,12 +212,39 @@
         <ul id="markdown-toc">
   <li><a href="#function" id="markdown-toc-function">function</a></li>
 </ul>
+<p>https://github.com/anthonyjgrove/react-google-login 해당 라이브러리를 적용하였습니다.</p>
 
 <p>https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출</p>
+
+<p><img src="https://kimsoonil.github.io/img/google_clientId.png" alt="google_clientId" /></p>
 
 <p>해당 프로젝트에  <code class="language-plaintext highlighter-rouge">npm install react-google-login</code>  or <code class="language-plaintext highlighter-rouge">yarn add react-google-login</code> 추가</p>
 
 <h3 id="function">function</h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-dom</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">GoogleLogin</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-google-login</span><span class="dl">'</span><span class="p">;</span>
+<span class="c1">// or</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">GoogleLogin</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-google-login</span><span class="dl">'</span><span class="p">;</span>
+
+
+<span class="kd">const</span> <span class="nx">responseGoogle</span> <span class="o">=</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">GoogleLogin</span>
+    <span class="nx">clientId</span><span class="o">=</span><span class="dl">"</span><span class="s2">658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com</span><span class="dl">"</span>
+    <span class="nx">buttonText</span><span class="o">=</span><span class="dl">"</span><span class="s2">Login</span><span class="dl">"</span>
+    <span class="nx">onSuccess</span><span class="o">=</span><span class="p">{</span><span class="nx">responseGoogle</span><span class="p">}</span>
+    <span class="nx">onFailure</span><span class="o">=</span><span class="p">{</span><span class="nx">responseGoogle</span><span class="p">}</span>
+    <span class="nx">cookiePolicy</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">single_host_origin</span><span class="dl">'</span><span class="p">}</span>
+  <span class="sr">/&gt;</span><span class="err">,
+</span>  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">googleButton</span><span class="dl">'</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div></div>
+<p>git에서 나와있는 코드는 위와 같다 이 코드에서 필요한 것만 내 코드에 적용하였다.</p>
 
 <p>google.js</p>
 
@@ -228,9 +255,17 @@
  <span class="o">&lt;</span><span class="nx">GoogleLogin</span>
     <span class="nx">clientId</span><span class="o">=</span><span class="p">{</span><span class="nx">clientId</span><span class="p">}</span>
     <span class="nx">onSuccess</span><span class="o">=</span><span class="p">{</span><span class="nx">responseGoogle</span><span class="p">}</span>
-    <span class="nx">onFailure</span><span class="o">=</span><span class="p">{</span><span class="nx">responseGoogle</span><span class="p">}</span>
-    <span class="nx">cookiePolicy</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">single_host_origin</span><span class="dl">'</span><span class="p">}</span>
-  <span class="sr">/&gt;</span><span class="err">,
+    <span class="nx">onFailure</span><span class="o">=</span><span class="p">{</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">)}</span>
+    <span class="nx">render</span><span class="o">=</span><span class="p">{</span><span class="nx">renderProps</span> <span class="o">=&gt;</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">classes</span><span class="p">.</span><span class="nx">googleBtn</span><span class="p">}</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">renderProps</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Icon</span> <span class="nx">path</span><span class="o">=</span><span class="p">{</span><span class="nx">mdiGooglePlus</span><span class="p">}</span>
+        <span class="nx">title</span><span class="o">=</span><span class="dl">"</span><span class="s2">User Profile</span><span class="dl">"</span>
+        <span class="nx">size</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+        <span class="nx">color</span><span class="o">=</span><span class="p">{</span><span class="dl">"</span><span class="s2">#fff</span><span class="dl">"</span><span class="p">}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="p">)}</span>
+  <span class="sr">/</span><span class="err">&gt;
 </span>
 </code></pre></div></div>
 
@@ -293,8 +328,6 @@
       <span class="na">buttonText</span><span class="p">=</span><span class="s">"Logout"</span>
       <span class="na">onLogoutSuccess</span><span class="p">=</span><span class="si">{</span><span class="nx">logout</span><span class="si">}</span>
     <span class="p">&gt;</span>
-
-export default App
 </code></pre></div></div>
 
 
@@ -310,6 +343,34 @@ export default App
                         
                         <h2 id="similar_posts">Similar Posts</h2>
                         <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2021/01/21/react-redux/">React redux
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
                         
                         <li class="relatedPost">
                             <a href="/2021/01/21/react-microsoft-login/">React Microsoft login
@@ -449,34 +510,6 @@ export default App
                         
                         <li class="relatedPost">
                             <a href="/2020/05/26/react-hooks7-useRef/">React Hooks 系列之7 useRef
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                        
-                        <li class="relatedPost">
-                            <a href="/2020/05/19/react-hooks6-useMemo/">React Hooks 系列之6 useMemo
                             
                             </a>
                         </li>

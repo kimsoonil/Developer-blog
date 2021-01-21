@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>React Facebook login</title>
-    <meta name="description" content="https://github.com/keppelen/react-facebook-login 해당 라이브러리를 적용하였습니다.https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출">
+    <title>React redux</title>
+    <meta name="description" content="  리덕스란?리덕스란?  사용률이 가장 높은 상태관리 라이브러리  컴포넌트들의 상태 관련 로직들을 다른 파일들로 분리시켜서 더욱 효율적으로 관리  컴포넌트끼리 상태를 공유하게 될 때 여러 컴포넌트를 거치지 않고도 손쉽게 상태 값을 전달">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2021/01/21/react-facebook-login/">
+    <link rel="canonical" href="http://localhost:4000/2021/01/21/react-redux/">
     <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml ">
 
 
@@ -149,7 +149,7 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>React Facebook login</h1>
+        <h1>React redux</h1>
         <div class="label">
 
             <div class="label-card">
@@ -194,11 +194,8 @@
         <!--a href="/tag/#React" title="Tag: React" rel="tag">React</a-->
         <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
     
-        <!--a href="/tag/#Facebook" title="Tag: Facebook" rel="tag">Facebook</a-->
-        <a href="/tag/#Facebook" title="Tag: Facebook" rel="tag">Facebook</a>&nbsp;
-    
-        <!--a href="/tag/#login" title="Tag: login" rel="tag">login</a-->
-        <a href="/tag/#login" title="Tag: login" rel="tag">login</a>
+        <!--a href="/tag/#redux" title="Tag: redux" rel="tag">redux</a-->
+        <a href="/tag/#redux" title="Tag: redux" rel="tag">redux</a>
     
   
 
@@ -210,98 +207,152 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#function" id="markdown-toc-function">function</a></li>
+  <li><a href="#리덕스란" id="markdown-toc-리덕스란">리덕스란?</a></li>
+  <li><a href="#용어정리" id="markdown-toc-용어정리">용어정리</a></li>
+  <li><a href="#리덕스-개발자-도구" id="markdown-toc-리덕스-개발자-도구">리덕스 개발자 도구</a></li>
+</ul>
+<h3 id="리덕스란">리덕스란?</h3>
+<ol>
+  <li>사용률이 가장 높은 상태관리 라이브러리</li>
+  <li>컴포넌트들의 상태 관련 로직들을 다른 파일들로 분리시켜서 더욱 효율적으로 관리</li>
+  <li>컴포넌트끼리 상태를 공유하게 될 때 여러 컴포넌트를 거치지 않고도 손쉽게 상태 값을 전달</li>
+</ol>
+
+<p><img src="https://kimsoonil.github.io/img/redux01.png" alt="redux" /></p>
+<h3 id="용어정리">용어정리</h3>
+<ul>
+  <li>
+    <p>스토어 (Store)
+리덕스에서는 한 애플리케이션 당 하나의 스토어를 만들게 됩니다. 스토어 안에는, 현재의 앱 상태와, 리듀서가 들어가있고, 추가적으로 몇가지 내장 함수들이 있습니다.</p>
+  </li>
+  <li>
+    <p>디스패치 (dispatch)
+디스패치는 스토어의 내장함수 중 하나입니다. 디스패치는, 액션을 발생 시키는 것 이라고 이해하시면 됩니다. dispatch 라는 함수에는 액션을 파라미터로 전달합니다.. dispatch(action) 이런식으로 말이죠. 그렇게 호출을 하면, 스토어는 리듀서 함수를 실행시켜서 해당 액션을 처리하는 로직이 있다면 액션을 참고하여 새로운 상태를 만들어줍니다.</p>
+  </li>
+  <li>
+    <p>구독 (subscribe)
+구독 또한 스토어의 내장함수 중 하나입니다. subscribe 함수는, 함수 형태의 값을 파라미터로 받아옵니다. subscribe 함수에 특정 함수를 전달해주면, 액션이 디스패치 되었을 때 마다 전달해준 함수가 호출됩니다.</p>
+  </li>
+  <li>
+    <p>리듀서 (Reducer)
+리듀서는 변화를 일으키는 함수입니다. 리듀서는 두가지의 파라미터를 받아옵니다. 리듀서는, 현재의 상태와, 전달 받은 액션을 참고하여 새로운 상태를 만들어서 반환합니다.</p>
+  </li>
 </ul>
 
-<p>https://github.com/keppelen/react-facebook-login 해당 라이브러리를 적용하였습니다.</p>
-
-<p>https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출</p>
-
-<p><img src="https://kimsoonil.github.io/img/facebook_clientId.png" alt="facebook_clientId" /></p>
-
-<p>해당 프로젝트에 <code class="language-plaintext highlighter-rouge">npm install react-facebook-login</code> or <code class="language-plaintext highlighter-rouge">yarn add react-facebook-login</code> 추가</p>
-
-<h3 id="function">function</h3>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
-  <span class="k">import</span> <span class="nx">FacebookLogin</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-facebook-login</span><span class="dl">'</span><span class="p">;</span>
-
-  <span class="kd">class</span> <span class="nx">MyComponent</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-    <span class="nx">responseFacebook</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">FacebookLogin</span>
-          <span class="nx">appId</span><span class="o">=</span><span class="dl">"</span><span class="s2">1088597931155576</span><span class="dl">"</span>
-          <span class="nx">autoLoad</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
-          <span class="nx">fields</span><span class="o">=</span><span class="dl">"</span><span class="s2">name,email,picture</span><span class="dl">"</span>
-          <span class="nx">scope</span><span class="o">=</span><span class="dl">"</span><span class="s2">public_profile,user_friends,user_actions.books</span><span class="dl">"</span>
-          <span class="nx">callback</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">responseFacebook</span><span class="p">}</span>
-        <span class="sr">/</span><span class="err">&gt;
-</span>      <span class="p">)</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="k">export</span> <span class="k">default</span> <span class="nx">MyComponent</span><span class="p">;</span>
-</code></pre></div></div>
-<p>git에서 나와있는 코드는 위와 같다 이 코드에서 필요한 것만 내 코드에 적용하였다.</p>
-
-<p>facebook.js</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseFacebook</span> <span class="o">=</span> <span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">function</span> <span class="nx">reducer</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// 상태 업데이트 로직</span>
+  <span class="k">return</span> <span class="nx">alteredState</span><span class="p">;</span>
 <span class="p">}</span>
-  
-  <span class="k">return</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="nx">FacebookLogin</span>
-        <span class="nx">appId</span><span class="o">=</span><span class="p">{</span><span class="nx">appId</span><span class="p">}</span>
-        <span class="nx">autoLoad</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> 
-        <span class="nx">fields</span><span class="o">=</span><span class="dl">"</span><span class="s2">name,email,picture</span><span class="dl">"</span>
-        
-        <span class="nx">callback</span><span class="o">=</span><span class="p">{</span><span class="nx">responseFacebook</span><span class="p">}</span> 
-        <span class="nx">render</span><span class="o">=</span><span class="p">{</span><span class="nx">renderProps</span> <span class="o">=&gt;</span> <span class="p">(</span>
-            <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">classes</span><span class="p">.</span><span class="nx">facebookBtn</span><span class="p">}</span>
-               <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">renderProps</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;</span>
-               <span class="o">&lt;</span><span class="nx">Icon</span> <span class="nx">icon</span><span class="o">=</span><span class="p">{</span><span class="nx">facebookIcon</span><span class="p">}</span>
-               <span class="nx">color</span><span class="o">=</span><span class="p">{</span><span class="dl">"</span><span class="s2">#fff</span><span class="dl">"</span><span class="p">}</span>
-               <span class="nx">width</span><span class="o">=</span><span class="dl">"</span><span class="s2">26</span><span class="dl">"</span> <span class="nx">height</span><span class="o">=</span><span class="dl">"</span><span class="s2">26</span><span class="dl">"</span> 
-               <span class="o">/&gt;</span>
-               
-            <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>          <span class="p">)}</span>
-        <span class="sr">/</span><span class="err">&gt;
-</span>
 </code></pre></div></div>
-
-<p>response</p>
+<ul>
+  <li>액션 (Action)
+상태에 어떠한 변화가 필요하게 될 땐, 우리는 액션이란 것을 발생시킵니다. 이는, 하나의 객체로 표현되는데요, 액션 객체는 다음과 같은 형식으로 이뤄져있습니다.
+response</li>
+</ul>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">accessToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">EAAC8Lo5zQewBAN4W710ZAy6NDQWWw2VI2NZCWBgNg3wl3J6sjZAaaVcaKtsEzpYmenZCtj3aZAFDUSyodqZBSDkqRFBfUsfRHZBpYDig0rftTJQkD5akZAXR6jADFkb0TdeaLh76SB1UU04pKZAepRkTMUfcFLohZARgx59jpRq479cZBm6GIxAT7flkqwmLZCYRmngXZA3MJBk0aaQZDZD</span><span class="dl">"</span>
-  <span class="nx">data_access_expiration_time</span><span class="p">:</span> <span class="mi">1618276974</span>
-  <span class="nx">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">slskdkfdl@naver.com</span><span class="dl">"</span>
-  <span class="nx">expiresIn</span><span class="p">:</span> <span class="mi">5826</span>
-  <span class="nx">graphDomain</span><span class="p">:</span> <span class="dl">"</span><span class="s2">facebook</span><span class="dl">"</span>
-  <span class="nx">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">3820135101398199</span><span class="dl">"</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
-  <span class="nx">picture</span><span class="p">:</span> 
-    <span class="nx">data</span><span class="p">:{</span>
-      <span class="nl">height</span><span class="p">:</span> <span class="mi">50</span>
-      <span class="nx">is_silhouette</span><span class="p">:</span> <span class="kc">false</span>
-      <span class="nx">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=3820135101398199&amp;height=50&amp;width=50&amp;ext=1613094362&amp;hash=AeQJYMpEBMsBwNwCzZQ</span><span class="dl">"</span>
-      <span class="nx">width</span><span class="p">:</span> <span class="mi">50</span>
-     <span class="p">}</span>
-  <span class="nl">signedRequest</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Urywddab952I8d5IHY0WVFiWccYkTOnucSo98x6BVuk.eyJ1c2VyX2lkIjoiMzgyMDEzNTEwMTM5ODE5OSIsImNvZGUiOiJBUUJFamFjQTJxc3hrRmt5c3ZaWmxEN1ZxUGxYS01meHkzb0s1X1RiTmFZblF1SER1U2RWTU45Zk9LU3hKY19SMGJvWWN0YkpSc2FJZmFFVndlT1pLeXBndGkxU1QtNFdNVnpiY3d2NXVNQmFQOHVaNi1YdFVPNVJHUVpyOXZ6MEQtRnNjSV9WazdjR21STEpRVTVkU0pzWmhOSzdibFE5TkwwTGMtNWtOajg3VlJLZDhiaWJlbWhEUWRKOHZxa3d3cTZseUYyaUxHQ2x0MUZzYktsZmxOcWEzR2N2SnU5MWktN2VWZ1hLOEczelJjaG9yX2FkMm51UHJ4dG9oUUxyZS01N216NU0yQ3lVckwwbEZLVFB2c04xck9raS15aXFiazV5SUFLbUJDYzF0dC1ibUZoelZhZC1RRWdab09LRzEtT3ExM1ItX0VYMnZYMjU0SGVZb2RZeSIsImFsZ29yaXRobSI6IkhNQUMtU0hBMjU2IiwiaXNzdWVkX2F0IjoxNjEwNTAwOTc0fQ</span><span class="dl">"</span>
-  <span class="nx">userID</span><span class="p">:</span> <span class="dl">"</span><span class="s2">3820135101398199</span><span class="dl">"</span>
+  <span class="nl">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">TOGGLE_VALUE</span><span class="dl">"</span>
 <span class="p">}</span>
 </code></pre></div></div>
-
-<p>Logout</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">FB</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
+<p>액션 객체는 type 필드를 필수적으로 가지고 있어야하고 그 외의 값들은 개발자 마음대로 넣어줄 수 있습니다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
+  <span class="nl">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ADD_TODO</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">data</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nl">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">text</span><span class="p">:</span> <span class="dl">"</span><span class="s2">리덕스 배우기</span><span class="dl">"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
+<ul>
+  <li>액션 생성함수 (Action Creator)
+액션 생성함수는, 액션을 만드는 함수입니다. 단순히 파라미터를 받아와서 액션 객체 형태로 만들어주죠.</li>
+</ul>
 
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">addTodo</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ADD_TODO</span><span class="dl">"</span><span class="p">,</span>
+    <span class="nx">data</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="c1">// 화살표 함수로도 만들 수 있습니다.</span>
+<span class="kd">const</span> <span class="nx">changeInput</span> <span class="o">=</span> <span class="nx">text</span> <span class="o">=&gt;</span> <span class="p">({</span> 
+  <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CHANGE_INPUT</span><span class="dl">"</span><span class="p">,</span>
+  <span class="nx">text</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<p>리덕스 3가지 규칙</p>
+<ol>
+  <li>
+    <p>하나의 애플리케이션 안에는 하나의 스토어가 있습니다.
+하나의 애플리케이션에선 단 한개의 스토어를 만들어서 사용합니다.  여러개의 스토어를 만들 수도 있습니다. 하지만 그렇게 하면, 개발 도구를 활용하지 못하게 됩니다.</p>
+  </li>
+  <li>
+    <p>상태는 읽기전용 입니다.
+리액트에서 state 를 업데이트 해야 할 때, setState 를 사용하고, 배열을 업데이트 해야 할 때는 배열 자체에 push 를 직접 하지 않고, concat 같은 함수를 사용하여 기존의 배열은 수정하지 않고 새로운 배열을 만들어서 교체하는 방식으로 업데이트를 합니다. 엄청 깊은 구조로 되어있는 객체를 업데이트를 할 때도 마찬가지로, 기존의 객체는 건드리지 않고 Object.assign 을 사용하거나 spread 연산자 (…) 를 사용하여 업데이트 하곤 하죠.</p>
+  </li>
+</ol>
+
+<p>리덕스에서도 마찬가지입니다. 기존의 상태는 건들이지 않고 새로운 상태를 생성하여 업데이트 해주는 방식으로 해주면, 나중에 개발자 도구를 통해서 뒤로 돌릴 수도 있고 다시 앞으로 돌릴 수도 있습니다.</p>
+
+<p>리덕스에서 불변성을 유지해야 하는 이유는 내부적으로 데이터가 변경 되는 것을 감지하기 위하여 shallow equality 검사를 하기 때문입니다. 이를 통하여 객체의 변화를 감지 할 때 객체의 깊숙한 안쪽까지 비교를 하는 것이 아니라 겉핥기 식으로 비교를 하여 좋은 성능을 유지할 수 있는 것이죠.</p>
+
+<ol>
+  <li>변화를 일으키는 함수, 리듀서는 순수한 함수여야 합니다.
+    <ul>
+      <li>리듀서 함수는 이전 상태와, 액션 객체를 파라미터로 받습니다.</li>
+      <li>이전의 상태는 절대로 건들이지 않고, 변화를 일으킨 새로운 상태 객체를 만들어서 반환합니다.</li>
+      <li>똑같은 파라미터로 호출된 리듀서 함수는 언제나 똑같은 결과값을 반환해야만 합니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>3가지 사항을 주의해주세요. 동일한 인풋이라면 언제나 동일한 아웃풋이 있어야 합니다. 그런데 일부 로직들 중에서는 실행 할 때마다 다른 결과값이 나타날 수도 있죠. new Date() 를 사용한다던지.. 랜덤 숫자를 생성한다던지.. 혹은, 네트워크에 요청을 한다던지! 그러한 작업은 결코 순수하지 않은 작업이므로, 리듀서 함수의 바깥에서 처리해줘야 합니다.</p>
+
+<p><img src="../img/redux02.png" alt="redux" />
+미들웨어는, 액션이 디스패치(dispatch) 되어서 리듀서에서 이를 처리하기전에 사전에 지정된 작업들을 설정합니다. 미들웨어를 액션과 리듀서 사이의 중간자 역활입니다.</p>
+
+<p>미들웨어를 적용하지 않은 함수를 미들웨어를 적용하여 1초후 사용하는 비동기 작업으로 변경하면</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">increaseAsync</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="nx">INCREASE_ASYNC</span> <span class="p">});</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">decreaseAsync</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span> <span class="na">type</span><span class="p">:</span> <span class="nx">DECREASE_ASYNC</span> <span class="p">});</span>
+</code></pre></div></div>
+<ol>
+  <li>redux-thunk (https://softwareinlife.atlassian.net/wiki/spaces/PD3/pages/132481049/Redux#1.-redux-thunk-%5BinlineCard%5D)
+redux-thunk는 리덕스에서 비동기 작업을 처리 할 때 가장 많이 사용하는 미들웨어입니다.</li>
+</ol>
+
+<p>액션 객체가 아닌 함수를 디스패치 할 수 있습니다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">increaseAsync</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">increase</span><span class="p">()),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">decreaseAsync</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">decrease</span><span class="p">()),</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<ol>
+  <li>redux-saga (https://softwareinlife.atlassian.net/wiki/spaces/PD3/pages/132481049/Redux#2.-redux-saga-%5BinlineCard%5D)
+    <ul>
+      <li>액션을 모니터링하고 있다가, 특정 액션이 발생하면 이에 따라 특정 작업을 하는 방식</li>
+      <li>비동기 작업을 할 때 기존 요청을 취소 처리 할 수 있습니다</li>
+      <li>특정 액션이 발생했을 때 이에 따라 다른 액션이 디스패치되게 끔 하거나, 자바스크립트 코드를 실행 할 수 있습니다.</li>
+      <li>웹소켓을 사용하는 경우 Channel 이라는 기능을 사용하여 더욱 효율적으로 코드를 관리 할 수 있습니다</li>
+      <li>API 요청이 실패했을 때 재 요청하는 작업을 할 수 있습니다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="리덕스-개발자-도구">리덕스 개발자 도구</h3>
+<p>우선 크롬 웹 스토어 에서 확장 프로그램을 설치 다음은 프로젝트에 redux-devtools-extension을 설치하세요.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ yarn add redux-devtools-extension
+</code></pre></div></div>
+<p>그 다음에는 index.js를 다음과 같이 수정하시면 적용</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import { composeWithDevTools } from 'redux-devtools-extension'; // 리덕스 개발자 도구
+
+const store = createStore(rootReducer, composeWithDevTools()); // 스토어를 만듭니다.
+// composeWithDevTools 를 사용하여 리덕스 개발자 도구 활성화
+</code></pre></div></div>
 
         </article>
         <hr>
@@ -317,34 +368,6 @@
                         <ul>
                         
                         <li class="relatedPost">
-                            <a href="/2021/01/21/react-redux/">React redux
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                        
-                        <li class="relatedPost">
                             <a href="/2021/01/21/react-microsoft-login/">React Microsoft login
                             
                             </a>
@@ -355,19 +378,13 @@
                 
                     
                 
-                    
-                
             
                 
                     
                 
                     
                 
-                    
-                
             
-                
-                    
                 
                     
                 
@@ -391,19 +408,13 @@
                 
                     
                 
-                    
-                
             
                 
                     
                 
                     
                 
-                    
-                
             
-                
-                    
                 
                     
                 
@@ -427,6 +438,10 @@
                 
                     
                 
+            
+                
+                    
+                
                     
                 
             
@@ -435,11 +450,31 @@
                 
                     
                 
+            
+        
+            
+            
+                
+                    
+                        
+                        <li class="relatedPost">
+                            <a href="/2021/01/21/react-facebook-login/">React Facebook login
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
                     
                 
             
                 
                     
+                
+                    
+                
+            
                 
                     
                 
@@ -463,11 +498,7 @@
                 
                     
                 
-                    
-                
             
-                
-                    
                 
                     
                 
@@ -491,11 +522,7 @@
                 
                     
                 
-                    
-                
             
-                
-                    
                 
                     
                 
@@ -510,11 +537,7 @@
                 
                     
                 
-                    
-                
             
-                
-                    
                 
                     
                 
@@ -529,11 +552,7 @@
                 
                     
                 
-                    
-                
             
-                
-                    
                 
                     
                 
@@ -548,11 +567,7 @@
                 
                     
                 
-                    
-                
             
-                
-                    
                 
                     
                 
@@ -567,11 +582,7 @@
                 
                     
                 
-                    
-                
             
-                
-                    
                 
                     
                 
@@ -586,13 +597,11 @@
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2020/05/27/react-hooks8-customHooks/">React Hooks 系列之8 custom Hook</a></p>
+        <p><strong>上一篇</strong> <a href="/2021/01/21/react-microsoft-login/">React Microsoft login</a></p>
         
     </div>
     <div class="nex">
 
-        
-        <p><strong>下一篇</strong> <a href="/2021/01/21/react-google-login/">React Google login</a></p>
         
     </div>
 </div>
@@ -610,8 +619,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2021/01/21/react-facebook-login/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2021/01/21/react-facebook-login/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2021/01/21/react-redux/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2021/01/21/react-redux/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

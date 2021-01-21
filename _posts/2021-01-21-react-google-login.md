@@ -2,21 +2,48 @@
 layout: post
 title:  "React Google login"
 categories: JavaScript
-tags: React Social login
+tags: React Google login
 author: kimsoonil
 ---
 
 * content
 {:toc}
+https://github.com/anthonyjgrove/react-google-login 해당 라이브러리를 적용하였습니다.
 
 https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출
 
 
 
+![google_clientId](https://kimsoonil.github.io/img/google_clientId.png)
+
 해당 프로젝트에  ``npm install react-google-login``  or ``yarn add react-google-login`` 추가
 
 ### function 
 
+``` js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import GoogleLogin from 'react-google-login';
+// or
+import { GoogleLogin } from 'react-google-login';
+
+
+const responseGoogle = (response) => {
+  console.log(response);
+}
+
+ReactDOM.render(
+  <GoogleLogin
+    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+    buttonText="Login"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />,
+  document.getElementById('googleButton')
+);
+```
+git에서 나와있는 코드는 위와 같다 이 코드에서 필요한 것만 내 코드에 적용하였다.
 
 google.js
 
@@ -28,9 +55,17 @@ google.js
  <GoogleLogin
     clientId={clientId}
     onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-    cookiePolicy={'single_host_origin'}
-  />,
+    onFailure={response => console.log(response)}
+    render={renderProps => (
+      <button className={classes.googleBtn} onClick={renderProps.onClick}>
+      <Icon path={mdiGooglePlus}
+        title="User Profile"
+        size={1}
+        color={"#fff"}
+        />
+      </button>
+    )}
+  />
 
 ```
 
@@ -95,7 +130,5 @@ Logout
       buttonText="Logout"
       onLogoutSuccess={logout}
     >
-
-export default App
 ```
 

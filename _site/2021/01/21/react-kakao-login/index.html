@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>React Kakao login</title>
-    <meta name="description" content="https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용Kakao Login → Activation Settings 활성화, Redirect URI url 등록해당 프로젝트에서 npm i...">
+    <meta name="description" content="https://github.com/wonism/react-kakao-login 해당 라이브러리를 적용하였습니다.https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
@@ -194,8 +194,8 @@
         <!--a href="/tag/#React" title="Tag: React" rel="tag">React</a-->
         <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
     
-        <!--a href="/tag/#Social" title="Tag: Social" rel="tag">Social</a-->
-        <a href="/tag/#Social" title="Tag: Social" rel="tag">Social</a>&nbsp;
+        <!--a href="/tag/#Kakao" title="Tag: Kakao" rel="tag">Kakao</a-->
+        <a href="/tag/#Kakao" title="Tag: Kakao" rel="tag">Kakao</a>&nbsp;
     
         <!--a href="/tag/#login" title="Tag: login" rel="tag">login</a-->
         <a href="/tag/#login" title="Tag: login" rel="tag">login</a>
@@ -213,6 +213,8 @@
   <li><a href="#function" id="markdown-toc-function">function</a></li>
 </ul>
 
+<p>https://github.com/wonism/react-kakao-login 해당 라이브러리를 적용하였습니다.</p>
+
 <p>https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용</p>
 
 <p>Kakao Login → Activation Settings 활성화, Redirect URI url 등록</p>
@@ -223,22 +225,37 @@
 
 <h3 id="function">function</h3>
 
-<p>facebook.js</p>
+<p>kakao.js</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseFacebook</span> <span class="o">=</span> <span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-<span class="p">}</span>
-  
-  <span class="k">return</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="nx">KakaoLogin</span> 
-    <span class="nx">token</span><span class="o">=</span><span class="p">{</span><span class="nx">token</span><span class="p">}</span> 
-    <span class="nx">onSuccess</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">}</span> 
-    <span class="nx">onFail</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">}</span> 
-    <span class="nx">onLogout</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">}</span> 
-    <span class="sr">/</span><span class="err">&gt;
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">return</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">KakaoLogin</span>
+    <span class="nx">token</span><span class="o">=</span><span class="p">{</span><span class="nx">token</span><span class="p">}</span>
+    <span class="nx">onSuccess</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">}</span>
+    <span class="nx">onFail</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">}</span>
+    <span class="nx">onLogout</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">}</span>
+  <span class="sr">/</span><span class="err">&gt;
 </span>
 </code></pre></div></div>
+<p>git에서 나와있는 코드는 위와 같다 이 코드에서 필요한 것만 내 코드에 적용하였다.</p>
 
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">KakaoLogin</span>
+  <span class="nx">token</span><span class="o">=</span><span class="p">{</span><span class="nx">token</span><span class="p">}</span>
+  <span class="nx">onSuccess</span><span class="o">=</span><span class="p">{</span><span class="nx">responseKakao</span><span class="p">}</span>
+  <span class="nx">onFail</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">}</span>
+  <span class="nx">onLogout</span><span class="o">=</span><span class="p">{</span><span class="nx">console</span><span class="p">.</span><span class="nx">info</span><span class="p">}</span>
+  <span class="nx">useLoginForm</span>
+  <span class="nx">render</span><span class="o">=</span><span class="p">{({</span> <span class="nx">onClick</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">classes</span><span class="p">.</span><span class="nx">kakaobtn</span><span class="p">}</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+        <span class="nx">onClick</span><span class="p">();</span>
+      <span class="p">}}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Icon</span> <span class="nx">icon</span><span class="o">=</span><span class="p">{</span><span class="nx">kakaotalkIcon</span><span class="p">}</span> <span class="nx">width</span><span class="o">=</span><span class="dl">"</span><span class="s2">26</span><span class="dl">"</span> <span class="nx">height</span><span class="o">=</span><span class="dl">"</span><span class="s2">26</span><span class="dl">"</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="p">);</span>
+  <span class="p">}}</span>
+<span class="sr">/</span><span class="err">&gt;
+</span></code></pre></div></div>
 <p>response</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">profile</span><span class="p">:{</span>
@@ -278,7 +295,6 @@
 <p>Logout</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Kakao</span><span class="p">.</span><span class="nx">Auth</span><span class="p">.</span><span class="nx">logout</span><span class="p">()</span>
-
 </code></pre></div></div>
 
 
@@ -294,6 +310,34 @@
                         
                         <h2 id="similar_posts">Similar Posts</h2>
                         <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2021/01/21/react-redux/">React redux
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
                         
                         <li class="relatedPost">
                             <a href="/2021/01/21/react-microsoft-login/">React Microsoft login
@@ -433,34 +477,6 @@
                         
                         <li class="relatedPost">
                             <a href="/2020/05/26/react-hooks7-useRef/">React Hooks 系列之7 useRef
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                        
-                        <li class="relatedPost">
-                            <a href="/2020/05/19/react-hooks6-useMemo/">React Hooks 系列之6 useMemo
                             
                             </a>
                         </li>

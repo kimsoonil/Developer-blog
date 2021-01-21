@@ -2,43 +2,63 @@
 layout: post
 title:  "React Kakao login"
 categories: JavaScript
-tags: React Social login
+tags: React Kakao login
 author: kimsoonil
 ---
 
 * content
 {:toc}
 
+https://github.com/wonism/react-kakao-login 해당 라이브러리를 적용하였습니다.
+
  https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용
+
+
+
+
 
 Kakao Login → Activation Settings 활성화, Redirect URI url 등록
 
  해당 프로젝트에서 npm install react-kakao-login  or yarn add react-kakao-login 추가
-
-
 
 해당 프로젝트에 ``npm install react-kakao-login`` or ``yarn add react-kakao-login`` 추가
 
 ### function 
 
 
-facebook.js
+kakao.js
 
 ``` js
- const responseFacebook = response => {
-        console.log(response);
-}
-  
   return(
-  <KakaoLogin 
-    token={token} 
-    onSuccess={console.log} 
-    onFail={console.error} 
-    onLogout={console.info} 
-    />
+  <KakaoLogin
+    token={token}
+    onSuccess={console.log}
+    onFail={console.error}
+    onLogout={console.info}
+  />
 
 ```
+git에서 나와있는 코드는 위와 같다 이 코드에서 필요한 것만 내 코드에 적용하였다.
 
+``` js
+<KakaoLogin
+  token={token}
+  onSuccess={responseKakao}
+  onFail={console.error}
+  onLogout={console.info}
+  useLoginForm
+  render={({ onClick }) => {
+    return (
+      <button className={classes.kakaobtn} onClick={(e) => {
+        e.preventDefault();
+        onClick();
+      }}>
+        <Icon icon={kakaotalkIcon} width="26" height="26" />
+      </button>
+    );
+  }}
+/>
+```
 response
 
 ``` js
@@ -80,6 +100,5 @@ Logout
 
 ``` js
 Kakao.Auth.logout()
-
 ```
 

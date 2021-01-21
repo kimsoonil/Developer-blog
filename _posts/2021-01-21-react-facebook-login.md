@@ -2,21 +2,50 @@
 layout: post
 title:  "React Facebook login"
 categories: JavaScript
-tags: React Social login
+tags: React Facebook login
 author: kimsoonil
 ---
 
 * content
 {:toc}
 
+https://github.com/keppelen/react-facebook-login 해당 라이브러리를 적용하였습니다.
+
 https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
 
 
+
+![facebook_clientId](https://kimsoonil.github.io/img/facebook_clientId.png)
 
 해당 프로젝트에 ``npm install react-facebook-login`` or ``yarn add react-facebook-login`` 추가
 
 ### function 
 
+```js
+  import React from 'react';
+  import FacebookLogin from 'react-facebook-login';
+
+  class MyComponent extends React.Component {
+    responseFacebook(response) {
+      console.log(response);
+    }
+
+    render() {
+      return (
+        <FacebookLogin
+          appId="1088597931155576"
+          autoLoad={true}
+          fields="name,email,picture"
+          scope="public_profile,user_friends,user_actions.books"
+          callback={this.responseFacebook}
+        />
+      )
+    }
+  }
+
+  export default MyComponent;
+```
+git에서 나와있는 코드는 위와 같다 이 코드에서 필요한 것만 내 코드에 적용하였다.
 
 facebook.js
 
@@ -27,11 +56,22 @@ facebook.js
   
   return(
   <FacebookLogin
-    appId="앱ID"
-    autoLoad={true} // 실행과 동시에 자동으로 로그인 팝업창이 뜸
-    fields="name,email,picture" // 어떤정보를 받아올지 입력하는 필드
-    callback={responseFacebook} />
-  )
+        appId={appId}
+        autoLoad={false} 
+        fields="name,email,picture"
+        
+        callback={responseFacebook} 
+        render={renderProps => (
+            <button className={classes.facebookBtn}
+               onClick={renderProps.onClick}>
+               <Icon icon={facebookIcon}
+               color={"#fff"}
+               width="26" height="26" 
+               />
+               
+            </button>
+          )}
+        />
 
 ```
 
@@ -62,6 +102,5 @@ Logout
 
 ``` js
 window.FB.logout();
-
 ```
 

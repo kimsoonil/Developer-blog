@@ -5,67 +5,44 @@
     <description>Zoom in Coding from the Basic.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 21 Jan 2021 13:19:33 +0900</pubDate>
-    <lastBuildDate>Thu, 21 Jan 2021 13:19:33 +0900</lastBuildDate>
+    <pubDate>Thu, 21 Jan 2021 17:13:07 +0900</pubDate>
+    <lastBuildDate>Thu, 21 Jan 2021 17:13:07 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
-        <title>React Microsoft login</title>
+        <title>React redux</title>
         <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#function&quot; id=&quot;markdown-toc-function&quot;&gt;function&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#리덕스란&quot; id=&quot;markdown-toc-리덕스란&quot;&gt;리덕스란?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&quot;리덕스란&quot;&gt;리덕스란?&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;사용률이 가장 높은 상태관리 라이브러리&lt;/li&gt;
+  &lt;li&gt;컴포넌트들의 상태 관련 로직들을 다른 파일들로 분리시켜서 더욱 효율적으로 관리&lt;/li&gt;
+  &lt;li&gt;컴포넌트끼리 상태를 공유하게 될 때 여러 컴포넌트를 거치지 않고도 손쉽게 상태 값을 전달&lt;/li&gt;
+&lt;/ol&gt;
 
+</description>
+        <pubDate>Thu, 21 Jan 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2021/01/21/react-redux/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/01/21/react-redux/</guid>
+        
+        <category>React</category>
+        
+        <category>redux</category>
+        
+        
+        <category>JavaScript</category>
+        
+      </item>
+    
+      <item>
+        <title>React Microsoft login</title>
+        <description>
 https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps 에서 앱을 등록하고 clientId 추출
 
 내앱 → 인증 → ID 토큰 , 모든 조직 디렉터리의 계정 체크
 
 내앱 → 매니페스트 “oauth2AllowIdTokenImplicitFlow”  false → true 변경
-
-해당 프로젝트에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npm install react-microsoft-login&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;yarn add react-microsoft-login&lt;/code&gt; 추가
-
-&lt;h3 id=&quot;function&quot;&gt;function&lt;/h3&gt;
-
-facebook.js
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;responseMicrosoft&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-  
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;MicrosoftLogin&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;clientId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clientId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;authCallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;responseFacebook&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-response
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;accessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;eyJ0eXAiOiJKV1QiLCJub25jZSI6Il9VeWxsaWdST1pXUkw3ZDNmSndmV0tpWDFkYk5YeERkZkZOMHFLdUM5eVkiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyIsImtpZCI6Im5PbzNaRHJPRFhFSzFqS1doWHNsSFJfS1hFZyJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9kNjMwY2RiMC1mYjUzLTQxZjgtYmEyMi0wMzM5OWNlNWIwNDYvIiwiaWF0IjoxNjEwNTA1NjU2LCJuYmYiOjE2MTA1MDU2NTYsImV4cCI6MTYxMDUwOTU1NiwiYWNjdCI6MCwiYWNyIjoiMSIsImFjcnMiOlsidXJuOnVzZXI6cmVnaXN0ZXJzZWN1cml0eWluZm8iLCJ1cm46bWljcm9zb2Z0OnJlcTEiLCJ1cm46bWljcm9zb2Z0OnJlcTIiLCJ1cm46bWljcm9zb2Z0OnJlcTMiLCJjMSIsImMyIiwiYzMiLCJjNCIsImM1IiwiYzYiLCJjNyIsImM4IiwiYzkiLCJjMTAiLCJjMTEiLCJjMTIiLCJjMTMiLCJjMTQiLCJjMTUiLCJjMTYiLCJjMTciLCJjMTgiLCJjMTkiLCJjMjAiLCJjMjEiLCJjMjIiLCJjMjMiLCJjMjQiLCJjMjUiXSwiYWlvIjoiRTJKZ1lIaFlKK0VpWE5VdSsxQlRNRU5uMFU1QnRRMFJNNDVaWGpqMmY4N1pUYmthak5jQiIsImFtciI6WyJwd2QiXSwiYXBwX2Rpc3BsYXluYW1lIjoicmVhY3QtbWljcm9zb2Z0LWxvZ2luIiwiYXBwaWQiOiJkZGE5ZGM5Ni0wNjNlLTQzMDItYmY0Ny0wZDk4NTE5NDFiOTQiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6Iuq5gCIsImdpdmVuX25hbWUiOiLsiJzsnbwiLCJpZHR5cCI6InVzZXIiLCJpcGFkZHIiOiIxMjEuMTM0LjE1OC4zNCIsIm5hbWUiOiLquYDsiJzsnbwiLCJvaWQiOiI5NjYzYjA3NS1mNzZmLTRhNGItOTIwMi1lM2ExZjhmYTk4MDYiLCJwbGF0ZiI6IjUiLCJwdWlkIjoiMTAwMzIwMDBGNEQ2MjQyMyIsInJoIjoiMC5BU29Bc00wdzFsUDctRUc2SWdNNW5PV3dScGJjcWQwLUJnSkR2MGNObUZHVUc1UXFBRzQuIiwic2NwIjoib3BlbmlkIHByb2ZpbGUgVXNlci5SZWFkIGVtYWlsIiwic2lnbmluX3N0YXRlIjpbImttc2kiXSwic3ViIjoiTlpiazYtYlBLTUZ2LU9rUnlPajhZS3duMWRKeG5tcUNkcnAxVVlmVWE3OCIsInRlbmFudF9yZWdpb25fc2NvcGUiOiJBUyIsInRpZCI6ImQ2MzBjZGIwLWZiNTMtNDFmOC1iYTIyLTAzMzk5Y2U1YjA0NiIsInVuaXF1ZV9uYW1lIjoic3VuaWwua2ltQHNvZnR3YXJlaW5saWZlLmNvbSIsInVwbiI6InN1bmlsLmtpbUBzb2Z0d2FyZWlubGlmZS5jb20iLCJ1dGkiOiJZT1Rzb0RqSUFVT0dLUC0ybkEwVEFBIiwidmVyIjoiMS4wIiwieG1zX3N0Ijp7InN1YiI6Ii05M1ZreWFoN3RURWx6T1d0dzBJSG9iNjMzeU9FX00yRE1kZTRmcVdCUE0ifSwieG1zX3RjZHQiOjE1NTQ0MzkxNjV9.Lgn3bRVT2wq-ae9h1Ql2uqjtnizElvXP5WwiccsW_J0V93CqxUSoMrSeDpYXRk0NYgZQce7fAsINU_phxjzA3ozEWCo8Gfy5WkW4BRCYkM8wkg0e-V9gYF8KcyZeHp-dWU2VgThiqLvP3p8qzSh5KA1BTjh4Vs7p8OFeIiKNMfsdMDx_7-2f9B2UoinOCuZ_x7TxjV15J_76Df7B56GnRxjDbybPINxYgkP_dC61Bap_bGDViyDbC_MitvhknG-3zu1n7n_s7vL_Y9ZSn3C1BNN2rufdWFbLiPWpjaWOBUMw3ceNuoelLPH3yjg7-kEkVRP8Ac8sadbWuUySbh8eqg&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;account&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Account&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;accountIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;9663b075-f76f-4a4b-9202-e3a1f8fa9806&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;homeAccountIdentifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;OTY2M2IwNzUtZjc2Zi00YTRiLTkyMDItZTNhMWY4ZmE5ODA2.ZDYzMGNkYjAtZmI1My00MWY4LWJhMjItMDMzOTljZTViMDQ2&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;idToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;aud&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;dda9dc96-063e-4302-bf47-0d9851941b94&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;iat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610505655&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;nbf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610505655&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610509555&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;idTokenClaims&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aud&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;dda9dc96-063e-4302-bf47-0d9851941b94&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;iss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;iat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610505655&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;nbf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610505655&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610509555&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;nl&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;김순일&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;sid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;userName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sunil.kim@softwareinlife.com&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;accountState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;eyJpZCI6Ijk0OWY3MmJlLWI1ZDQtNDIyOS1iODQ1LTIwZGYzYmI1N2Y3YSIsInRzIjoxNjEwNTA1OTU2LCJtZXRob2QiOiJwb3B1cEludGVyYWN0aW9uIn0=&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;expiresOn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Wed&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Jan&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2021&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;45&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;55&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;GMT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0900&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;대한민국&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;표준시&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;fromCache&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;idToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IdToken&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;rawIdToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Im5Pbz…SS6LcfeKCK2wXzuJ4tl4qHkUddomxAghDSz7YdbslwbKVwtjw&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;claims&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;issuer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;objectId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;9663b075-f76f-4a4b-9202-e3a1f8fa9806&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-93Vkyah7tTElzOWtw0IHob633yOE_M2DMde4fqWBPM&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;idTokenClaims&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;aud&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;dda9dc96-063e-4302-bf47-0d9851941b94&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;iss&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;https://login.microsoftonline.com/d630cdb0-fb53-41f8-ba22-03399ce5b046/v2.0&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;iat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610505655&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;nbf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610505655&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1610509555&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;…&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;nl&quot;&gt;scopes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;openid&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;profile&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;User.Read&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;tenantId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;d630cdb0-fb53-41f8-ba22-03399ce5b046&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;tokenType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;access_token&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;uniqueId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;9663b075-f76f-4a4b-9202-e3a1f8fa9806&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-Logout
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;msalInstance&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;logout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 </description>
         <pubDate>Thu, 21 Jan 2021 00:00:00 +0900</pubDate>
@@ -74,7 +51,7 @@ Logout
         
         <category>React</category>
         
-        <category>Social</category>
+        <category>Microsoft</category>
         
         <category>login</category>
         
@@ -86,11 +63,9 @@ Logout
       <item>
         <title>React Kakao login</title>
         <description>
+https://github.com/wonism/react-kakao-login 해당 라이브러리를 적용하였습니다.
+
 https://developers.kakao.com/console/app에서 앱을 만들고 App Keys 추출 key중 JavaScript key 사용
-
-Kakao Login → Activation Settings 활성화, Redirect URI url 등록
-
-해당 프로젝트에서 npm install react-kakao-login  or yarn add react-kakao-login 추가
 
 </description>
         <pubDate>Thu, 21 Jan 2021 00:00:00 +0900</pubDate>
@@ -99,7 +74,7 @@ Kakao Login → Activation Settings 활성화, Redirect URI url 등록
         
         <category>React</category>
         
-        <category>Social</category>
+        <category>Kakao</category>
         
         <category>login</category>
         
@@ -110,7 +85,8 @@ Kakao Login → Activation Settings 활성화, Redirect URI url 등록
     
       <item>
         <title>React Google login</title>
-        <description>
+        <description>https://github.com/anthonyjgrove/react-google-login 해당 라이브러리를 적용하였습니다.
+
 https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 → 사용자 인증 정보 → 사용자 인증 정보 만들기 → 0Auth 클라이언트 ID 으로 클라이언트 ID 추출
 
 </description>
@@ -120,7 +96,7 @@ https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 �
         
         <category>React</category>
         
-        <category>Social</category>
+        <category>Google</category>
         
         <category>login</category>
         
@@ -132,6 +108,8 @@ https://console.cloud.google.com/에서 앱을 만들고 API 개요로 이동 �
       <item>
         <title>React Facebook login</title>
         <description>
+https://github.com/keppelen/react-facebook-login 해당 라이브러리를 적용하였습니다.
+
 https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
 
 </description>
@@ -141,7 +119,7 @@ https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
         
         <category>React</category>
         
-        <category>Social</category>
+        <category>Facebook</category>
         
         <category>login</category>
         
@@ -251,27 +229,6 @@ https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
         <pubDate>Wed, 13 May 2020 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/2020/05/13/react-hooks4-useReducer/</link>
         <guid isPermaLink="true">http://localhost:4000/2020/05/13/react-hooks4-useReducer/</guid>
-        
-        <category>React</category>
-        
-        <category>hooks</category>
-        
-        
-        <category>JavaScript</category>
-        
-      </item>
-    
-      <item>
-        <title>React Hooks 系列之3 useContext</title>
-        <description>
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
-
-今天我们讲讲 Context 对象和 useContext 的使用方法。
-
-</description>
-        <pubDate>Tue, 12 May 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2020/05/12/react-hooks3-useContext/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020/05/12/react-hooks3-useContext/</guid>
         
         <category>React</category>
         
