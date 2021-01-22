@@ -8,17 +8,17 @@ author: kimsoonil
 
 * content
 {:toc}
-  https://github.com/alexandrtovmach/react-microsoft-login 해당 라이브러리를 적용하였습니다.
+  [react-microsoft-login](https://github.com/alexandrtovmach/react-microsoft-login) 해당 라이브러리를 적용하였습니다.
 
-  https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps 에서 앱을 등록하고 clientId 추출
+  [https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps) 에서 앱을 등록하고 clientId 추출
 
 
 
-  [microsoft](https://kimsoonil.github.io/microsoft_clientId.png)
+  ![microsoft](https://kimsoonil.github.io/microsoft_clientId.png)
   내앱 → 인증 → ID 토큰 , 모든 조직 디렉터리의 계정 체크
-  [microsoft](https://kimsoonil.github.io/microsoft_app01.png)
+  ![microsoft](https://kimsoonil.github.io/microsoft_app01.png)
   내앱 → 매니페스트 “oauth2AllowIdTokenImplicitFlow”  false → true 변경
-  [microsoft](https://kimsoonil.github.io/microsoft_app02.png)
+  ![microsoft](https://kimsoonil.github.io/microsoft_app02.png)
 
 해당 프로젝트에 ``npm install react-microsoft-login`` or ``yarn add react-microsoft-login`` 추가
 
