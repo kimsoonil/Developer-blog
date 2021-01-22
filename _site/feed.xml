@@ -5,9 +5,34 @@
     <description>Zoom in Coding from the Basic.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 22 Jan 2021 09:47:12 +0900</pubDate>
-    <lastBuildDate>Fri, 22 Jan 2021 09:47:12 +0900</lastBuildDate>
+    <pubDate>Fri, 22 Jan 2021 11:00:24 +0900</pubDate>
+    <lastBuildDate>Fri, 22 Jan 2021 11:00:24 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
+    
+      <item>
+        <title>awesome-react-components</title>
+        <description>&lt;h1 id=&quot;-absolutely-awesome-react-components--libraries&quot;&gt;🚀 Absolutely Awesome React Components &amp;amp; Libraries&lt;/h1&gt;
+
+This is a list of AWESOME components. Nope, it’s NOT a comprehensive list of
+every React component under the sun. So, what does “awesome” mean? Well:
+
+&lt;ul&gt;
+  &lt;li&gt;It solves a real problem&lt;/li&gt;
+  &lt;li&gt;It does so in a 🦄 unique, 🦋 beautiful, or 🏆 exceptional way. (And it’s not super popular and well-known… no point in listing those.)&lt;/li&gt;
+  &lt;li&gt;It has recent code commits!&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Fri, 22 Jan 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2021/01/22/react-awesome-components/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/01/22/react-awesome-components/</guid>
+        
+        <category>React</category>
+        
+        
+        <category>JavaScript</category>
+        
+      </item>
     
       <item>
         <title>React redux</title>
@@ -205,27 +230,6 @@ https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
         <pubDate>Mon, 18 May 2020 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/2020/05/18/react-hooks5-useCallback/</link>
         <guid isPermaLink="true">http://localhost:4000/2020/05/18/react-hooks5-useCallback/</guid>
-        
-        <category>React</category>
-        
-        <category>hooks</category>
-        
-        
-        <category>JavaScript</category>
-        
-      </item>
-    
-      <item>
-        <title>React Hooks 系列之4 useReducer</title>
-        <description>
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
-
-截止目前我们已经学习了3个hook api，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;useState&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;useEffect&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;useContext&lt;/code&gt;。接下来我们学习下一个 hook api，&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;useReducer&lt;/code&gt;。首先我们将讲讲什么是 reducer，以及为什么使用 reducer。研究一下 JavaScript 中的 reducer 是什么，这将有助于理解 react hook 中的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;useReducer&lt;/code&gt;。好，现在开始吧。
-
-</description>
-        <pubDate>Wed, 13 May 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2020/05/13/react-hooks4-useReducer/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020/05/13/react-hooks4-useReducer/</guid>
         
         <category>React</category>
         

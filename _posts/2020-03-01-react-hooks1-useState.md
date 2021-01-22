@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "React Hooks 系列之1 useState"
+title:  "React Hooks useState"
 categories: JavaScript
 tags: React hooks
-author: HyG
+author: kimsoonil
 ---
 
 * content
@@ -20,20 +20,21 @@ author: HyG
 - [useRef](https://juejin.im/post/5ecbf486f265da7711699c3a)
 - [custom hooks](https://juejin.im/post/5ecd4c86f265da76ff6d0f16)
 
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
 
-前提，需要会使用 React Class 的写法，会使用 `setState()` 和 props。
+React Hooks API를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 높은 수준으로 마스터 할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-下面从第一个例子开始吧。
+전제는 React Class를 작성하고`setState ()`와 props를 사용하는 방법을 알아야한다는 것입니다.
+
+첫 번째 예부터 시작하겠습니다.
 
 
 
 
-## 简单的useState - Counter 计数器示例
+## 간단한 useState-Counter 예제
 
-点击+1的计数器
++1 카운터 클릭
 
-### Class 组件的写法
+### Class 구성 요소 작성 방법
 
 CounterClass.tsx
 
@@ -86,19 +87,19 @@ const App = () => {
 export default App
 ```
 
-效果如下
+효과는 다음과 같습니다.
 
 ![](https://gw.alicdn.com/tfs/TB1oZQLveL2gK0jSZPhXXahvXXa-306-179.gif)
 
-创建这样的一个计数器分为简单的3步
+이러한 카운터를 만드는 것은 3 단계로 나뉩니다.
 
-1. 创建一个 Class 组件
-2. 创建 state
-3. 创建 increment 方法
+1. 클래스 구성 요소 만들기
+2. 상태 만들기
+3. 증분 방법 만들기
 
-接下来看看如何使用 Function Component 和 state hook 实现
+다음으로, 함수 컴포넌트와 상태 후크를 사용하여
 
-### State Hook 实现
+### State Hook 구현
 
 HookCounter.tsx
 
@@ -141,36 +142,36 @@ export default App
 
 ```
 
-效果与 Class 组件写法相同
+효과는 Class 컴포넌트의 효과와 동일합니다.
 
 ![](https://gw.alicdn.com/tfs/TB1oZQLveL2gK0jSZPhXXahvXXa-306-179.gif)
 
-我们来看 useState 的使用方法
+useState를 사용하는 방법을 살펴 보겠습니다.
 
 ``` js
 const [state, setState] = useState(initialState)
 ```
 
-这行代码返回一个 state，以及更新 state 的函数。
+이 코드 줄은 상태를 업데이트하는 상태와 함수를 반환합니다.
 
-在初始渲染期间，返回的状态 (state) 与传入的第一个参数 (initialState) 值相同。
+초기 렌더링 중에 반환 된 상태 (상태)는 전달 된 첫 번째 매개 변수 (initialState)와 동일한 값을 갖습니다.
 
-setState 函数用于更新 state。它接收一个新的 state 值并将组件的一次重新渲染加入队列。
+setState 함수는 상태를 업데이트하는 데 사용됩니다. 새 상태 값을 수신하고 구성 요소의 다시 렌더링을 대기열에 넣습니다.
 
-### 小结 Hooks 的使用规则
+### Hooks 사용 규칙
 
-- 只能在顶层作用域调用 Hooks
-  - 不能在内部的循环、条件判断、嵌套的方法中使用
-- 只能在 React Function 里使用 Hooks
-  - 不能在其他普通的 function 中使用 Hooks
+-Hooks는 최상위 범위에서만 호출 할 수 있습니다.
+  -내부 루프, 조건부 판단 및 중첩 방법에서 사용할 수 없습니다.
+-Hooks는 React Function에서만 사용할 수 있습니다.
+  -다른 일반 기능에서 Hooks를 사용할 수 없습니다.
 
 ## useState with Previous State
 
-本节讲述如何使用 previous state，当你的 state 值依赖上一个状态值时，就会用到 previous state。
+이 섹션에서는 이전 상태를 사용하는 방법에 대해 설명합니다. 상태 값이 이전 상태 값에 의존하는 경우 이전 상태가 사용됩니다.
 
-依然通过 Counter 的例子说明，增加了按钮点击 +1 或 -1
+카운터 예제를 통해 +1 또는 -1 버튼 클릭 추가
 
-### Counter 示例
+### Counter
 
 HookCounter.tsx
 
@@ -221,15 +222,14 @@ const App = () => {
 export default App
 ```
 
-效果如下：
+효과는 다음과 같습니다.
 
 ![](https://gw.alicdn.com/tfs/TB13LIYva61gK0jSZFlXXXDKFXa-306-179.gif)
 
-看起来效果没有问题，**但是这样写是不安全的！** 这不是更改计数器的正确方法。下面告诉你为什么：
+효과에 문제가없는 것 같지만 이렇게 쓰는 것은 안전하지 않습니다! **이것은 카운터를 변경하는 올바른 방법이 아닙니다.** 그 이유를 말씀 드리겠습니다.
 
-同样也是举个例子，在上述的示例中再增加一个按钮，每次累加5
+위의 예에서는 버튼을 하나 더 추가하고 5 개를 추가 할 때마다
 
-代码如下
 
 ``` diff
 import React, { useState } from 'react'
@@ -265,13 +265,13 @@ function HookCounter() {
 export default HookCounter
 ```
 
-点击 + 5 时，只加了 1
++5를 클릭하면 1 개만 추가됩니다.
 
 ![](https://gw.alicdn.com/tfs/TB1AdMTvoz1gK0jSZLeXXb9kVXa-306-179.gif)
 
-这是因为 setCount 方法是异步的，不能立即反应并更新，瞬间调动多次入参中的 count 仍然是旧的值，没有被更新。
+이는 setCount 메서드가 비동기식으로 즉시 반응하고 업데이트 할 수 없기 때문이며, 한 번에 여러 번 전송되는 카운트는 여전히 이전 값이며 업데이트되지 않았습니다.
 
-将代码修改如下：
+다음과 같이 코드를 수정하십시오.
 
 ``` diff
 import React, { useState } from 'react'
@@ -309,7 +309,7 @@ export default HookCounter
 
 ![](https://gw.alicdn.com/tfs/TB1ZG3WvkL0gK0jSZFAXXcA9pXa-306-179.gif)
 
-注意到如果要使用 previous state，则需要通过 function 的方式传入 value 再返回变化后的新 value，将 `+ 1` `-1` 的功能也修改一下，完善后的代码如下：
+이전 상태를 사용하려면 함수를 통해 값을 전달하고 변경 후 새로운 값으로 복귀해야합니다.`+ 1``-1`의 함수도 수정됩니다. 개선 된 코드는 다음과 같습니다.
 
 ``` jsx
 import React, { useState } from 'react'
@@ -345,17 +345,17 @@ function HookCounter() {
 export default HookCounter
 ```
 
-### 小结
+### 정리
 
-使用 previousState 时，要使用 setter function 的方式，传参给 setState 方法。来确保拿到的是准确的 previous state。
+previousState를 사용하는 경우 setter 함수를 사용하고 setState 메서드에 매개 변수를 전달합니다. 정확한 이전 상태를 확인하기 위해.
 
-在重新渲染中，useState 返回的第一个值将始终是更新后最新的 state。
+다시 렌더링 할 때 useState가 반환하는 첫 번째 값은 항상 업데이트 후 최신 상태가됩니다.
 
 ## useState with Object
 
-当 useState 中的 state 为对象时，调用相应的 setState 有一些要注意的地方，useState 不会自动合并更新对象，你可以用函数式的 setState 结合展开运算符来达到合并更新对象的效果。
+useState의 상태가 객체 인 경우 해당 setState를 호출하면 몇 가지주의 사항이 있습니다. UseState는 객체를 자동으로 병합 및 업데이트하지 않습니다. 확장 연산자와 결합 된 함수 setState를 사용하여 객체 병합 및 업데이트 효과를 얻을 수 있습니다.
 
-### 错误示例 firstName & lastName
+### 오류 예 firstName & lastName
 
 HookCounter.tsx
 
@@ -398,19 +398,19 @@ function HookCounter() {
 export default HookCounter
 ```
 
-注意到 input 标签上的 onChange 中，每次 setName 时，只对对象中的一个属性做了操作。只给 firstName 赋值时，lastName 属性会消失，这是一种错误的写法。
+입력 태그의 onChange에서 setName을 설정할 때마다 객체의 한 속성 만 조작됩니다. firstName에 값을 할당 할 때만 lastName 속성이 사라 지므로 이는 잘못된 작성 방법입니다.
 
-由于我使用了 tsx 来写组件，我的编译器直接就报错了：
+tsx를 사용하여 구성 요소를 작성했기 때문에 컴파일러에서 직접 오류를보고했습니다.
 
 ![](https://gw.alicdn.com/tfs/TB1q8E0voY1gK0jSZFCXXcwqXXa-1098-822.jpg)
 
-浏览器也直接报错了
+console 창을 확인해보면
 
 ![](https://gw.alicdn.com/tfs/TB1FIMVvhD1gK0jSZFsXXbldVXa-910-832.jpg)
 
-### 正确示例-手动合并对象
+### 수동 병합 개체 수정
 
-这里要使用展开运算符，来解决这个对象的问题
+이 객체의 문제를 해결하기 위해 확산 연산자를 사용하려면
 
 ``` jsx
 import React, { useState } from 'react'
@@ -456,17 +456,16 @@ export default HookCounter
 
 ![](https://gw.alicdn.com/tfs/TB1mfIUvXY7gK0jSZKzXXaikpXa-373-215.gif)
 
-### 小结
+### 정리
 
-state hook 中操作对象时，不会自动合并对象中的属性，需要我们手动来合并，可以运用展开运算符。
+state hooks 에서 객체를 조작 할 때 객체의 속성은 자동으로 병합되지 않으므로 수동으로 병합해야합니다. 스프레드 연산자를 사용할 수 있습니다.
 
-那么，数组也是类似的，见下一节。
 
 ## useState with Array
 
-### 列表示例
+### 목록
 
-点击按钮，列表增加一个1-10的随机数
+버튼을 클릭하여 1-10의 임의의 숫자를 목록에 추가하십시오.
 
 UseStateWithArray.tsx
 
@@ -508,27 +507,27 @@ function UseStateWithArray() {
 export default UseStateWithArray
 ```
 
-效果如下：
+정리
 
 ![](https://gw.alicdn.com/tfs/TB1vcE7vXY7gK0jSZKzXXaikpXa-418-215.gif)
 
-注意 typeScript 在 hooks 中的使用方法，可参考如下文章
+hooks에서 typeScript의 사용법에 유의하십시오. 다음 기사를 참조하십시오.
 
 - [TypeScript 中使用React Hook](https://juejin.im/post/5ce0134b5188256a220235eb)
 
-## useState 总结
+## useState 
 
-关于 useState 的使用就到这里，这里稍作总结。
+이것이 useState의 사용을위한 것입니다. 여기에 간략한 요약이 있습니다.
 
-- 可以在函数式组件中使用 state
-- 在类组件中，state 是一个对象，但是 useState 中，state可以不是对象，可以是任何类型
-- useState 返回2个元素的数组
-  - 第一个是 state 的当前值
-  - 第二个是 state 的 setter 方法，调用时会触发 rerender
-    - 若当前的 state 依赖 previous state，可以传入一个函数到 state 的 setter 方法中，入参为 previous state，返回新的 state
-- 对于对象和数组，注意 state 中不会自动补全旧的变量，需要使用展开运算符自己手动补充
+-기능 구성 요소에서 상태를 사용할 수 있습니다.
+-클래스 구성 요소에서 state는 객체이지만 useState에서는 state가 객체가 아닐 수 있으며 모든 유형이 될 수 있습니다.
+-useState는 두 요소의 배열을 반환합니다.
+  -첫 번째는 상태의 현재 값입니다.
+  -두 번째는 상태의 setter 메소드로 호출시 다시 렌더링을 트리거합니다.
+    -현재 상태가 이전 상태에 의존하는 경우 상태의 setter 메소드에 함수를 전달하고 입력 매개 변수가 이전 상태이며 새로운 상태를 반환 할 수 있습니다.
+-객체 및 배열의 ​​경우 상태의 이전 변수가 자동으로 완료되지 않으므로 확장 연산자를 사용하여 수동으로 추가해야합니다.
 
-useState 的学习就到这里，下一篇将一起来学习 useEffect 的使用。
+useState에 대한 학습은 여기에 있으며 다음 기사에서는 useEffect를 함께 사용하는 방법을 학습합니다.
 
 
 

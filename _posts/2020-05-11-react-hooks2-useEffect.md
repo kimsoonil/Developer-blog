@@ -9,19 +9,19 @@ author: HyG
 * content
 {:toc}
 
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks API를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 높은 수준으로 마스터 할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-今天我们讲讲 useEffect 的使用方法。
-
-
+오늘 우리는 useEffect를 사용하는 방법에 대해 이야기합니다.
 
 
 
-## 为什么使用 useEffect
 
-### 生命周期中写逻辑的问题
 
-react 中旧的生命周期可能会有副作用，比如页面的 title 要展示点击次数时，代码如下：
+## useEffect를 사용하는 이유
+
+### 라이프 사이클에서 논리 작성 문제
+
+React의 이전 라이프 사이클은 부작용이있을 수 있습니다. 예를 들어 페이지 제목에 클릭 횟수를 표시하려는 경우 코드는 다음과 같습니다.
 
 ``` js
 componentDidMount() {
@@ -32,9 +32,10 @@ componentDidUpdate() {
 }
 ```
 
-在 componentDidMount 和 componentDidUpdate 中都写了同样的代码，我们不能在组件的生命周期中挂载一次，这就导致了代码重复的问题。
+componentDidMount와 componentDidUpdate에 동일한 코드가 작성되어 컴포넌트의 라이프 사이클에서 한 번 마운트 할 수 없어 코드 중복 문제가 발생합니다.
 
-另一个例子，页面中包含了倒计时，并且在页面销毁时要清除倒计时 timer
+
+페이지에 카운트 다운 타이머가 포함되어 있으며 페이지가 삭제되면 카운트 다운 타이머를 지워야합니다.
 
 ``` js
 componentDidMount() {
@@ -45,7 +46,7 @@ componentWillUnmount() {
 }
 ```
 
-如果这个组件比较复杂，同时包含了上述的两种逻辑，那么代码如下：
+이 구성 요소가 더 복잡하고 위의 두 논리를 포함하는 경우 코드는 다음과 같습니다.
 
 ``` js
 componentDidMount() {
@@ -60,27 +61,28 @@ componentWillUnmount() {
 }
 ```
 
-我们看到2个问题
 
-1. 代码重复。设置标题的代码重复了1遍
-2. 代码分散。逻辑看起来就分散在了组件生命周期的各个地方
+우리는 2 개의 문제를 본다
 
-因此，我们需要更好的方法解决
+1. 코드가 중복되었습니다. 제목을 설정하는 코드가 1 회 반복됩니다.
+2. 코드가 흩어져 있습니다. 로직은 구성 요소 수명주기의 여러 위치에 흩어져있는 것 같습니다.
 
-### useEffect 解决的问题
+따라서 우리는 더 나은 솔루션이 필요합니다
 
-- EffectHook 用于函数式组件中副作用，执行一些相关的操作，解决上述的问题
-- 可以认为是 componentDidMount, componentDidUpdate, componentWillUnmount 的替代品
+### useEffect로 해결 된 문제
 
-接下来学习如何使用 useEffect。
+- EffectHook은 기능성 구성 요소의 부작용에 사용되며 일부 관련 작업을 수행하며 위의 문제를 해결합니다.
+- componentDidMount, componentDidUpdate, componentWillUnmount의 대체물로 간주 될 수 있습니다.
 
-## useEffect After Render 的使用
+다음으로 useEffect를 사용하는 방법을 알아 봅니다.
 
-举个例子，通过一个点击按钮，修改页面 title 的例子来说明
+## 렌더링 후 useEffect
 
-### Class 组件的写法示例
+예를 들어 버튼을 클릭하여 페이지 제목을 수정하는 예를 통해
 
-7ClassCounter.tsx
+### 클래스 컴포넌트 작성 예제
+
+ClassCounter.js
 
 ``` jsx
 import React, { Component } from 'react'
@@ -117,7 +119,7 @@ class ClassCounter extends Component {
 export default ClassCounter
 ```
 
-App.tsx
+App.js
 
 ``` jsx
 import React from 'react'
@@ -138,15 +140,15 @@ export default App
 
 ```
 
-效果如下
+효과는 다음과 같습니다.
 
-![](https://gw.alicdn.com/tfs/TB1yhhavy_1gK0jSZFqXXcpaXXa-418-215.gif)
+! [] (https://gw.alicdn.com/tfs/TB1yhhavy_1gK0jSZFqXXcpaXXa-418-215.gif)
 
-### 使用 useEffect 改写上述示例
+### useEffect를 사용하여 위의 예를 다시 작성하십시오.
 
-接下来使用函数时组件实现上述的例子
+다음으로 함수를 사용할 때 컴포넌트는 위의 예제를 구현합니다.
 
-7HookCounter.tsx
+HookCounter.js
 
 ``` jsx
 import React, { useState, useEffect } from 'react'
@@ -170,21 +172,21 @@ function HookCounter() {
 export default HookCounter
 ```
 
-效果和 Class 组件相同
+효과는 Class 컴포넌트와 동일합니다.
 
 ![](https://gw.alicdn.com/tfs/TB1yhhavy_1gK0jSZFqXXcpaXXa-418-215.gif)
 
-可以看到 useEffect 的第一个入参是一个匿名函数，它会在每次 render 后调用。在第一次 render 和后续的更新 render 都会被调用。
+useEffect의 첫 번째 입력 매개 변수가 각 렌더링 후에 호출되는 익명 함수임을 알 수 있습니다. 첫 번째 렌더링 및 후속 업데이트 렌더링이 모두 호출됩니다.
 
-另外，useEffect 写在函数式组件内，这样就可以直接拿到 props 和 state 的值，不用写 this 之类的代码。
+또한 useEffect는 기능적 구성 요소로 작성되므로 이와 같은 코드를 작성하지 않고도 props 및 state의 값을 직접 가져올 수 있습니다.
 
-## 有条件地执行 useEffect
+## 조건부로 useEffect 실행
 
-上一节了解到 useEffect 会在每次 render 后执行里面的函数，这可能会有一些性能问题，接下来就讲一讲如何有条件地执行 useEffect 中的匿名函数。
+이전 섹션에서 useEffect가 렌더링 할 때마다 내부 함수를 실행한다는 것을 배웠습니다. 이로 인해 성능 문제가 발생할 수 있습니다. 다음으로 useEffect에서 익명 함수를 조건부로 실행하는 방법에 대해 설명하겠습니다.
 
-在上一节的示例上进行扩展一个输入 name 的功能，通过判断只执行 count 变化带来的逻辑。
+이전 섹션의 예에서 입력 이름의 기능을 확장하고 판단에 의해 카운트 변경으로 가져온 로직 만 실행합니다.
 
-### Class 组件的写法示例
+### 클래스 컴포넌트 작성 예제
 
 ``` jsx
 import React, { Component } from 'react'
@@ -241,9 +243,9 @@ export default ClassCounter
 
 ![](https://gw.alicdn.com/tfs/TB1aX7.voz1gK0jSZLeXXb9kVXa-610-312.gif)
 
-为了更好的性能，注意代码中判断了 prevState
+더 나은 성능을 위해 prevState는 코드에서 판단됩니다.
 
-### useEffect 的写法
+### useEffect 작성 방법
 
 ``` jsx
 import React, { useState, useEffect } from 'react'
@@ -278,13 +280,13 @@ export default HookCounter
 
 ![](https://gw.alicdn.com/tfs/TB1efJbvAY2gK0jSZFgXXc5OFXa-610-312.gif)
 
-注意到 useEffect 的第二个参数 `[count]`，这个参数是一个数组，元素是要被观察的 state 或 props，只有指定的这个变量发生变化时，才会触发 useEffect 中的第一个参数匿名函数的执行。这有利于性能的保证。
+useEffect의 두 번째 매개 변수 `[count]`는 배열이고 요소는 관찰 할 상태 또는 소품이며 지정된 변수가 변경 될 때만 useEffect의 첫 번째 매개 변수가 익명으로 트리거됩니다. 함수의 실행. 이는 성능 보장에 도움이됩니다.
 
-## 只执行1次 useEffect
+## useEffect 한 번만 실행
 
-本节通过一个记录鼠标坐标的示例研究一下如何只执行一次 useEffect
+이 섹션에서는 마우스 좌표를 기록하는 예제를 사용하여 useEffect를 한 번만 실행하는 방법을 연구합니다.
 
-### 记录鼠标位置示例 Class 写法
+### 마우스 위치 기록 예 클래스 작성
 
 ``` jsx
 import React, { Component } from 'react'
@@ -320,11 +322,11 @@ export default RunEffectsOnlyOnce
 
 ![](https://gw.alicdn.com/tfs/TB1ydpavET1gK0jSZFrXXcNCXXa-295-225.gif)
 
-这里只在 componentDidMount 中做了事件绑定，只执行了一次事件绑定
+여기서 componentDidMount에서는 이벤트 바인딩 만 수행되고 이벤트 바인딩은 한 번만 수행됩니다.
 
-### useEffect 中记录鼠标坐标
+### useEffect에서 마우스 좌표 기록
 
-上述效果改造为函数式组件
+위의 효과는 기능적 구성 요소로 변환됩니다.
 
 ``` jsx
 import React, { useState, useEffect } from 'react'
@@ -354,34 +356,26 @@ function RunEffectsOnlyOnce() {
 export default RunEffectsOnlyOnce
 ```
 
-注意到 useEffect 方法的第二个参数传入一个空数组，有效的避免了多次调用的问题。
+useEffect 메서드의 두 번째 매개 변수는 빈 배열로 전달되므로 여러 호출 문제를 효과적으로 방지 할 수 있습니다.
 
-> 如果想执行只运行一次的 effect（仅在组件挂载和卸载时执行），可以传递一个空数组（[]）作为第二个参数。这就告诉 React 你的 effect 不依赖于 props 或 state 中的任何值，所以它永远都不需要重复执行。这并不属于特殊情况 —— 它依然遵循依赖数组的工作方式。
+> 한 번만 실행되는 이펙트 (컴포넌트가 마운트 및 마운트 해제 될 때만 실행 됨)를 실행하려면 빈 배열 ([])을 두 번째 매개 변수로 전달할 수 있습니다. 이것은 React에 효과가 props 또는 state의 값에 의존하지 않으므로 반복적으로 실행할 필요가 없음을 알려줍니다. 이것은 특별한 경우가 아니며 종속 배열로 작업하는 방식을 따릅니다.
 >
-> 如果你传入了一个空数组（[]），effect 内部的 props 和 state 就会一直拥有其初始值。尽管传入 [] 作为第二个参数更接近大家更熟悉的 `componentDidMount` 和 `componentWillUnmount` 思维模式，但我们有更好的方式来避免过于频繁的重复调用 effect。除此之外，请记得 React 会等待浏览器完成画面渲染之后才会延迟调用 `useEffect`，因此会使得额外操作很方便。
+> 빈 배열 ([])을 전달하면 효과 내부의 소품과 상태는 항상 초기 값을 갖습니다. 두 번째 매개 변수로 []를 전달하는 것이 더 익숙한`componentDidMount` 및`componentWillUnmount` 사고 모드에 더 가깝지만 효과를 너무 자주 호출하지 않도록하는 더 좋은 방법이 있습니다. 또한 브라우저가 화면 렌더링을 마친 후 React는`useEffect` 호출을 지연하므로 추가 작업이 매우 편리합니다.
 
-## 需要清除的 Effect
+## 지울 효과
 
-本节研究如何实现 willUnmount 这个生命周期，实现组件销毁时，清除 effect 逻辑。
+이 섹션에서는 willUnmount의 수명주기를 구현하는 방법과 구성 요소가 파괴 될 때 효과 논리를 지우는 방법을 연구합니다.
 
-在上一个demo中增加一个逻辑，点击按钮展示或隐藏鼠标的坐标组件。
+이전 데모에 논리를 추가하고 버튼을 클릭하여 마우스의 좌표 구성 요소를 표시하거나 숨 깁니다.
 
-### 显示与移除组件
+### 구성 요소 표시 및 제거
 
-共三个文件，结构如下
+3 개의 파일이 있으며 구조는 다음과 같습니다.
 
 ![](https://gw.alicdn.com/tfs/TB1R_pPFHY1gK0jSZTEXXXDQVXa-309-277.png)
 
-<!-- ``` plantuml
 
-skinparam style strictuml
-
-App -- MouseContainer
-MouseContainer -- MousePos
-
-``` -->
-
-App.tsx
+App.js
 ``` jsx
 import React from 'react'
 
@@ -401,7 +395,7 @@ export default App
 
 ```
 
-MouseContainer.tsx
+MouseContainer.js
 
 ``` jsx
 import React, { useState } from 'react'
@@ -453,11 +447,11 @@ export default RunEffectsOnlyOnce
 
 ![](https://gw.alicdn.com/tfs/TB1nYXavEH1gK0jSZSyXXXtlpXa-579-284.gif)
 
-执行后发现隐藏了位置组件后，有一个错误警告。这是因为没有正确卸载子组件导致的。mousemove 事件依然被监听着和执行。并且可能会导致内存泄露。
+실행 후 위치 구성 요소가 숨겨져 있으며 오류 경고가 발생했습니다. 이는 하위 구성 요소를 잘못 제거했기 때문입니다. mousemove 이벤트는 여전히 모니터링 및 실행 중입니다. 그리고 메모리 누수가 발생할 수 있습니다.
 
 ### componentWillUnmount
 
-因此要在卸载组件时，确保所有的监听和订阅都已经被移除。若是在 Class 组件中，可以如下代码
+따라서 구성 요소를 제거 할 때 모든 모니터와 구독이 제거되었는지 확인하십시오. Class 컴포넌트에있는 경우 다음과 같이 코딩 할 수 있습니다.
 
 ``` js
 componentWillUnmount() {
@@ -465,7 +459,7 @@ componentWillUnmount() {
 }
 ```
 
-但是在 useEffect 该如何写呢？请往下看
+그러나 useEffect를 작성하는 방법은 무엇입니까? 아래를 봐주세요
 
 ``` jsx
   useEffect(() => {
@@ -477,21 +471,21 @@ componentWillUnmount() {
   }, [])
 ```
 
-在 useEffect 的第一个参数中添加一个 return 匿名函数，这个匿名函数将在组件卸载的时候执行，因此我们在这里移除监听就好了。
+useEffect의 첫 번째 매개 변수에 익명 반환 함수를 추가합니다.이 익명 함수는 구성 요소가 제거 될 때 실행되므로 여기서 리스너를 제거합니다.
 
 ![](https://gw.alicdn.com/tfs/TB1eAcBvX67gK0jSZPfXXahhFXa-579-284.gif)
 
-如果需要一些在组件卸载时清除功能的代码，就写在 useEffect 第一个参数的返回匿名函数中吧。
+구성 요소를 제거 할 때 함수를 지우는 코드가 필요한 경우 useEffect의 첫 번째 매개 변수의 반환 익명 함수에 작성하십시오.
 
-## useEffect 中依赖错误导致的 bug
+## useEffect의 종속성 오류로 인한 버그
 
-useEffect 的依赖(第二个参数)错误导致的问题。
+useEffect 종속성 (두 번째 매개 변수) 오류로 인한 문제점입니다.
 
-以每秒 +1 的计数器为示例
+초당 +1 카운터를 예로 들어 보겠습니다.
 
-### Class 组件示例
+### 클래스 구성 요소 예
 
-11Counter.tsx
+Counter.js
 
 ``` jsx
 /**
@@ -536,7 +530,7 @@ export default Counter
 
 ```
 
-App.tsx
+App.js
 
 ``` jsx
 import React from 'react'
@@ -557,13 +551,13 @@ export default App
 
 ```
 
-执行没有问题，效果如下
+구현에 문제가 없으며 효과는 다음과 같습니다.
 
 ![](https://gw.alicdn.com/tfs/TB1CiNxx9f2gK0jSZFPXXXsopXa-487-270.gif)
 
-### hooks 示例
+### hooks 
 
-IntervalCounterHooks.tsx
+IntervalCounterHooks.js
 
 ``` jsx
 import React, { useState, useEffect } from 'react'
@@ -594,7 +588,7 @@ export default IntervalCouterHooks
 
 ```
 
-App.tsx
+App.js
 
 ``` jsx
 import React from 'react'
@@ -617,45 +611,46 @@ export default App
 
 ```
 
-但是计数器没有正常工作，效果如下
+그러나 카운터가 정상적으로 작동하지 않는 경우 효과는 다음과 같습니다.
 
-![](https://gw.alicdn.com/tfs/TB13TdBx7T2gK0jSZPcXXcKkpXa-425-270.gif)
+! [] (https://gw.alicdn.com/tfs/TB13TdBx7T2gK0jSZPcXXcKkpXa-425-270.gif)
 
-传入空的依赖数组 `[]`，意味着该 hook 只在组件挂载时运行一次，并非重新渲染时。但如此会有问题，在 `setInterval` `的回调中，count` 的值不会发生变化。因为当 effect 执行时，我们会创建一个闭包，并将 `count` 的值被保存在该闭包当中，且初值为 0。每隔一秒，回调就会执行 `setCount(0 + 1)`，因此，`count` 永远不会超过 1。
+빈 종속성 배열`[]`를 전달하면 구성 요소가 다시 렌더링 될 때가 아니라 마운트 될 때 후크가 한 번만 실행됩니다. 하지만 이로 인해 문제가 발생할 수 있으며`setInterval`의 콜백에서 count 값은 변경되지 않습니다. 효과가 실행되면 클로저를 생성하고 클로저에 'count'값을 저장하고 초기 값은 0이기 때문입니다. 매초 콜백은`setCount (0 + 1)`를 실행하므로`count`는 1을 초과하지 않습니다.
 
-解法一：这里我们不能将 useEffect 的第二个参数设置为空数组，而是 `[count]`。
+솔루션 1 : 여기서 useEffect의 두 번째 매개 변수를 빈 배열로 설정할 수 없지만`[count]`.
 
-指定 `[count]` 作为依赖列表就能修复这个 Bug，但会导致每次改变发生时定时器都被重置。事实上，每个 `setInterval` 在被清除前（类似于 setTimeout）都会调用一次。但这并不是我们想要的。要解决这个问题，我们可以使用 setState 的函数式更新形式。它允许我们指定 state 该如何改变而不用引用当前 state，即下面的解法二
+종속성 목록으로`[count]`를 지정하면이 버그를 수정할 수 있지만 변경이 발생할 때마다 타이머가 재설정됩니다. 실제로 각`setInterval`은 지워지기 전에 한 번 호출됩니다 (setTimeout과 유사). 그러나 이것은 우리가 원하는 것이 아닙니다. 이 문제를 해결하기 위해 setState의 기능 업데이트 형식을 사용할 수 있습니다. 현재 상태를 참조하지 않고 상태를 변경하는 방법을 지정할 수 있습니다. 이는 아래의 두 번째 솔루션입니다.
 
-解法二：
+해결 방법 2 :
 
-将
+의지
 
 ``` js
 setCount(count + 1)
 ```
 
-改为
+에
 
 ``` js
 setCount((preCount) =>  preCount + 1)
 ```
 
-useEffect 的依赖数组里依然使用空数组。这里设置了 count 的值是和上一个值有关，也解决了问题。此时，`setInterval` 的回调依旧每秒调用一次，但每次 setCount 内部的回调取到的 `count` 是最新值（在回调中变量命名为 c）。
+
+빈 배열은 여전히 ​​useEffect의 종속성 배열에서 사용됩니다. 여기에 설정된 카운트 값은 이전 값과 관련되어 문제도 해결됩니다. 이 시점에서`setInterval`의 콜백은 여전히 ​​1 초에 한 번 호출되지만 매번 setCount 내에서 콜백에 의해 검색되는`count`는 최신 값입니다 (콜백에서 변수 이름은 c로 지정됨).
 
 ![](https://gw.alicdn.com/tfs/TB1eq1qAeT2gK0jSZFvXXXnFXXa-433-292.gif)
 
-### 多个 useEffect
+### 다중 사용 효과
 
-如果代码中有多个业务逻辑，可以将他们写在不同的 useEffect 中，并且可以写多个 useState 和他们匹配分组使用，会让业务逻辑更加清晰。
+코드에 여러 비즈니스 로직이있는 경우 서로 다른 useEffect에 작성하고 여러 useState를 작성하여 일치시키고 그룹으로 사용하여 비즈니스 로직을 더 명확하게 만들 수 있습니다.
 
-## Fetch Data with Effect Hook
+## 효과 후크로 데이터 가져 오기
 
-### 简单获取数据
+### 간단한 데이터 액세스
 
-本节讲述使用 useEffect 来获取数据，本文使用 axios 库示例。
+이 섹션에서는 useEffect를 사용하여 데이터를 가져 오는 방법에 대해 설명합니다.이 문서에서는 axios 라이브러리 예제를 사용합니다.
 
-https://jsonplaceholder.typicode.com/ 网站提供了示例的请求，返回了一些 json 数据。
+https://jsonplaceholder.typicode.com/ 웹 사이트는 일부 json 데이터를 반환하는 샘플 요청을 제공합니다.
 
 ```jsx
 import React, { useState, useEffect } from 'react'
@@ -705,15 +700,15 @@ export default FetchData
 
 ![](https://gw.alicdn.com/tfs/TB1UAWCAlr0gK0jSZFnXXbRRXXa-802-814.jpg)
 
-这里注意 ts 在 useState 中的写法。
+ts가 useState에서 작성되는 방식에주의하십시오.
 
 ``` jsx
 const [posts, setPosts] = useState<postType[]>([])
 ```
 
-注意 useEffect 第二个依赖参数传入空数组，保证了 useEffect 只执行一次。
+useEffect의 두 번째 종속 매개 변수는 빈 배열로 전달되어 useEffect가 한 번만 실행되도록합니다.
 
-### 输入id获取不同数据
+### 다른 데이터를 얻으려면 ID를 입력하세요.
 
 ``` jsx
 import React, { useState, useEffect } from 'react'
@@ -767,9 +762,9 @@ export default FetchData
 
 ![](https://gw.alicdn.com/tfs/TB1wvCvAXP7gK0jSZFjXXc5aXXa-432-292.gif)
 
-### button 点击触发 effect
+### 버튼 클릭하면 효과가 트리거됩니다.
 
-监听按钮点击触发变化，执行 effect 方法
+모니터 버튼 클릭으로 변경 트리거, 효과 실행 방법
 
 ``` jsx
 import React, { useState, useEffect } from 'react'
@@ -828,10 +823,10 @@ export default FetchData
 
 ![](https://gw.alicdn.com/tfs/TB1sH2tAi_1gK0jSZFqXXcpaXXa-432-292.gif)
 
-## 小结
+## 요약
 
-本章从为什么使用 useEffect 开始说起，用户解决代码重复代码分散的问题，useEffect 可以更好的组织代码。
+이 장은 useEffect가 사용되는 이유부터 시작하여 사용자가 코드 중복 및 코드 분산 문제를 해결합니다. UseEffect는 코드를 더 잘 구성 할 수 있습니다.
 
-useEffect api 的用法，第一个参数为匿名函数，作为 effect 要执行的内容。第二个参数为数组，用于观察改变的 props 或 state 进行有条件的触发 effect，或者传入空数组，让 effect 只执行一次。useEffect 返回一个匿名函数，在组件销毁是执行，可以有效避免内存泄露的风险。
+useEffect api의 사용에서 첫 번째 매개 변수는 효과에 의해 실행되는 내용으로 익명 함수입니다. 두 번째 매개 변수는 변경된 props 또는 상태를 관찰하여 조건부로 효과를 트리거하거나 효과가 한 번만 실행되도록 빈 배열을 전달하는 데 사용되는 배열입니다. useEffect는 구성 요소가 파괴 될 때 실행되는 익명 함수를 반환하므로 메모리 누수 위험을 효과적으로 방지 할 수 있습니다.
 
-最后举了几个例子来展示如何在 useEffect 中执行发起请求获取数据的逻辑。下一章将讲述 useContext 这个 api。
+마지막으로 useEffect에서 데이터를 얻기 위해 요청을 시작하는 로직을 실행하는 방법을 보여주는 몇 가지 예가 제공됩니다. 다음 장에서는 useContext API에 대해 설명합니다.
