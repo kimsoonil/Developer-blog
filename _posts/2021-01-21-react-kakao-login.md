@@ -3,7 +3,7 @@ layout: post
 title:  "React Kakao login"
 categories: JavaScript
 tags: React Kakao login
-author: kimsoonil
+author: KSI
 ---
 
 * content

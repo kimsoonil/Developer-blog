@@ -3,7 +3,7 @@ layout: post
 title:  "React Hooks 系列之8 custom Hook"
 categories: JavaScript
 tags: React hooks
-author: HyG
+author: KSI
 ---
 
 * content

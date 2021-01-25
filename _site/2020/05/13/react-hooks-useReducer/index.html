@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>React Hooks 系列之4 useReducer</title>
-    <meta name="description" content="掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。截止目前我们已经学习了3个hook api，useState, useEffect, useContext。接下来我们学习下一个 hook api，us...">
+    <title>React Hooks useReducer</title>
+    <meta name="description" content="React Hooks api를 숙달하면 직장에서 사용하는 데 더 도움이 될 것이며 React에 대한 숙달은 당신을 더 높은 수준으로 이끌 것입니다. 이 시리즈는 초보자와 리뷰어에게 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.지금 우리가 공부 한 세 가지 API 후크까지, ...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2020/05/13/react-hooks4-useReducer/">
+    <link rel="canonical" href="http://localhost:4000/2020/05/13/react-hooks-useReducer/">
     <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml ">
 
 
@@ -149,7 +149,7 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>React Hooks 系列之4 useReducer</h1>
+        <h1>React Hooks useReducer</h1>
         <div class="label">
 
             <div class="label-card">
@@ -157,7 +157,7 @@
             </div>
 
             <div class="label-card">
-                <i class="fa fa-user"></i>HyG
+                <i class="fa fa-user"></i>KSI
                 
             </div>
 
@@ -207,9 +207,9 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#什么是-usereducer" id="markdown-toc-什么是-usereducer">什么是 useReducer</a>    <ul>
+  <li><a href="#usereducer-란" id="markdown-toc-usereducer-란">useReducer 란?</a>    <ul>
       <li><a href="#reducer" id="markdown-toc-reducer">reducer</a></li>
-      <li><a href="#reducer-与-usereducer" id="markdown-toc-reducer-与-usereducer">reducer 与 useReducer</a></li>
+      <li><a href="#reducer-및-usereducer" id="markdown-toc-reducer-및-usereducer">reducer 및 useReducer</a></li>
     </ul>
   </li>
   <li><a href="#simple-state--action" id="markdown-toc-simple-state--action">simple state &amp; action</a></li>
@@ -225,17 +225,17 @@
   <li><a href="#小结" id="markdown-toc-小结">小结</a></li>
 </ul>
 
-<p>掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。</p>
+<p>React Hooks api를 숙달하면 직장에서 사용하는 데 더 도움이 될 것이며 React에 대한 숙달은 당신을 더 높은 수준으로 이끌 것입니다. 이 시리즈는 초보자와 리뷰어에게 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.</p>
 
-<p>截止目前我们已经学习了3个hook api，<code class="language-plaintext highlighter-rouge">useState</code>, <code class="language-plaintext highlighter-rouge">useEffect</code>, <code class="language-plaintext highlighter-rouge">useContext</code>。接下来我们学习下一个 hook api，<code class="language-plaintext highlighter-rouge">useReducer</code>。首先我们将讲讲什么是 reducer，以及为什么使用 reducer。研究一下 JavaScript 中的 reducer 是什么，这将有助于理解 react hook 中的 <code class="language-plaintext highlighter-rouge">useReducer</code>。好，现在开始吧。</p>
+<p>지금 우리가 공부 한 세 가지 API 후크까지, <code class="language-plaintext highlighter-rouge">useState</code>, <code class="language-plaintext highlighter-rouge">useEffect</code>, <code class="language-plaintext highlighter-rouge">useContext</code>. 다음으로 다음 API 후크 인 <code class="language-plaintext highlighter-rouge">useReducer</code>. 먼저 감속기가 무엇이며 왜 사용되는지에 대해 이야기하겠습니다. 반응 후크를 이해하는 데 도움이되는 JavaScript의 감속기가 무엇인지 연구하십시오 <code class="language-plaintext highlighter-rouge">useReducer</code>. 좋아요, 이제 시작하겠습니다.</p>
 
-<h2 id="什么是-usereducer">什么是 useReducer</h2>
+<h2 id="usereducer-란">useReducer 란?</h2>
 
-<p><code class="language-plaintext highlighter-rouge">useReducer</code> 是一个用于状态管理的 hook api。是 <code class="language-plaintext highlighter-rouge">useState</code> 的替代方案。</p>
+<p><code class="language-plaintext highlighter-rouge">useReducer상태</code> 관리를위한 후크 API입니다. 그것은이다 <code class="language-plaintext highlighter-rouge">useState</code>대안.</p>
 
-<p>那么 <code class="language-plaintext highlighter-rouge">useReducer</code> 和 <code class="language-plaintext highlighter-rouge">useState</code> 的区别是什么呢？答案是<code class="language-plaintext highlighter-rouge">useState</code> 是使用 <code class="language-plaintext highlighter-rouge">useReducer</code> 构建的。</p>
+<p>그래서 <code class="language-plaintext highlighter-rouge">useReducer</code>와 <code class="language-plaintext highlighter-rouge">useState</code>는 어떤 차이? 대답은 built <code class="language-plaintext highlighter-rouge">useState</code>를 사용하는 것 <code class="language-plaintext highlighter-rouge">useReducer</code>입니다.</p>
 
-<p>那么什么时候使用 <code class="language-plaintext highlighter-rouge">useReducer</code> 还是 <code class="language-plaintext highlighter-rouge">useState</code> 呢？我们完成本章的学习就能找到答案。</p>
+<p>그래서 사용할 때 <code class="language-plaintext highlighter-rouge">useReducer</code>또는 <code class="language-plaintext highlighter-rouge">useState</code>무엇? 이 장을 마치면 답을 찾을 수 있습니다.</p>
 
 <h3 id="reducer">reducer</h3>
 
@@ -245,12 +245,12 @@ useContext - context API
 useReducer - reducers
 </code></pre></div></div>
 
-<p>可以看到 useReducer 一定也与 reducer 有关，接下来看看什么是 reducer。之所以要了解什么是 reducer 是为了你不需要掌握 redux 而学会 useReducer，当然，如果你了解Redux，对本章理解会更容易。下面开始</p>
+<p>useReducer도 리듀서와 관련이 있음을 알 수 있습니다. 다음으로 리듀서가 무엇인지 알아 보겠습니다. 리듀서가 무엇인지 이해하는 이유는 리덕스를 마스터 할 필요가 없도록 리듀서를 사용하는 법을 배우기 위해서입니다. 물론 Redux를 알고 있다면이 장을 이해하는 것이 더 쉬울 것입니다.</p>
 
-<p>如果你研究过原生 JavaScript，你会发现有一些内置方法，如 <code class="language-plaintext highlighter-rouge">foreach</code>, <code class="language-plaintext highlighter-rouge">map</code>, <code class="language-plaintext highlighter-rouge">reduce</code>。我们来深入看一下 <code class="language-plaintext highlighter-rouge">reduce</code> 方法。在 MDN 上可以看到 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce"><code class="language-plaintext highlighter-rouge">Array.prototype.reduce()</code> 的文档</a>，文档中说</p>
+<p>이티브 자바 스크립트를 공부하는 경우, 당신은 몇 가지 내장과 같은 방법이 있다는 것을 발견 할 것이다 foreach, map, reduce. 깊이 reduce방법을 살펴 보겠습니다 . MDN은 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce"><code class="language-plaintext highlighter-rouge">Array.prototype.reduce()</code></a>，에서 볼 수 있습니다.</p>
 
 <blockquote>
-  <p>reduce() 方法对数组中的每个元素执行一个由您提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。</p>
+  <p>reduce() 메서드는 배열의 각 요소에 대해 사용자가 제공 한 감속기 함수 (오름차순으로 실행 됨)를 실행하고 결과를 단일 반환 값으로 집계합니다.</p>
 </blockquote>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
@@ -265,18 +265,18 @@ useReducer - reducers
 <span class="c1">// expected output: 15</span>
 </code></pre></div></div>
 
-<p>需要注意的是：reduce 方法接受2个参数，第一个为 reducer 函数，第二个为初始值（给 reducer 函数使用）。reduce 方法返回函数累计处理的结果。</p>
+<p>reduce 메소드는 2 개의 매개 변수를 받아들이고 첫 번째는 감속기 기능이고 두 번째는 초기 값 (reducer 기능에서 사용됨)입니다. reduce 메서드는 함수의 누적 처리 결과를 반환합니다.</p>
 
-<p>而 reducer 函数有2个必填入参：</p>
+<p>감속기 기능에는 2 개의 필수 매개 변수가 있습니다.</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">accumulator</code> 累计器累计回调的返回值; 它是上一次调用回调时返回的累积值，或 initialValue。</li>
-  <li><code class="language-plaintext highlighter-rouge">currentValue</code> 数组中正在处理的元素。</li>
+  <li><code class="language-plaintext highlighter-rouge">accumulator</code> 누산기는 콜백의 반환 값을 누적하며, 이는 콜백이 마지막으로 호출되었을 때 반환 된 누적 값 또는 initialValue입니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">currentValue</code> 배열에서 처리중인 요소입니다.</li>
 </ul>
 
-<h3 id="reducer-与-usereducer">reducer 与 useReducer</h3>
+<h3 id="reducer-및-usereducer">reducer 및 useReducer</h3>
 
-<p>reducer 与 useReducer 这两者之间有巨大的相似之处。</p>
+<p>reducer 와 useReducer 사이에는 큰 유사점이 있습니다.</p>
 
 <table>
   <thead>
@@ -295,21 +295,21 @@ useReducer - reducers
       <td style="text-align: left"><code class="language-plaintext highlighter-rouge">newState = reducer(currentState, action)</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">reduce method returns a single value</td>
-      <td style="text-align: left">useReducer returns a pair of values. [newState, dispatch]</td>
+      <td style="text-align: left">reduce 메서드는 단일 값을 반환합니다.</td>
+      <td style="text-align: left">useReducer는 값 쌍을 반환합니다. [newState, dispatch]</td>
     </tr>
   </tbody>
 </table>
 
-<p>上述表格目前看不懂也没有关系，后续通过例子会详细说明。</p>
+<p>위의 표가 현재 이해되지 않는 경우에는 문제가되지 않으며, 추후 예를 통해 자세히 설명하도록하겠습니다.</p>
 
-<p>在这一小节我们学到了：</p>
+<p>이 섹션에서 우리는 다음을 배웠습니다.</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">useReducer</code> 是一个用于状态管理的 hook api。</li>
-  <li><code class="language-plaintext highlighter-rouge">useReducer</code> 与 reducer 函数有关</li>
-  <li><code class="language-plaintext highlighter-rouge">useReducer(reducer, initialState)</code> 接受2个参数，分别为 reducer 函数 和 初始状态</li>
-  <li><code class="language-plaintext highlighter-rouge">reducer(currentState, action)</code> 也是接受2个参数，分别为当前状态和 action，返回一个 new state</li>
+  <li><code class="language-plaintext highlighter-rouge">useReducer</code> 상태 관리를위한 후크 API입니다.</li>
+  <li><code class="language-plaintext highlighter-rouge">useReducer</code> reducer 기능 관련</li>
+  <li><code class="language-plaintext highlighter-rouge">useReducer(reducer, initialState)</code> 2 개의 매개 변수, 감속기 기능 및 초기 상태 허용</li>
+  <li><code class="language-plaintext highlighter-rouge">reducer(currentState, action)</code> 또한 2 개의 매개 변수, 현재 상태 및 작업을 허용하고 새 상태를 반환합니다.</li>
 </ul>
 
 <h2 id="simple-state--action">simple state &amp; action</h2>
@@ -1447,7 +1447,7 @@ useReducer - reducers
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2020/05/12/react-hooks3-useContext/">React Hooks 系列之3 useContext</a></p>
+        <p><strong>上一篇</strong> <a href="/2020/05/12/react-hooks-useContext/">React Hooks useContext</a></p>
         
     </div>
     <div class="nex">
@@ -1471,8 +1471,8 @@ useReducer - reducers
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2020/05/13/react-hooks4-useReducer/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2020/05/13/react-hooks4-useReducer/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2020/05/13/react-hooks-useReducer/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2020/05/13/react-hooks-useReducer/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

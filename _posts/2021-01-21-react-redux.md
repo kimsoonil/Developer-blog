@@ -3,7 +3,7 @@ layout: post
 title:  "React redux"
 categories: JavaScript
 tags: React redux
-author: kimsoonil
+author: KSI
 ---
 
 * content

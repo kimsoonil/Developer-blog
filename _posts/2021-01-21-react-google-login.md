@@ -3,7 +3,7 @@ layout: post
 title:  "React Google login"
 categories: JavaScript
 tags: React Google login
-author: kimsoonil
+author: KSI
 ---
 
 * content

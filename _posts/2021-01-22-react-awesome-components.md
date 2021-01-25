@@ -3,7 +3,7 @@ layout: post
 title:  "awesome-react-components"
 categories: JavaScript
 tags: React 
-author: kimsoonil
+author: KSI
 ---
 
 # 🚀 Absolutely Awesome React Components & Libraries

@@ -3,7 +3,7 @@ layout: post
 title:  "React Facebook login"
 categories: JavaScript
 tags: React Facebook login
-author: kimsoonil
+author: KSI
 ---
 
 * content

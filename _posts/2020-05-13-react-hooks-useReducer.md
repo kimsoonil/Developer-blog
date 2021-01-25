@@ -1,28 +1,28 @@
 ---
 layout: post
-title:  "React Hooks 系列之4 useReducer"
+title:  "React Hooks useReducer"
 categories: JavaScript
 tags: React hooks
-author: HyG
+author: KSI
 ---
 
 * content
 {:toc}
 
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks api를 숙달하면 직장에서 사용하는 데 더 도움이 될 것이며 React에 대한 숙달은 당신을 더 높은 수준으로 이끌 것입니다. 이 시리즈는 초보자와 리뷰어에게 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-截止目前我们已经学习了3个hook api，`useState`, `useEffect`, `useContext`。接下来我们学习下一个 hook api，`useReducer`。首先我们将讲讲什么是 reducer，以及为什么使用 reducer。研究一下 JavaScript 中的 reducer 是什么，这将有助于理解 react hook 中的 `useReducer`。好，现在开始吧。
-
-
+지금 우리가 공부 한 세 가지 API 후크까지, `useState`, `useEffect`, `useContext`. 다음으로 다음 API 후크 인 `useReducer`. 먼저 감속기가 무엇이며 왜 사용되는지에 대해 이야기하겠습니다. 반응 후크를 이해하는 데 도움이되는 JavaScript의 감속기가 무엇인지 연구하십시오 `useReducer`. 좋아요, 이제 시작하겠습니다.
 
 
-## 什么是 useReducer
 
-`useReducer` 是一个用于状态管理的 hook api。是 `useState` 的替代方案。
 
-那么 `useReducer` 和 `useState` 的区别是什么呢？答案是`useState` 是使用 `useReducer` 构建的。
+## useReducer 란?
 
-那么什么时候使用 `useReducer` 还是 `useState` 呢？我们完成本章的学习就能找到答案。
+`useReducer상태` 관리를위한 후크 API입니다. 그것은이다 `useState`대안.
+
+그래서 `useReducer`와 `useState`는 어떤 차이? 대답은 built `useState`를 사용하는 것 `useReducer`입니다.
+
+그래서 사용할 때 `useReducer`또는 `useState`무엇? 이 장을 마치면 답을 찾을 수 있습니다.
 
 ### reducer
 
@@ -33,11 +33,11 @@ useContext - context API
 useReducer - reducers
 ```
 
-可以看到 useReducer 一定也与 reducer 有关，接下来看看什么是 reducer。之所以要了解什么是 reducer 是为了你不需要掌握 redux 而学会 useReducer，当然，如果你了解Redux，对本章理解会更容易。下面开始
+useReducer도 리듀서와 관련이 있음을 알 수 있습니다. 다음으로 리듀서가 무엇인지 알아 보겠습니다. 리듀서가 무엇인지 이해하는 이유는 리덕스를 마스터 할 필요가 없도록 리듀서를 사용하는 법을 배우기 위해서입니다. 물론 Redux를 알고 있다면이 장을 이해하는 것이 더 쉬울 것입니다.
 
-如果你研究过原生 JavaScript，你会发现有一些内置方法，如 `foreach`, `map`, `reduce`。我们来深入看一下 `reduce` 方法。在 MDN 上可以看到 [`Array.prototype.reduce()` 的文档](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)，文档中说
+이티브 자바 스크립트를 공부하는 경우, 당신은 몇 가지 내장과 같은 방법이 있다는 것을 발견 할 것이다 foreach, map, reduce. 깊이 reduce방법을 살펴 보겠습니다 . MDN은 [`Array.prototype.reduce()`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)，에서 볼 수 있습니다.
 
-> reduce() 方法对数组中的每个元素执行一个由您提供的 reducer 函数(升序执行)，将其结果汇总为单个返回值。
+> reduce() 메서드는 배열의 각 요소에 대해 사용자가 제공 한 감속기 함수 (오름차순으로 실행 됨)를 실행하고 결과를 단일 반환 값으로 집계합니다.
 
 ``` js
 const array1 = [1, 2, 3, 4];
@@ -52,31 +52,31 @@ console.log(array1.reduce(reducer, 5));
 // expected output: 15
 ```
 
-需要注意的是：reduce 方法接受2个参数，第一个为 reducer 函数，第二个为初始值（给 reducer 函数使用）。reduce 方法返回函数累计处理的结果。
+reduce 메소드는 2 개의 매개 변수를 받아들이고 첫 번째는 감속기 기능이고 두 번째는 초기 값 (reducer 기능에서 사용됨)입니다. reduce 메서드는 함수의 누적 처리 결과를 반환합니다.
 
-而 reducer 函数有2个必填入参：
+감속기 기능에는 2 개의 필수 매개 변수가 있습니다.
 
-- `accumulator` 累计器累计回调的返回值; 它是上一次调用回调时返回的累积值，或 initialValue。
-- `currentValue` 数组中正在处理的元素。
+ - `accumulator` 누산기는 콜백의 반환 값을 누적하며, 이는 콜백이 마지막으로 호출되었을 때 반환 된 누적 값 또는 initialValue입니다.
+ - `currentValue` 배열에서 처리중인 요소입니다.
 
-### reducer 与 useReducer
+### reducer 및 useReducer
 
-reducer 与 useReducer 这两者之间有巨大的相似之处。
+reducer 와 useReducer 사이에는 큰 유사점이 있습니다.
 
 reduce in JavaScript | useReducer in React
 :--- | :---
 `array.reduce(reducer, initialValue)` | `useReducer(reducer, initialState)`
 `singleValue = reducer(accumulator, itemValue)` | `newState = reducer(currentState, action)`
-reduce method returns a single value | useReducer returns a pair of values. [newState, dispatch]
+reduce 메서드는 단일 값을 반환합니다. | useReducer는 값 쌍을 반환합니다. [newState, dispatch]
 
-上述表格目前看不懂也没有关系，后续通过例子会详细说明。
+위의 표가 현재 이해되지 않는 경우에는 문제가되지 않으며, 추후 예를 통해 자세히 설명하도록하겠습니다.
 
-在这一小节我们学到了：
+이 섹션에서 우리는 다음을 배웠습니다.
 
-- `useReducer` 是一个用于状态管理的 hook api。
-- `useReducer` 与 reducer 函数有关
-- `useReducer(reducer, initialState)` 接受2个参数，分别为 reducer 函数 和 初始状态
-- `reducer(currentState, action)` 也是接受2个参数，分别为当前状态和 action，返回一个 new state
+- `useReducer` 상태 관리를위한 후크 API입니다.
+- `useReducer` reducer 기능 관련
+- `useReducer(reducer, initialState)` 2 개의 매개 변수, 감속기 기능 및 초기 상태 허용
+- `reducer(currentState, action)` 또한 2 개의 매개 변수, 현재 상태 및 작업을 허용하고 새 상태를 반환합니다.
 
 ## simple state & action
 

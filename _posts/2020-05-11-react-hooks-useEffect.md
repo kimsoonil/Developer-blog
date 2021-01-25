@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "React Hooks 系列之2 useEffect"
+title:  "React Hooks useEffect"
 categories: JavaScript
 tags: React hooks
-author: HyG
+author: KSI
 ---
 
 * content
@@ -358,9 +358,14 @@ export default RunEffectsOnlyOnce
 
 useEffect 메서드의 두 번째 매개 변수는 빈 배열로 전달되므로 여러 호출 문제를 효과적으로 방지 할 수 있습니다.
 
-> 한 번만 실행되는 이펙트 (컴포넌트가 마운트 및 마운트 해제 될 때만 실행 됨)를 실행하려면 빈 배열 ([])을 두 번째 매개 변수로 전달할 수 있습니다. 이것은 React에 효과가 props 또는 state의 값에 의존하지 않으므로 반복적으로 실행할 필요가 없음을 알려줍니다. 이것은 특별한 경우가 아니며 종속 배열로 작업하는 방식을 따릅니다.
+> 한 번만 실행되는 이펙트 (컴포넌트가 마운트 및 마운트 해제 될 때만 실행 됨)를 실행하려면 빈 배열 ([])을 두 번째 매개 변수로 전달할 수 있습니다. 
 >
-> 빈 배열 ([])을 전달하면 효과 내부의 소품과 상태는 항상 초기 값을 갖습니다. 두 번째 매개 변수로 []를 전달하는 것이 더 익숙한`componentDidMount` 및`componentWillUnmount` 사고 모드에 더 가깝지만 효과를 너무 자주 호출하지 않도록하는 더 좋은 방법이 있습니다. 또한 브라우저가 화면 렌더링을 마친 후 React는`useEffect` 호출을 지연하므로 추가 작업이 매우 편리합니다.
+> 이것은 React에 효과가 props 또는 state의 값에 의존하지 않으므로 반복적으로 실행할 필요가 없음을 알려줍니다. 이것은 특별한 경우가 아니며 종속 배열로 작업하는 방식을 따릅니다.
+>
+> 빈 배열 ([])을 전달하면 효과 내부의 소품과 상태는 항상 초기 값을 갖습니다. 
+>
+> 두 번째 매개 변수로 []를 전달하는 것이 더 익숙한`componentDidMount` 및`componentWillUnmount` 사고 모드에 더 가깝지만 효과를 너무 자주 호출하지 않도록하는 더 좋은 방법이 있습니다. 
+> 또한 브라우저가 화면 렌더링을 마친 후 React는`useEffect` 호출을 지연하므로 추가 작업이 매우 편리합니다.
 
 ## 지울 효과
 
@@ -488,10 +493,6 @@ useEffect 종속성 (두 번째 매개 변수) 오류로 인한 문제점입니�
 Counter.js
 
 ``` jsx
-/**
- * 每秒 +1 的计数器
- */
-
 import React, { Component } from 'react'
 
 class Counter extends Component {
@@ -613,7 +614,7 @@ export default App
 
 그러나 카운터가 정상적으로 작동하지 않는 경우 효과는 다음과 같습니다.
 
-! [] (https://gw.alicdn.com/tfs/TB13TdBx7T2gK0jSZPcXXcKkpXa-425-270.gif)
+![](https://gw.alicdn.com/tfs/TB13TdBx7T2gK0jSZPcXXcKkpXa-425-270.gif)
 
 빈 종속성 배열`[]`를 전달하면 구성 요소가 다시 렌더링 될 때가 아니라 마운트 될 때 후크가 한 번만 실행됩니다. 하지만 이로 인해 문제가 발생할 수 있으며`setInterval`의 콜백에서 count 값은 변경되지 않습니다. 효과가 실행되면 클로저를 생성하고 클로저에 'count'값을 저장하고 초기 값은 0이기 때문입니다. 매초 콜백은`setCount (0 + 1)`를 실행하므로`count`는 1을 초과하지 않습니다.
 

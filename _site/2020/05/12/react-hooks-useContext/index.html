@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>React Hooks 系列之3 useContext</title>
-    <meta name="description" content="掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。今天我们讲讲 Context 对象和 useContext 的使用方法。">
+    <title>React Hooks useContext</title>
+    <meta name="description" content="React Hooks api를 숙달하면 직장에서 사용하는 데 더 도움이 될 것이며 React에 대한 숙달은 당신을 더 높은 수준으로 이끌 것입니다. 이 시리즈는 초보자와 리뷰어에게 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.오늘 우리는 Context 객체와 useConte...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2020/05/12/react-hooks3-useContext/">
+    <link rel="canonical" href="http://localhost:4000/2020/05/12/react-hooks-useContext/">
     <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml ">
 
 
@@ -149,7 +149,7 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>React Hooks 系列之3 useContext</h1>
+        <h1>React Hooks useContext</h1>
         <div class="label">
 
             <div class="label-card">
@@ -157,7 +157,7 @@
             </div>
 
             <div class="label-card">
-                <i class="fa fa-user"></i>HyG
+                <i class="fa fa-user"></i>KSI
                 
             </div>
 
@@ -207,38 +207,37 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#什么是-context-api" id="markdown-toc-什么是-context-api">什么是 Context Api</a></li>
-  <li><a href="#使用-context" id="markdown-toc-使用-context">使用 Context</a>    <ul>
-      <li><a href="#创建-context" id="markdown-toc-创建-context">创建 context</a></li>
-      <li><a href="#提供-provider" id="markdown-toc-提供-provider">提供 Provider</a></li>
-      <li><a href="#在使用的节点处消费-context" id="markdown-toc-在使用的节点处消费-context">在使用的节点处消费 Context</a></li>
-      <li><a href="#多个-context-情况" id="markdown-toc-多个-context-情况">多个 Context 情况</a></li>
+  <li><a href="#context-api-란" id="markdown-toc-context-api-란">Context Api 란?</a></li>
+  <li><a href="#컨텍스트-사용" id="markdown-toc-컨텍스트-사용">컨텍스트 사용</a>    <ul>
+      <li><a href="#컨텍스트-만들기" id="markdown-toc-컨텍스트-만들기">컨텍스트 만들기</a></li>
+      <li><a href="#provider-제공" id="markdown-toc-provider-제공">Provider 제공</a></li>
+      <li><a href="#사용-된-노드에서-context-사용" id="markdown-toc-사용-된-노드에서-context-사용">사용 된 노드에서 Context 사용</a></li>
+      <li><a href="#여러-context-싱허ㅣㅇ" id="markdown-toc-여러-context-싱허ㅣㅇ">여러 Context 싱허ㅣㅇ</a></li>
     </ul>
   </li>
   <li><a href="#usecontext" id="markdown-toc-usecontext">useContext</a></li>
 </ul>
 
-<p>掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。</p>
+<p>React Hooks api를 숙달하면 직장에서 사용하는 데 더 도움이 될 것이며 React에 대한 숙달은 당신을 더 높은 수준으로 이끌 것입니다. 이 시리즈는 초보자와 리뷰어에게 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.</p>
 
-<p>今天我们讲讲 Context 对象和 useContext 的使用方法。</p>
+<p>오늘 우리는 Context 객체와 useContext의 사용에 대해 이야기합니다.</p>
 
-<h2 id="什么是-context-api">什么是 Context Api</h2>
+<h2 id="context-api-란">Context Api 란?</h2>
 
-<p>考虑这样一种场景，如果组件树结构如下，现在想从根节点传递一个 userName 的属性到叶子节点 A D F，通过 props 的方式传递，会不可避免的传递通过 B C E，即使这些组件也没有使用这个 userName 属性。</p>
+<p>구성 요소 트리 구조가 다음과 같고 이제 루트 노드에서 리프 노드 ADF로 userName 속성을 전달하여 props를 통해 전달하려는 경우 이러한 구성 요소가 userName 속성을 사용하지 않더라도 불가피하게 BCE를 통과하게됩니다. .
+<img src="https://gw.alicdn.com/tfs/TB1Nl38AAT2gK0jSZFkXXcIQFXa-1432-870.png" alt="" /></p>
 
-<p><img src="https://gw.alicdn.com/tfs/TB1Nl38AAT2gK0jSZFkXXcIQFXa-1432-870.png" alt="" /></p>
+<p>이러한 중첩 된 트리 구조에 5 개 또는 10 개의 레이어가 있으면 치명적인 개발 및 유지 관리 경험이 될 것입니다. 이 문제는 중간 노드를 거치지 않고 원하는 곳에 직접 도달 할 수 있다면 피할 수 있으며, 이때 Context api는이 문제를 해결하는 것입니다.</p>
 
-<p>如果这样的嵌套树形结构有5层或10层，那么将是灾难式的开发维护体验。如果能不经过中间的节点直接到达需要的地方就可以避免这种问题，这时 Context api 就是来解决这个问题的。</p>
+<p>컨텍스트 API는 모든 계층을 거치지 않고 구성 요소 트리의 데이터를 전달하는 API입니다. Context Hook의 사용을 살펴 보겠습니다.</p>
 
-<p>Context api 是在组件树中传递数据但不用每层都经过的一种 api。下面我们一起看看 Context Hook 的使用方法。</p>
+<h2 id="컨텍스트-사용">컨텍스트 사용</h2>
 
-<h2 id="使用-context">使用 Context</h2>
+<p>예를 들어 루트 노드에서 F 노드로 변수 사용자 이름을 전달하는 가장 오른쪽 분기 인 CEF에 중점을 둡니다.</p>
 
-<p>我们举个例子重点看下最右边的分支，C E F，从根节点传递一个变量 username 到 F 节点。</p>
+<p>먼저 다음과 같이 App, ComponentC, ComponentE, ComponentF를 만듭니다.</p>
 
-<p>我们先创建好 App, ComponentC, ComponentE, ComponentF, 如下</p>
-
-<p>App.tsx</p>
+<p>App.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -257,79 +256,79 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>ComponentC.tsx</p>
+<p>ComponentC.js</p>
 
-<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="k">import</span> <span class="nx">ComponentE</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./16ComponentE</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">ComponentC</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">ComponentE</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">ComponentE</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">ComponentC</span>
 
 </code></pre></div></div>
 
-<p>ComponentE.tsx</p>
+<p>ComponentE.js</p>
 
-<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="k">import</span> <span class="nx">ComponentF</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./16ComponentF</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">ComponentE</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">ComponentF</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">ComponentF</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">ComponentE</span>
 
 </code></pre></div></div>
 
-<p>ComponentF.tsx</p>
+<p>ComponentF.js</p>
 
-<div class="language-tsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">ComponentF</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      ComponentF
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="nx">ComponentF</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">ComponentF</span>
 </code></pre></div></div>
 
-<p>页面展示如下：</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1_nrMFkL0gK0jSZFAXXcA9pXa-438-193.png" alt="" /></p>
 
-<p>接下来我们来研究如何使用 Context 将 username 从 App 传递到 ComponentF，共分为以下3个步骤</p>
+<p>다음으로 Context를 사용하여 App에서 ComponentF로 사용자 이름을 전달하는 방법을 살펴 보겠습니다. 다음 3 단계로 나뉩니다.</p>
 
-<h3 id="创建-context">创建 context</h3>
+<h3 id="컨텍스트-만들기">컨텍스트 만들기</h3>
 
-<p>在根节点 App.tsx 中使用 <code class="language-plaintext highlighter-rouge">createContext()</code> 来创建一个 context</p>
+<p>루트 노드 App.js 中使用 <code class="language-plaintext highlighter-rouge">createContext()</code> 를 사용하여 컨텍스트 만들기</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">UserContext</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createContext</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
 </code></pre></div></div>
 
 <blockquote>
-  <p>创建一个 Context 对象。当 React 渲染一个订阅了这个 Context 对象的组件，这个组件会从组件树中离自身最近的那个匹配的 Provider 中读取到当前的 context 值。</p>
+  <p>Context 개체를 만듭니다. React가이 Context 객체를 구독하는 컴포넌트를 렌더링 할 때,이 컴포넌트는 컴포넌트 트리에서 자신에게 가장 가까운 일치하는 Provider로부터 현재 컨텍스트 값을 읽습니다.</p>
 
-  <p>只有当组件所处的树中没有匹配到 Provider 时，其 defaultValue 参数才会生效。这有助于在不使用 Provider 包装组件的情况下对组件进行测试。注意：将 undefined 传递给 Provider 的 value 时，消费组件的 defaultValue 不会生效。</p>
+  <p>defaultValue 매개 변수는 구성 요소가있는 트리에 일치하는 공급자가없는 경우에만 적용됩니다. 이렇게하면 Provider를 사용하여 구성 요소를 래핑하지 않고도 구성 요소를 테스트 할 수 있습니다. 참고 : undefined가 Provider 값에 전달되면 소비자 구성 요소의 defaultValue가 적용되지 않습니다.</p>
 </blockquote>
 
-<h3 id="提供-provider">提供 Provider</h3>
+<h3 id="provider-제공">Provider 제공</h3>
 
-<p>在根节点中使用 Provider 包裹子节点，将 context 提供给子节点</p>
+<p>Provider를 사용하여 루트 노드에서 자식 노드를 래핑하고 자식 노드에 컨텍스트를 제공합니다.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">UserContext</span><span class="p">.</span><span class="nx">Provider</span> <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="dl">'</span><span class="s1">chuanshi</span><span class="dl">'</span><span class="p">}</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="nx">ComponentC</span> <span class="o">/&gt;</span>
@@ -337,21 +336,18 @@
 </span></code></pre></div></div>
 
 <blockquote>
-  <p>每个 Context 对象都会返回一个 Provider React 组件，它允许消费组件订阅 context 的变化。</p>
-
-  <p>Provider 接收一个 <code class="language-plaintext highlighter-rouge">value</code> 属性，传递给消费组件。一个 Provider 可以和多个消费组件有对应关系。多个 Provider 也可以嵌套使用，里层的会覆盖外层的数据。</p>
-
-  <p>当 Provider 的 <code class="language-plaintext highlighter-rouge">value</code> 值发生变化时，它内部的所有消费组件都会重新渲染。Provider 及其内部 consumer 组件都不受制于 <code class="language-plaintext highlighter-rouge">shouldComponentUpdate</code> 函数，因此当 consumer 组件在其祖先组件退出更新的情况下也能更新。</p>
-
-  <p>通过新旧值检测来确定变化，使用了与 Object.is 相同的算法。</p>
+  <p>각 Context 객체는 Provider React 구성 요소를 반환하므로 소비 구성 요소가 컨텍스트 변경 사항을 구독 할 수 있습니다.
+value소비자 어셈블리에 전달 된 속성을 받는 공급자 입니다. 공급자는 여러 소비자 구성 요소에 해당 할 수 있습니다. 여러 공급자를 중첩 할 수도 있으며 내부 공급자가 외부 데이터를 덮습니다.
+Provider의 value값이 변경되면 모든 구성 요소의 내부 소비가 다시 렌더링됩니다. 공급자 및 내부 구성 요소에는 소비자 shouldComponentUpdate기능이 적용되지 않으므로 상위 구성 요소 의 소비자 구성 요소가 업데이트되면 업데이트 할 수도 있습니다.
+새 값과 이전 값 감지는 Object.is와 동일한 알고리즘을 사용하여 변경을 결정하는 데 사용됩니다.</p>
 </blockquote>
 
-<p>别忘了将之前定义好的 Context export 出去，以便在子孙节点中引入</p>
+<p>하위 노드에 도입 될 수 있도록 이전에 정의 된 컨텍스트를 내보내는 것을 잊지 마십시오.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">UserContext</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createContext</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>此时 App.tsx 的完整代码为</p>
+<p>현재 App.js의 전체 코드는 다음과 같습니다.</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -374,14 +370,14 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<h3 id="在使用的节点处消费-context">在使用的节点处消费 Context</h3>
+<h3 id="사용-된-노드에서-context-사용">사용 된 노드에서 Context 사용</h3>
 
 <p>import context 对象</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">UserContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../App</span><span class="dl">'</span>
 </code></pre></div></div>
 
-<p>使用 Consumer 进行消费</p>
+<p>소비를 위해 Consumer 사용</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">UserContext</span><span class="p">.</span><span class="nx">Consumer</span><span class="o">&gt;</span>
   <span class="p">{</span>
@@ -395,12 +391,14 @@
 </span></code></pre></div></div>
 
 <blockquote>
-  <p>这里，React 组件也可以订阅到 context 变更。这能让你在函数式组件中完成订阅 context。</p>
-
-  <p>这需要函数作为子元素（function as a child）这种做法。这个函数接收当前的 context 值，返回一个 React 节点。传递给函数的 value 值等同于往上组件树离这个 context 最近的 Provider 提供的 value 值。如果没有对应的 Provider，value 参数等同于传递给 createContext() 的 defaultValue。</p>
+  <p>여기서 React 컴포넌트는 컨텍스트 변경을 구독 할 수도 있습니다. 이를 통해 기능 구성 요소의 컨텍스트를 구독 할 수 있습니다.</p>
 </blockquote>
 
-<p>完整的 ComponentF.tsx 代码如下</p>
+<blockquote>
+  <p>이를 위해서는 어린 시절의 기능 연습이 필요합니다. 이 함수는 현재 컨텍스트 값을 받고 React 노드를 반환합니다. 함수에 전달 된 값은 위쪽 구성 요소 트리에서 컨텍스트에 가장 가까운 공급자가 제공 한 값과 동일합니다. 해당 Provider가없는 경우 value 매개 변수는 createContext ()에 전달 된 defaultValue와 동일합니다.</p>
+</blockquote>
+
+<p>전체 ComponentF.js 코드는 다음과 같습니다.</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -425,15 +423,15 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">ComponentF</span>
 </code></pre></div></div>
 
-<p>效果如下</p>
+<p>효과는 다음과 같습니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1CSB6FpT7gK0jSZFpXXaTkpXa-448-210.png" alt="" /></p>
 
-<p>目前看只有1个 Context 的时候情况还好，下面我们来看看有多个 Context 的情况</p>
+<p>현재 Context가 1 개만 있으면 상황은 괜찮습니다. 여러 Context가있는 상황을 살펴 보겠습니다.</p>
 
-<h3 id="多个-context-情况">多个 Context 情况</h3>
+<h3 id="여러-context-싱허ㅣㅇ">여러 Context 싱허ㅣㅇ</h3>
 
-<p>我们在 App.tsx 中再增加一个 Context</p>
+<p>App.js에 다른 컨텍스트를 추가합니다.</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -459,7 +457,7 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>接下来在 component F 中消费它们</p>
+<p>다음으로 component F에서</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -491,23 +489,23 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">ComponentF</span>
 </code></pre></div></div>
 
-<p>页面展示如下</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1XC47Fvb2gK0jSZK9XXaEgFXa-453-183.png" alt="" /></p>
 
-<p>虽然代码运行没有问题，但是美观性和可读性都不太好，如果使用多个 Context，有个更好的方法，就是使用 Context hook 来解决消费多个 Context 的代码优雅问题。</p>
+<p>코드는 문제없이 실행되지만 미학과 가독성은 그리 좋지 않습니다. 여러 Context를 사용하면 Context hook을 사용하여 여러 Context를 소비하는 코드의 우아한 문제를 해결하는 더 좋은 방법이 있습니다.</p>
 
 <h2 id="usecontext">useContext</h2>
 
-<p>举个例子，我们在上述的 demo 中的 component E 中通过 <code class="language-plaintext highlighter-rouge">useContext</code> 使用根节点创建的 Context。分为以下步骤</p>
+<p>예를 들어, 위 데모의 컴포넌트 E useContext는 루트 노드를 사용하여 생성 된 Context 에 의한 것 입니다. 다음 단계로 나뉩니다.</p>
 
 <ol>
-  <li>从 react 对象中 import <code class="language-plaintext highlighter-rouge">useContext</code> 这个 hook api</li>
-  <li>import 根节点创建的 Context 对象（可以导入多个）</li>
-  <li>执行 <code class="language-plaintext highlighter-rouge">useContext()</code> 方法，将 Context 传入</li>
+  <li>반응 객체 useContext에서이 후크 API 가져 오기</li>
+  <li>루트 노드에 의해 생성 된 컨텍스트 개체를 가져옵니다 (여러 개를 가져올 수 있음).</li>
+  <li>실행 useContext()방법, 들어오는 컨텍스트</li>
 </ol>
 
-<p>ComponentE 完整代码:</p>
+<p>ComponentE 전체 코드 :</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -529,26 +527,27 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">ComponentE</span>
 </code></pre></div></div>
 
-<p>页面展示如下</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1NnVuFUT1gK0jSZFhXXaAtVXa-453-224.png" alt="" /></p>
 
-<p>其关键的一行代码如下</p>
+<p>코드의 핵심 라인은 다음과 같습니다.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">useContext</span><span class="p">(</span><span class="nx">MyContext</span><span class="p">)</span>
 </code></pre></div></div>
 
 <blockquote>
-  <p>useContext 方法接收一个 context 对象（<code class="language-plaintext highlighter-rouge">React.createContext</code> 的返回值）并返回该 context 的当前值。当前的 context 值由上层组件中距离当前组件最近的 <code class="language-plaintext highlighter-rouge">&lt;MyContext.Provider&gt;</code> 的 <code class="language-plaintext highlighter-rouge">value</code> prop 决定。</p>
+  <p>useContext 메서드는 컨텍스트 객체 ( React.createContext반환 값)를 받고 컨텍스트의 현재 값을 반환합니다. 가까운 전류 성분으로부터 상기 상부 어셈블리의 현재 컨텍스트 값 소품 결정.<MyContext.Provider>value</MyContext.Provider></p>
 
-  <p>当组件上层最近的 <code class="language-plaintext highlighter-rouge">&lt;MyContext.Provider&gt;</code> 更新时，该 Hook 会触发重渲染，并使用最新传递给 <code class="language-plaintext highlighter-rouge">MyContext</code> provider 的 context <code class="language-plaintext highlighter-rouge">value</code> 值。即使祖先使用 <code class="language-plaintext highlighter-rouge">React.memo</code> 或 <code class="language-plaintext highlighter-rouge">shouldComponentUpdate</code>，也会在组件本身使用 <code class="language-plaintext highlighter-rouge">useContext</code> 时重新渲染。</p>
+  <MyContext.Provider>후크에 대한 상위 어셈블리의 최근 업데이트가 다시 렌더링을 트리거하고 값 의 MyContext컨텍스트 공급자에 전달 된 최신을 사용합니다 value. 사용하더라도 조상 React.memo또는 shouldComponentUpdate자체가 구성 요소의 사용 useContext시간을 렌더링 다시.
 
-  <p>可以理解为，<code class="language-plaintext highlighter-rouge">useContext(MyContext)</code> 相当于 class 组件中的 <code class="language-plaintext highlighter-rouge">static contextType = MyContext</code> 或者 <code class="language-plaintext highlighter-rouge">&lt;MyContext.Consumer&gt;</code>。</p>
+그것은로 이해 될 수 useContext(MyContext)클래스 구성 요소들에 대응 static contextType = MyContext하거나 <MyContext.Consumer>.
 
-  <p><code class="language-plaintext highlighter-rouge">useContext(MyContext)</code> 只是让你能够读取 context 的值以及订阅 context 的变化。你仍然需要在上层组件树中使用 <code class="language-plaintext highlighter-rouge">&lt;MyContext.Provider&gt;</code> 来为下层组件提供 context。</p>
+useContext(MyContext)컨텍스트의 값을 읽고 컨텍스트의 변경 사항을 구독 할 수 있습니다. <MyContext.Provider>기본 구성 요소에 대한 컨텍스트를 제공 하려면 상위 구성 요소 트리를 사용해야합니다 .
+</MyContext.Provider></MyContext.Consumer></MyContext.Provider>
 </blockquote>
 
-<p>至此，关于 useContext hook api 我们已经掌握了使用方式，可以看到通过 useContext 可以极大的减小多个 Context 使用的代码复杂的问题。</p>
+<p>지금까지 useContext 후크 api의 사용을 마스터했으며 useContext가 여러 컨텍스트에서 사용하는 코드의 복잡성을 크게 줄일 수 있음을 알 수 있습니다.</p>
 
         </article>
         <hr>
@@ -787,13 +786,13 @@
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2020/05/11/react-hooks2-useEffect/">React Hooks 系列之2 useEffect</a></p>
+        <p><strong>上一篇</strong> <a href="/2020/05/11/react-hooks-useEffect/">React Hooks useEffect</a></p>
         
     </div>
     <div class="nex">
 
         
-        <p><strong>下一篇</strong> <a href="/2020/05/13/react-hooks4-useReducer/">React Hooks 系列之4 useReducer</a></p>
+        <p><strong>下一篇</strong> <a href="/2020/05/13/react-hooks-useReducer/">React Hooks useReducer</a></p>
         
     </div>
 </div>
@@ -811,8 +810,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2020/05/12/react-hooks3-useContext/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2020/05/12/react-hooks3-useContext/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2020/05/12/react-hooks-useContext/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2020/05/12/react-hooks-useContext/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

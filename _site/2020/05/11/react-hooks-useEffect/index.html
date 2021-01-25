@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>React Hooks 系列之2 useEffect</title>
+    <title>React Hooks useEffect</title>
     <meta name="description" content="React Hooks API를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 높은 수준으로 마스터 할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.오늘 우리는 useEffect를 사용하는 방법에 대해 이야...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2020/05/11/react-hooks2-useEffect/">
+    <link rel="canonical" href="http://localhost:4000/2020/05/11/react-hooks-useEffect/">
     <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml ">
 
 
@@ -149,7 +149,7 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>React Hooks 系列之2 useEffect</h1>
+        <h1>React Hooks useEffect</h1>
         <div class="label">
 
             <div class="label-card">
@@ -157,7 +157,7 @@
             </div>
 
             <div class="label-card">
-                <i class="fa fa-user"></i>HyG
+                <i class="fa fa-user"></i>KSI
                 
             </div>
 
@@ -585,9 +585,14 @@
 <p>useEffect 메서드의 두 번째 매개 변수는 빈 배열로 전달되므로 여러 호출 문제를 효과적으로 방지 할 수 있습니다.</p>
 
 <blockquote>
-  <p>한 번만 실행되는 이펙트 (컴포넌트가 마운트 및 마운트 해제 될 때만 실행 됨)를 실행하려면 빈 배열 ([])을 두 번째 매개 변수로 전달할 수 있습니다. 이것은 React에 효과가 props 또는 state의 값에 의존하지 않으므로 반복적으로 실행할 필요가 없음을 알려줍니다. 이것은 특별한 경우가 아니며 종속 배열로 작업하는 방식을 따릅니다.</p>
+  <p>한 번만 실행되는 이펙트 (컴포넌트가 마운트 및 마운트 해제 될 때만 실행 됨)를 실행하려면 빈 배열 ([])을 두 번째 매개 변수로 전달할 수 있습니다.</p>
 
-  <p>빈 배열 ([])을 전달하면 효과 내부의 소품과 상태는 항상 초기 값을 갖습니다. 두 번째 매개 변수로 []를 전달하는 것이 더 익숙한<code class="language-plaintext highlighter-rouge">componentDidMount</code> 및<code class="language-plaintext highlighter-rouge">componentWillUnmount</code> 사고 모드에 더 가깝지만 효과를 너무 자주 호출하지 않도록하는 더 좋은 방법이 있습니다. 또한 브라우저가 화면 렌더링을 마친 후 React는<code class="language-plaintext highlighter-rouge">useEffect</code> 호출을 지연하므로 추가 작업이 매우 편리합니다.</p>
+  <p>이것은 React에 효과가 props 또는 state의 값에 의존하지 않으므로 반복적으로 실행할 필요가 없음을 알려줍니다. 이것은 특별한 경우가 아니며 종속 배열로 작업하는 방식을 따릅니다.</p>
+
+  <p>빈 배열 ([])을 전달하면 효과 내부의 소품과 상태는 항상 초기 값을 갖습니다.</p>
+
+  <p>두 번째 매개 변수로 []를 전달하는 것이 더 익숙한<code class="language-plaintext highlighter-rouge">componentDidMount</code> 및<code class="language-plaintext highlighter-rouge">componentWillUnmount</code> 사고 모드에 더 가깝지만 효과를 너무 자주 호출하지 않도록하는 더 좋은 방법이 있습니다. 
+또한 브라우저가 화면 렌더링을 마친 후 React는<code class="language-plaintext highlighter-rouge">useEffect</code> 호출을 지연하므로 추가 작업이 매우 편리합니다.</p>
 </blockquote>
 
 <h2 id="지울-효과">지울 효과</h2>
@@ -709,11 +714,7 @@
 
 <p>Counter.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
- * 每秒 +1 的计数器
- */</span>
-
-<span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">class</span> <span class="nx">Counter</span> <span class="kd">extends</span> <span class="nx">Component</span> <span class="p">{</span>
 
@@ -831,7 +832,7 @@
 
 <p>그러나 카운터가 정상적으로 작동하지 않는 경우 효과는 다음과 같습니다.</p>
 
-<p>! [] (https://gw.alicdn.com/tfs/TB13TdBx7T2gK0jSZPcXXcKkpXa-425-270.gif)</p>
+<p><img src="https://gw.alicdn.com/tfs/TB13TdBx7T2gK0jSZPcXXcKkpXa-425-270.gif" alt="" /></p>
 
 <p>빈 종속성 배열<code class="language-plaintext highlighter-rouge">[]</code>를 전달하면 구성 요소가 다시 렌더링 될 때가 아니라 마운트 될 때 후크가 한 번만 실행됩니다. 하지만 이로 인해 문제가 발생할 수 있으며<code class="language-plaintext highlighter-rouge">setInterval</code>의 콜백에서 count 값은 변경되지 않습니다. 효과가 실행되면 클로저를 생성하고 클로저에 ‘count’값을 저장하고 초기 값은 0이기 때문입니다. 매초 콜백은<code class="language-plaintext highlighter-rouge">setCount (0 + 1)</code>를 실행하므로<code class="language-plaintext highlighter-rouge">count</code>는 1을 초과하지 않습니다.</p>
 
@@ -1279,13 +1280,13 @@
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2020/03/01/react-hooks1-useState/">React Hooks useState</a></p>
+        <p><strong>上一篇</strong> <a href="/2020/03/01/react-hooks-useState/">React Hooks useState</a></p>
         
     </div>
     <div class="nex">
 
         
-        <p><strong>下一篇</strong> <a href="/2020/05/12/react-hooks3-useContext/">React Hooks 系列之3 useContext</a></p>
+        <p><strong>下一篇</strong> <a href="/2020/05/12/react-hooks-useContext/">React Hooks useContext</a></p>
         
     </div>
 </div>
@@ -1303,8 +1304,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2020/05/11/react-hooks2-useEffect/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2020/05/11/react-hooks2-useEffect/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2020/05/11/react-hooks-useEffect/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2020/05/11/react-hooks-useEffect/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

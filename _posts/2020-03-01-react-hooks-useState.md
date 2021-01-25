@@ -3,7 +3,7 @@ layout: post
 title:  "React Hooks useState"
 categories: JavaScript
 tags: React hooks
-author: kimsoonil
+author: KSI
 ---
 
 * content
