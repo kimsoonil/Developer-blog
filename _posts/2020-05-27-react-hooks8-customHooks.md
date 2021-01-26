@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "React Hooks 系列之8 custom Hook"
+title:  "React Hooks custom Hook"
 categories: JavaScript
 tags: React hooks
 author: KSI
@@ -9,26 +9,28 @@ author: KSI
 * content
 {:toc}
 
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-截至目前，学习了官方的这么多 hooks api，我们也可以创造一些自己的 hooks，甚至官方也在鼓励开发者将组件逻辑抽象到自定义 hooks 中，方便复用。
+지금까지 많은 공식 후크 API를 학습 한 후 자체 후크 중 일부를 만들 수도 있으며, 심지어 공식적으로도 개발자가 쉽게 재사용 할 수 있도록 구성 요소 논리를 사용자 지정 후크로 추상화하도록 권장하고 있습니다.
 
-自定义 Hook 是一个函数，其名称以 “use” 开头，函数内部可以调用其他的 Hook。
+사용자 정의 후크는 이름이 "use"로 시작하는 함수이며 다른 후크는 함수 내에서 호출 될 수 있습니다.
 
-通过自定义 Hook，可以将组件逻辑提取到可重用的函数中。
-
-
+Hook을 커스터마이징함으로써 컴포넌트 로직을 재사용 가능한 함수로 추출 할 수 있습니다.
 
 
-## useDocumentTitle 示例
 
-### function 普通写法
 
-我们想创建一个计数器，计数器的值改变后，希望改变页面的 Title
 
-DocTitleOne.tsx
 
-``` jsx
+## useDocumentTitle 
+
+### function 
+
+카운터를 만들고 싶습니다. 카운터의 값이 변경된 후 페이지의 제목을 변경하려고합니다.
+
+DocTitleOne.js
+
+``` js
 import React, { useState, useEffect } from 'react'
 
 function DocTitleOne() {
@@ -51,9 +53,9 @@ export default DocTitleOne
 
 ```
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 
@@ -70,15 +72,15 @@ const App = () => {
 export default App
 ```
 
-页面展示如下
+페이지는 다음과 같이 표시됩니다.
 
 ![](https://gw.alicdn.com/tfs/TB1ilw2HUY1gK0jSZFMXXaWcVXa-407-221.gif)
 
-运行没有问题，接下来又有一个需求的增量，就是页面要在另一个组件中也能改变页面的 Title，接下来我们创建一个新的组件。
+실행하는 데 문제가 없으며 다른 수요 증가가 있습니다. 즉, 다른 구성 요소에서 페이지 제목을 변경할 수 있으며 새 구성 요소를 만듭니다.
 
-DocTitleTwo.tsx
+DocTitleTwo.js
 
-``` jsx
+``` js
 import React, { useState, useEffect } from 'react'
 
 function DocTitleTwo() {
@@ -100,9 +102,9 @@ function DocTitleTwo() {
 export default DocTitleTwo
 ```
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 
@@ -121,19 +123,19 @@ const App = () => {
 export default App
 ```
 
-页面展示如下
+페이지는 다음과 같이 표시됩니다.
 
 ![](https://gw.alicdn.com/tfs/TB1sNg1HUz1gK0jSZLeXXb9kVXa-407-221.gif)
 
-回顾代码，DocTitleTwo 显然重复了 DocTitleOne 的代码，设想一下如果有 10 个组件都要修改页面 title 的话，你肯定不想重复这些代码。这时就需要自定义 Hook 了。
+코드를 되돌아 보면 DocTitleTwo는 분명히 DocTitleOne의 코드를 반복합니다. 페이지 제목을 수정해야하는 구성 요소가 10 개 있다고 가정 해보면 이러한 코드를 반복하고 싶지 않을 것입니다. 이때 Hook을 커스터마이즈해야합니다.
 
-这个示例中，我们可以创建一个自定义 Hook 来设置页面的 title。然后使用这个自定义 Hook 在不同的组件中。
+이 예에서는 페이지 제목을 설정하는 사용자 지정 후크를 만들 수 있습니다. 그런 다음 다른 구성 요소에서이 사용자 지정 후크를 사용합니다.
 
-### 抽象出 useDocumentTitle hook
+### useDocumentTitle hook 추상화
 
-useDocumentTitle.tsx
+useDocumentTitle.js
 
-``` jsx
+``` js
 import { useEffect } from 'react'
 
 function useDocumentTitle(count: number) {
@@ -145,9 +147,9 @@ function useDocumentTitle(count: number) {
 export default useDocumentTitle
 ```
 
-DocTitleOne.tsx
+DocTitleOne.js
 
-``` jsx
+``` js
 import React, { useState } from 'react'
 import useDocumentTitle from './hooks/useDocumentTitle'
 
@@ -168,9 +170,9 @@ function DocTitleOne() {
 export default DocTitleOne
 ```
 
-DocTitleTwo.tsx
+DocTitleTwo.js
 
-``` jsx
+``` js
 import React, { useState } from 'react'
 import useDocumentTitle from './hooks/useDocumentTitle'
 
@@ -191,9 +193,9 @@ function DocTitleTwo() {
 export default DocTitleTwo
 ```
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 
@@ -212,21 +214,21 @@ const App = () => {
 export default App
 ```
 
-页面展示如下
+페이지는 다음과 같이 표시됩니다.
 
 ![](https://gw.alicdn.com/tfs/TB1sNg1HUz1gK0jSZLeXXb9kVXa-407-221.gif)
 
-我们回顾一下代码
+코드를 검토해 보겠습니다.
 
-在 DocTitleOne 中，引入了我们定义的 useDocumentTitle，传入了 count 这个状态的值。useDocumentTitle 中执行代码，将页面title 初始值设置为 0，然后继续渲染 DocTitleOne jsx 部分。点击按钮时，count 变为 1，触发了 DocTitleOne 的 rerender，useDocumentTitle 中入参也变为了 1，将页面 title 变为 1。
+DocTitleOne에서는 우리가 정의한 useDocumentTitle이 도입되고 count 상태의 값이 전달됩니다. useDocumentTitle에서 코드를 실행하고 페이지 제목의 초기 값을 0으로 설정 한 다음 DocTitleOne js 부분을 계속 렌더링합니다. 버튼을 클릭하면 개수가 1이되어 DocTitleOne의 렌더러가 트리거되고 useDocumentTitle의 입력 매개 변수도 1이되고 페이지 제목이 1이됩니다.
 
-## useCounter 示例
+## useCounter 
 
-### 冗余的写法
+### 중복문구
 
-CounterOne.tsx
+CounterOne.js
 
-``` jsx
+``` js
 import React, {useState} from 'react'
 
 function CounterOne() {
@@ -253,9 +255,9 @@ function CounterOne() {
 export default CounterOne
 ```
 
-CounterTwo.tsx
+CounterTwo.js
 
-``` jsx
+``` js
 import React, {useState} from 'react'
 
 function CounterTwo() {
@@ -282,9 +284,9 @@ function CounterTwo() {
 export default CounterTwo
 ```
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 import CounterOne from './components/32CounterOne'
@@ -302,17 +304,18 @@ const App = () => {
 export default App
 ```
 
-页面展示如下
+페이지는 다음과 같이 표시됩니다.
+
 
 ![](https://gw.alicdn.com/tfs/TB1Kf78HQL0gK0jSZFxXXXWHVXa-407-347.gif)
 
-相同的问题，我们有大量重复代码，接下来我们来看如何使用自定义 hook 来进行优化。
+같은 문제에 대해 반복되는 코드가 많이 있는데, 다음으로 최적화를 위해 사용자 지정 후크를 사용하는 방법을 살펴 보겠습니다.
 
-### useCounter 抽象
+### useCounter 추상화
 
-useCounter.tsx
+useCounter.js
 
-``` jsx
+``` js
 import { useState } from 'react'
 
 function useCounter() {
@@ -332,9 +335,9 @@ function useCounter() {
 export default useCounter
 ```
 
-CounterOne.tsx
+CounterOne.js
 
-``` jsx
+``` js
 import React from 'react'
 import useCounter from './hooks/useCounter'
 
@@ -353,9 +356,9 @@ function CounterOne() {
 export default CounterOne
 ```
 
-CounterTwo.tsx
+CounterTwo.js
 
-``` jsx
+``` js
 import React from 'react'
 import useCounter from './hooks/useCounter'
 
@@ -374,8 +377,8 @@ function CounterTwo() {
 export default CounterTwo
 ```
 
-App.tsx
-``` jsx
+App.js
+``` js
 import React from 'react'
 import './App.css'
 import CounterOne from './components/32CounterOne'
@@ -393,15 +396,15 @@ const App = () => {
 export default App
 ```
 
-页面展示依然如下
+페이지 표시는 여전히 다음과 같습니다.
 
 ![](https://gw.alicdn.com/tfs/TB1Kf78HQL0gK0jSZFxXXXWHVXa-407-347.gif)
 
-可以看到目前我们的代码结构就比较好了，我们还可以在 useCounter 中给 counter 设置初始值，如下
+현재 코드 구조가 더 나은 것을 알 수 있습니다. 다음과 같이 useCounter에서 카운터의 초기 값을 설정할 수도 있습니다.
 
-useCounter.tsx
+useCounter.js
 
-``` jsx
+``` js
 import { useState } from 'react'
 
 function useCounter(initialValue = 0) {
@@ -421,15 +424,15 @@ function useCounter(initialValue = 0) {
 export default useCounter
 ```
 
-使用时，对应的可以传入初始值
+사용하면 해당 초기 값을 전달할 수 있습니다.
 
-``` jsx
+``` js
 const [count, increment, decrement, reset] = useCounter(10)
 ```
 
-我们还可以修改每次增加或减少的数字，如下
+사용할 때 해당 매개 변수도 추가 할 수 있습니다.
 
-``` jsx
+``` js
 import { useState } from 'react'
 
 function useCounter(initialValue = 0, value = 1) {
@@ -449,21 +452,21 @@ function useCounter(initialValue = 0, value = 1) {
 export default useCounter
 ```
 
-使用时，对应的也可以增加入参
+사용할 때 해당 매개 변수도 추가 할 수 있습니다.
 
-``` jsx
+``` js
 const [count, increment, decrement, reset] = useCounter(10, 5)
 ```
 
-## useInput 示例
+## useInput 
 
-示例是一个简单表单，用户可以填写姓名
+예제는 간단한 양식이며 사용자가 이름을 입력 할 수 있습니다.
 
-### function 普通写法
+### function 일반쓰기
 
-UserForm.tsx
+UserForm.js
 
-``` jsx
+``` js
 import React, { useState, FormEvent } from 'react'
 
 function UserForm() {
@@ -505,9 +508,9 @@ function UserForm() {
 export default UserForm
 ```
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 
@@ -528,9 +531,9 @@ export default App
 
 ### 抽象出 useInput hook
 
-useInput.tsx
+useInput.js
 
-``` jsx
+``` js
 import { useState } from 'react'
 
 function useInput(initialValue: string) {
@@ -550,9 +553,9 @@ function useInput(initialValue: string) {
 export default useInput
 ```
 
-UserForm.tsx
+UserForm.js
 
-``` jsx
+``` js
 import React, { FormEvent } from 'react'
 import useInput from './hooks/useInput'
 
@@ -595,12 +598,12 @@ function UserForm() {
 export default UserForm
 ```
 
-页面展示
+페이지 표시
 
 ![](https://gw.alicdn.com/tfs/TB1zXxbH7T2gK0jSZFkXXcIQFXa-696-241.gif)
 
-## 小结
+## 요약
 
-本章我们主要学习了自定义 Hook，举了 3 个例子，帮助我们学习抽象与复用代码。社区上还有很多人写了自己的自定义 Hook，大家也可以前去学习。也鼓励大家创造一些自己的自定义 Hook。
+이 장에서 우리는 주로 커스텀 후크에 대해 배웠고 코드를 추상화하고 재사용하는 방법을 배우는 데 도움이되는 3 가지 예제를 제공했습니다. 커뮤니티에는 여전히 자신의 맞춤 후크를 작성한 많은 사람들이 있으며, 가서 배울 수도 있습니다. 모든 사람이 자신 만의 고유 한 후크를 만들도록 권장됩니다.
 
-至此，本系列完结。祝一切顺利，大家都能学到东西。
+이 시점에서이 시리즈는 끝났습니다. 최선을 다하고 모두가 무언가를 배울 수 있기를 바랍니다.

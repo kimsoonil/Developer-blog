@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/2018/09/10/lottie/</loc>
-<lastmod>2018-09-10T00:00:00+09:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/2018/10/10/vscode-plugin-schedule/</loc>
-<lastmod>2018-10-10T00:00:00+09:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/2019/07/18/dialog-queue/</loc>
-<lastmod>2019-07-18T00:00:00+09:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/2020/03/01/react-hooks-useState/</loc>
 <lastmod>2020-03-01T00:00:00+09:00</lastmod>
 </url>

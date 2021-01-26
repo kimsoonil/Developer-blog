@@ -217,7 +217,7 @@
   <li><a href="#multiple-usereducers" id="markdown-toc-multiple-usereducers">multiple useReducers</a></li>
   <li><a href="#usereducer-with-usecontext" id="markdown-toc-usereducer-with-usecontext">useReducer with useContext</a></li>
   <li><a href="#fetching-data-with-usereducer" id="markdown-toc-fetching-data-with-usereducer">Fetching Data with useReducer</a>    <ul>
-      <li><a href="#usestate-实现请求" id="markdown-toc-usestate-实现请求">useState 实现请求</a></li>
+      <li><a href="#usestate-구현-요청" id="markdown-toc-usestate-구현-요청">useState 구현 요청</a></li>
       <li><a href="#usereducer-实现请求" id="markdown-toc-usereducer-实现请求">useReducer 实现请求</a></li>
     </ul>
   </li>
@@ -314,15 +314,15 @@ useReducer - reducers
 
 <h2 id="simple-state--action">simple state &amp; action</h2>
 
-<p>在本节，我们来看一个计数器的例子，来学习 simple state &amp; action</p>
+<p>이 섹션에서는 간단한 상태 및 동작을 배우기위한 카운터의 예를 살펴 봅니다.</p>
 
 <ol>
   <li>import useReducer api</li>
-  <li>声明 reducer function 和 initialState</li>
-  <li>调用执行 reducer</li>
+  <li>reducer function 및 initialState선언</li>
+  <li>호출실행 reducer</li>
 </ol>
 
-<p>CounterOne.tsx</p>
+<p>CounterOne.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -362,7 +362,7 @@ useReducer - reducers
 
 </code></pre></div></div>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -381,21 +381,21 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>页面展示如下：</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB17DPMFLb2gK0jSZK9XXaEgFXa-432-209.gif" alt="" /></p>
 
-<p>在回顾一下代码，首先 import useReducer</p>
+<p>코드를 검토 한 후 먼저 useReducer를 가져옵니다.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 </code></pre></div></div>
 
-<p>然后调用 useReducer</p>
+<p>그런 다음 useReducer를 호출합니다.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">dispatch</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useReducer</span><span class="p">(</span><span class="nx">reducer</span><span class="p">,</span> <span class="nx">initialState</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>声明 reducer, initialState</p>
+<p>reducer, initialState 선언</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="kd">const</span> <span class="nx">reducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span><span class="p">:</span> <span class="nx">number</span><span class="p">,</span> <span class="nx">action</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -412,17 +412,17 @@ useReducer - reducers
 <span class="p">}</span>
 </code></pre></div></div>
 
-<p>reducer function 的2个参数，分别为当前 state 和 action， 并根据不同的 action 返回不同的新的 state。</p>
+<p>reducer 함수의 두 가지 매개 변수는 현재 상태와 동작이며, 동작에 따라 다른 새로운 상태를 반환합니다.</p>
 
-<p>useReducer 返回了一个数组，2个元素分别为 state 和 dispatch 方法。其中 state 在我们的例子中就是当前的 count 值，dispatch 方法接受一个参数，执行对应的 action。dispatch 执行后，对应的 state 会改变，组件会 rerender，来展示最新的状态。</p>
+<p>useReducer는 상태 및 디스패치 메소드의 두 요소가있는 배열을 리턴합니다. 이 중 state는 예제에서 현재 카운트 값이며 dispatch 메소드는 매개 변수를 받아 해당 액션을 실행합니다. 디스패치가 실행 된 후 해당 상태가 변경되고 구성 요소가 렌더링되어 최신 상태를 표시합니다.</p>
 
-<p>这就是使用 simple state 和 simple action 的例子，本例中 state 是一个 number 类型，action 也是简单的 string 类型，这和 Redux 的模式稍有不同。接下来我们看一个稍复杂的例子。</p>
+<p>단순 상태와 단순 동작을 사용하는 예입니다.이 예에서 state는 숫자 유형이고 action도 단순 문자열 유형으로 Redux 모드와 약간 다릅니다. 다음으로 조금 더 복잡한 예를 살펴 보겠습니다.</p>
 
 <h2 id="complex-state--action">complex state &amp; action</h2>
 
-<p>下面我们看第二个例子。将使用对象作为 state 和 action 的值，这就比较类似 Redux 的模式了。</p>
+<p>아래의 두 번째 예를 살펴 보겠습니다. 객체는 Redux 모델과 더 유사한 상태 및 작업의 값으로 사용됩니다.</p>
 
-<p>CounterTwo.tsx</p>
+<p>CounterTwo.js</p>
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{</span>
@@ -473,7 +473,7 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">CounterTwo</span>
 </code></pre></div></div>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -492,15 +492,15 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>页面展示如下：</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB17DPMFLb2gK0jSZK9XXaEgFXa-432-209.gif" alt="" /></p>
 
-<p>与上一节的示例效果相同。现在，我们已经将 state 和 action 都改写为对象了，那么这样写有什么好处呢？</p>
+<p>이전 섹션의 예와 동일한 효과입니다. 이제 상태와 동작을 객체로 다시 작성 했으므로 이런 방식으로 작성하면 어떤 이점이 있습니까?</p>
 
-<p>其一的好处是 action 现在是一个对象了，可以有多个属性决定 action 的效果。例如我们再添加一个 +5 的逻辑。</p>
+<p>이점 중 하나는 작업이 이제 개체이며 여러 속성이 작업의 효과를 결정할 수 있다는 것입니다. 예를 들어, 다른 +5 논리를 추가합니다.</p>
 
-<p>CounterTwo.tsx</p>
+<p>CounterTwo.js</p>
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{</span>
@@ -570,12 +570,13 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">CounterTwo</span>
 </code></pre></div></div>
 
-<p>页面展示如下：
-<img src="https://gw.alicdn.com/tfs/TB1YCL3FKL2gK0jSZFmXXc7iXXa-432-209.gif" alt="" /></p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
-<p>可以注意到给 action 增加了一个 value 属性，实现了加减 5 的逻辑。</p>
+<p><img src="https://gw.alicdn.com/tfs/TB1YCL3FKL2gK0jSZFmXXc7iXXa-432-209.gif" alt="" /></p>
 
-<p>第二个好处是 state 作为一个对象，就可以添加更多的 state 属性，例如我们在增加一个计数器2，代码如下：</p>
+<p>5의 덧셈과 뺄셈 논리를 구현하는 값 속성이 액션에 추가 된 것을 알 수 있습니다.</p>
+
+<p>두 번째 장점은 객체로서 상태가 더 많은 상태 속성을 추가 할 수 있다는 것입니다. 예를 들어 카운터 2를 추가합니다. 코드는 다음과 같습니다.</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -675,17 +676,17 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">CounterTwo</span>
 </code></pre></div></div>
 
-<p>页面展示效果如下</p>
+<p>페이지 표시 효과는 다음과 같습니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1SQPZFFY7gK0jSZKzXXaikpXa-432-209.gif" alt="" /></p>
 
-<p>这样我们就能同时维护 2 个计时器。</p>
+<p>이렇게하면 동시에 2 개의 타이머를 유지할 수 있습니다.</p>
 
 <h2 id="multiple-usereducers">multiple useReducers</h2>
 
-<p>如果有多个 state，但 state 变化的方式又是相同的时候，可以多次使用 useReducer。</p>
+<p>여러 상태가 있지만 동일한 방식으로 상태가 변경되는 경우 useReducer를 여러 번 사용할 수 있습니다.</p>
 
-<p>CounterThree.tsx</p>
+<p>CounterThree.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -738,32 +739,32 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">CounterThree</span>
 </code></pre></div></div>
 
-<p>页面展示如下</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1f9P5FKT2gK0jSZFvXXXnFXXa-432-209.gif" alt="" /></p>
 
-<p>这个例子中使用了多个 useReducer，但共用了一个 reducer function。这有效的避免了合并对象的麻烦（可以对比上一节使用展开运算法合并 state）。也提高了代码的复用性。</p>
+<p>이 예에서는 여러 useReducer가 사용되지만 하나의 감속기 함수가 공유됩니다. 이는 객체 병합 문제를 효과적으로 방지합니다 (확장 알고리즘을 사용하여 상태를 병합하는 이전 섹션과 비교). 또한 코드의 재사용 성을 향상시킵니다.</p>
 
 <h2 id="usereducer-with-usecontext">useReducer with useContext</h2>
 
-<p>截止目前我们已经学习了在组件内使用 useReducer 进行状态管理。如果在某些场景想再组件之间分享 state，进行全局的 state 管理时，我们可以使用 useReducer 加 useContext。</p>
+<p>지금까지 컴포넌트에서 상태 관리를 위해 useReducer를 사용하는 방법을 배웠습니다. 특정 시나리오에서 구성 요소간에 상태를 공유하려면 전역 상태 관리를 수행 할 때 useReducer와 useContext를 사용할 수 있습니다.</p>
 
-<p>考虑这样一个场景，有3个子组件A, B, C，要在子组件内控制同一个计数器，常规的写法是将 counter 的方法写到父组件上，然后通过 props 的方式将 counter 方法和 state 传给子组件，子组件中调用通过 props 传入的 counter 方法，就会改变父组件中的 state，同时也能改变作为 props 传递给子组件的 app 中的 state。如下图：</p>
+<p>이러한 시나리오를 고려하면, 하위 컴포넌트에서 동일한 카운터를 제어하기 위해 세 개의 하위 컴포넌트 A, B, C가 있습니다. 일반적인 쓰기 방법은 카운터 메소드를 상위 컴포넌트에 작성한 다음 props를 통해 카운터 메소드 및 상태를 전달하는 것입니다. 자식 구성 요소의 경우 자식 구성 요소의 소품을 통해 전달 된 카운터 메서드를 호출하면 부모 구성 요소의 상태가 변경되고 소품으로 자식 구성 요소에 전달 된 앱의 상태도 변경됩니다. 아래 그림과 같이:</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB14QMhFQL0gK0jSZFAXXcA9pXa-717-274.png" alt="" /></p>
 
-<p>看起来没什么问题，但是如果组件嵌套比较深的时候，这将非常糟糕，要一层一层将 counter 方法作为 props 传递给子组件。这时就要使用 useContext 加 useReducer 了。</p>
+<p>문제가되지 않는 것 같지만 컴포넌트가 깊숙이 중첩되어 있다면 매우 나빠질 것이므로 카운터 메서드를 props로 자식 컴포넌트에 레이어별로 전달해야합니다. 이때 useContext와 useReducer가 필요합니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB18LclFUY1gK0jSZFCXXcwqXXa-717-488.png" alt="" /></p>
 
-<p>要完成这个需求分为 2 步</p>
+<p>이 요구 사항을 완료하려면 두 단계로 나뉩니다.</p>
 
 <ol>
-  <li>使用 useReducer 在根节点创建一个 counter 方法</li>
-  <li>通过 useContext 为子组件提供和消费 context</li>
+  <li>useReducer를 사용하여 루트 노드에서 카운터 메서드를 만듭니다.</li>
+  <li>useContext를 통해 자식 구성 요소에 대한 컨텍스트 제공 및 사용</li>
 </ol>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useReducer</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
@@ -811,7 +812,7 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>A.tsx</p>
+<p>A.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">CountContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../App</span><span class="dl">'</span>
@@ -836,7 +837,7 @@ useReducer - reducers
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">A</span>
 </code></pre></div></div>
-<p>B.tsx</p>
+<p>B.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">D</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./22D</span><span class="dl">'</span>
@@ -852,7 +853,7 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">B</span>
 </code></pre></div></div>
 
-<p>C.tsx</p>
+<p>C.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">E</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./22E</span><span class="dl">'</span>
@@ -868,7 +869,7 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">C</span>
 </code></pre></div></div>
 
-<p>D.tsx</p>
+<p>D.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">CountContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../App</span><span class="dl">'</span>
@@ -894,7 +895,7 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">D</span>
 </code></pre></div></div>
 
-<p>E.tsx</p>
+<p>E.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
@@ -911,7 +912,7 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">E</span>
 </code></pre></div></div>
 
-<p>F.tsx</p>
+<p>F.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="p">{</span> <span class="nx">CountContext</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../App</span><span class="dl">'</span>
@@ -937,35 +938,35 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">F</span>
 </code></pre></div></div>
 
-<p>页面效果如下</p>
+<p>페이지 효과는 다음과 같습니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB19OorFHj1gK0jSZFuXXcrHpXa-432-209.gif" alt="" /></p>
 
-<p>我们再一起回顾一下</p>
+<p>다시 한번 살펴 보자</p>
 
 <ol>
-  <li>在 App.tsx 中，我们使用 useReducer 创建了一个 counter，声明了初始值，创建了 reducer 函数，useReducer 返回了状态 count 和 dispatch 方法。</li>
-  <li>为了能让其他组件访问到 count 和 dispatch，我们通过 React.createContext 创建了 CountContext，并用 <code class="language-plaintext highlighter-rouge">&lt;CountContext.Provider&gt;</code> 包裹根节点。将 count 和 dispatch 作为 value 传给 Provider。</li>
-  <li>在子节点中，我们使用 useContext 获取到 count 和 dispatch 方法，通过调用 dispatch 实现对 count 的改变。</li>
+  <li>App.js에서는 useReducer를 사용하여 카운터를 만들고, 초기 값을 선언하고, 감속기 함수를 만들고, useReducer는 상태 카운트 및 디스패치 메서드를 반환합니다.</li>
+  <li>다른 컴포넌트 카운트 및 디스패치에 대한 액세스를 허용하기 위해 React.createContext CountContext 및 <CountContext.Provider>래핑 된 루트 노드를 통해 생성했습니다 . 개수를 전달하고 Provider에 값으로 전달합니다.</CountContext.Provider></li>
+  <li>자식 노드에서 useContext를 사용하여 count 및 dispatch 메서드를 얻고 dispatch를 호출하여 개수를 변경합니다.</li>
 </ol>
 
 <h2 id="fetching-data-with-usereducer">Fetching Data with useReducer</h2>
 
-<p>之前我们已经在 useEffect 的章节中学习掌握了如何请求数据，当时是使用了 useEffect 和 useState，现在我们再来看看如何使用 useReducer 去请求远程数据。</p>
+<p>이전에 useEffect 장에서 데이터 요청 방법을 배웠는데 당시에는 useEffect와 useState를 사용 했었는데 이제 useReducer를 사용하여 원격 데이터를 요청하는 방법을 살펴 보겠습니다.</p>
 
-<p>接下来我们做这样一个小需求：</p>
+<p>다음으로 우리는 작은 요구를합니다.</p>
 
 <ol>
-  <li>页面载入时请求数据</li>
-  <li>请求数据中展示 loading 状态</li>
-  <li>请求返回后移除 loading 样式，展示请求的数据；若请求失败，也移除 loading 展示错误提示</li>
+  <li>페이지가로드 될 때 데이터 요청</li>
+  <li>요청 데이터에 로딩 상태 표시</li>
+  <li>요청이 반환 된 후 요청 된 데이터를 표시하기 위해로드 스타일이 제거됩니다. 요청이 실패하면 오류 메시지를 표시하기 위해로드도 제거됩니다.</li>
 </ol>
 
-<p>我们将分别使用 useState 和 useReducer 来实现，并对比其中的区别。</p>
+<p>useState와 useReducer를 각각 사용하여 차이점을 달성하고 비교할 것입니다.</p>
 
-<h3 id="usestate-实现请求">useState 实现请求</h3>
+<h3 id="usestate-구현-요청">useState 구현 요청</h3>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
@@ -983,7 +984,7 @@ useReducer - reducers
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>DataFetchingOne.tsx</p>
+<p>DataFetchingOne.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">axios</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span>
@@ -1043,7 +1044,7 @@ useReducer - reducers
 
 <h3 id="usereducer-实现请求">useReducer 实现请求</h3>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
 <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
@@ -1453,7 +1454,7 @@ useReducer - reducers
     <div class="nex">
 
         
-        <p><strong>下一篇</strong> <a href="/2020/05/18/react-hooks5-useCallback/">React Hooks 系列之5 useCallback</a></p>
+        <p><strong>下一篇</strong> <a href="/2020/05/18/react-hooks5-useCallback/">React Hooks useCallback</a></p>
         
     </div>
 </div>

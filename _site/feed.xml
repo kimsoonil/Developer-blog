@@ -5,8 +5,8 @@
     <description>Zoom in Coding from the Basic.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 22 Jan 2021 11:47:28 +0900</pubDate>
-    <lastBuildDate>Fri, 22 Jan 2021 11:47:28 +0900</lastBuildDate>
+    <pubDate>Tue, 26 Jan 2021 11:37:04 +0900</pubDate>
+    <lastBuildDate>Tue, 26 Jan 2021 11:37:04 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -151,15 +151,15 @@ https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
       </item>
     
       <item>
-        <title>React Hooks 系列之8 custom Hook</title>
+        <title>React Hooks custom Hook</title>
         <description>
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-截至目前，学习了官方的这么多 hooks api，我们也可以创造一些自己的 hooks，甚至官方也在鼓励开发者将组件逻辑抽象到自定义 hooks 中，方便复用。
+지금까지 많은 공식 후크 API를 학습 한 후 자체 후크 중 일부를 만들 수도 있으며, 심지어 공식적으로도 개발자가 쉽게 재사용 할 수 있도록 구성 요소 논리를 사용자 지정 후크로 추상화하도록 권장하고 있습니다.
 
-自定义 Hook 是一个函数，其名称以 “use” 开头，函数内部可以调用其他的 Hook。
+사용자 정의 후크는 이름이 “use”로 시작하는 함수이며 다른 후크는 함수 내에서 호출 될 수 있습니다.
 
-通过自定义 Hook，可以将组件逻辑提取到可重用的函数中。
+Hook을 커스터마이징함으로써 컴포넌트 로직을 재사용 가능한 함수로 추출 할 수 있습니다.
 
 </description>
         <pubDate>Wed, 27 May 2020 00:00:00 +0900</pubDate>
@@ -176,11 +176,11 @@ https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
       </item>
     
       <item>
-        <title>React Hooks 系列之7 useRef</title>
+        <title>React Hooks useRef</title>
         <description>
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-接下来我们要一起学习 useRef hook，它可以让我们直接访问到组件中的的 Dom 节点。我们今天通过一个 input 输入框获取焦点的需求为例，来学习一下 useRef。
+다음으로 컴포넌트의 Dom 노드에 직접 액세스 할 수있는 useRef 후크를 함께 배우겠습니다. 포커스를 얻기위한 입력 상자의 필요성을 예로 들어 오늘 useRef에 대해 알아 보겠습니다.
 
 </description>
         <pubDate>Tue, 26 May 2020 00:00:00 +0900</pubDate>
@@ -197,11 +197,11 @@ https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
       </item>
     
       <item>
-        <title>React Hooks 系列之6 useMemo</title>
+        <title>React Hooks useMemo</title>
         <description>
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-上一章，我们学习了 useCallback 来进行性能优化，关于性能优化还有另一个 hook api，那就是 useMemo，下面我们一起通过一个例子来看看。
+지난 장에서 성능 최적화를위한 useCallback에 대해 배웠습니다. 성능 최적화를위한 또 다른 후크 API 인 useMemo가 있습니다. 예제를 살펴 보겠습니다.
 
 </description>
         <pubDate>Tue, 19 May 2020 00:00:00 +0900</pubDate>
@@ -218,13 +218,13 @@ https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
       </item>
     
       <item>
-        <title>React Hooks 系列之5 useCallback</title>
+        <title>React Hooks useCallback</title>
         <description>
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-在我们开始深入学习 useCallback 前，先回顾一下性能优化相关的内容，这将有助于我们理解什么是 useCallback，为什么使用它，以及怎么使用它。
+useCallback에 대해 자세히 알아보기 전에 성능 최적화와 관련된 내용을 검토해 보겠습니다. 그러면 useCallback이 무엇인지, 왜 사용하는지, 사용 방법을 이해하는 데 도움이 될 것입니다.
 
-依然先从一个组件多次被复用的代码场景看起。
+구성 요소가 여러 번 재사용되는 코드 시나리오부터 시작하겠습니다.
 
 </description>
         <pubDate>Mon, 18 May 2020 00:00:00 +0900</pubDate>

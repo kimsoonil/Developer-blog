@@ -1,26 +1,26 @@
 ---
 layout: post
-title:  "React Hooks 系列之7 useRef"
+title:  "React Hooks useRef"
 categories: JavaScript
 tags: React hooks
-author: HyG
+author: KSI
 ---
 
 * content
 {:toc}
 
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-接下来我们要一起学习 useRef hook，它可以让我们直接访问到组件中的的 Dom 节点。我们今天通过一个 input 输入框获取焦点的需求为例，来学习一下 useRef。
-
-
+다음으로 컴포넌트의 Dom 노드에 직접 액세스 할 수있는 useRef 후크를 함께 배우겠습니다. 포커스를 얻기위한 입력 상자의 필요성을 예로 들어 오늘 useRef에 대해 알아 보겠습니다.
 
 
-## 页面载入 input 获取焦点示例
 
-FocusInput.tsx
 
-``` jsx
+## 포커스를 얻기위한 페이지 로딩 입력의 예
+
+FocusInput.js
+
+``` js
 import React, { useEffect, useRef} from 'react'
 
 function FocusInput() {
@@ -39,9 +39,9 @@ function FocusInput() {
 export default FocusInput
 ```
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 
@@ -58,55 +58,55 @@ const App = () => {
 export default App
 ```
 
-页面展示效果
+페이지 표시 효과
 
 ![](https://gw.alicdn.com/tfs/TB1lxWlHkY2gK0jSZFgXXc5OFXa-363-125.gif)
 
-注意与 TypeScript 结合使用时的方式，需要先声明好泛型
+TypeScript와 결합 할 때 먼저 제네릭을 선언해야합니다.
 
-``` jsx
+``` js
 const inputRef = useRef<HTMLInputElement>(null)
 ```
 
-同时使用时需要判空
+동시에 사용하는 경우 공백이어야합니다.
 
-``` jsx
+``` js
 inputRef.current && inputRef.current.focus()
 ```
 
-关于 ts 和 hooks 结合的方式可以参考文章 [TypeScript and React: Hooks](https://fettblog.eu/typescript-react/hooks/#useref)。
+ts와 hook의 조합에 대해서는 [TypeScript and React: Hooks](https://fettblog.eu/typescript-react/hooks/#useref) 문서를 참조하십시오.
 
-> `useRef` 返回一个可变的 ref 对象，其 `.current` 属性被初始化为传入的参数（initialValue）。返回的 ref 对象在组件的整个生命周期内保持不变。
+> useRefRef는 .current속성이 들어오는 매개 변수 (initialValue)로 초기화 된 변수 객체를 반환합니다 . 반환 된 참조 개체는 구성 요소의 전체 수명주기 동안 변경되지 않은 상태로 유지됩니다.
 
-Refs 提供了一种方式，允许我们访问 DOM 节点或在 render 方法中创建的 React 元素。
+Ref는 렌더링 메서드에서 생성 된 DOM 노드 또는 React 요소에 액세스 할 수있는 방법을 제공합니다.
 
-在典型的 React 数据流中，props 是父组件与子组件交互的唯一方式。要修改一个子组件，你需要使用新的 props 来重新渲染它。但是，在某些情况下，你需要在典型数据流之外强制修改子组件。被修改的子组件可能是一个 React 组件的实例，也可能是一个 DOM 元素。对于这两种情况，React 都提供了解决办法。
+일반적인 React 데이터 흐름에서 props는 부모 구성 요소가 자식 구성 요소와 상호 작용하는 유일한 방법입니다. 하위 구성 요소를 수정하려면 새 소품으로 다시 렌더링해야합니다. 그러나 경우에 따라 일반적인 데이터 흐름 외부에서 하위 구성 요소를 강제로 수정해야합니다. 수정 된 하위 구성 요소는 React 구성 요소의 인스턴스이거나 DOM 요소 일 수 있습니다. 두 경우 모두 React는 솔루션을 제공합니다.
 
-### 下面是几个适合使用 refs 的情况
+### 다음은 심판이 적합한 몇 가지 상황입니다.
 
-- 管理焦点，文本选择或媒体播放。
-- 触发强制动画。
-- 集成第三方 DOM 库。
+ - 포커스, 텍스트 선택 또는 미디어 재생을 관리합니다.
+ - 강제 애니메이션을 트리거합니다.
+ - 타사 DOM 라이브러리를 통합합니다.
 
-避免使用 refs 来做任何可以通过声明式实现来完成的事情。举个例子，避免在 Dialog 组件里暴露 open() 和 close() 方法，最好传递 isOpen 属性。
+선언적 구현을 ​​통해 수행 할 수있는 작업을 수행하기 위해 ref를 사용하지 마십시오. 예를 들어 Dialog 구성 요소에서 open () 및 close () 메서드가 노출되지 않도록하려면 isOpen 속성을 전달하는 것이 좋습니다.
 
-### 勿过度使用 Refs
+### Refs를 과도하게 사용하지 마십시오.
 
-你可能首先会想到使用 refs 在你的 app 中“让事情发生”。如果是这种情况，请花一点时间，认真再考虑一下 state 属性应该被安排在哪个组件层中。通常你会想明白，让更高的组件层级拥有这个 state，是更恰当的。查看 状态提升 以获取更多有关示例。
+먼저 앱에서 "일이 일어나도록"하기 위해 ref를 사용하는 것을 생각할 수 있습니다. 이 경우 상태 속성을 정렬해야하는 구성 요소 레이어를 신중하게 고려하십시오. 일반적으로 상위 구성 요소 수준이이 상태를 소유하도록하는 것이 더 적절하다는 것을 이해하고 싶을 것입니다. 더 많은 예를 보려면 상태 프로모션을 참조하세요.
 
-更多关于 refs 和 Dom 的相关信息可以访问 React 官网 [Refs and the DOM](https://zh-hans.reactjs.org/docs/refs-and-the-dom.html)
+refs 및 Dom에 대한 자세한 내용은 React 공식 웹 사이트 [Refs and the DOM](https://zh-hans.reactjs.org/docs/refs-and-the-dom.html)을 참조하십시오.
 
-下面我们再来学习一下 useRef 在另一个场景的使用。
+다른 시나리오에서 useRef를 사용하는 방법에 대해 알아 보겠습니다.
 
-## 可以停止的计时器示例
+## 중지 할 수있는 타이머의 예
 
-需求是页面上有一个每隔1秒自动加一的计时器，并且有个按钮，点击后计时器停止，先使用 Class 组件完成这样的需求
+요구 사항은 페이지에 1 초마다 자동으로 증가하는 타이머가 있고 버튼이 있으며, 클릭하면 타이머가 중지됩니다. 먼저 클래스 구성 요소를 사용하여이 요구 사항을 완료합니다.
 
-### Class 组件示例
+### Class 구성요소
 
-ClassTimer.tsx
+ClassTimer.js
 
-``` jsx
+``` js
 import React, { Component } from 'react'
 
 export default class ClassTimer extends Component<{}, { timer: number }> {
@@ -146,9 +146,9 @@ export default class ClassTimer extends Component<{}, { timer: number }> {
 }
 ```
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 
@@ -165,15 +165,15 @@ const App = () => {
 export default App
 ```
 
-页面展示如下
+페이지는 다음과 같이 표시됩니다.
 
 ![](https://gw.alicdn.com/tfs/TB1J31IHHr1gK0jSZFDXXb9yVXa-437-179.gif)
 
-### Function 组件示例
+### Function 구성요소
 
-HookTimer.tsx
+HookTimer.js
 
-``` jsx
+``` js
 import React, { useState, useEffect, useRef } from 'react'
 
 function HookTimer() {
@@ -206,9 +206,9 @@ function HookTimer() {
 export default HookTimer
 ```
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 
@@ -228,12 +228,14 @@ const App = () => {
 export default App
 ```
 
-页面展示如下
+페이지는 다음과 같이 표시됩니다.
 
 ![](https://gw.alicdn.com/tfs/TB1v51OHQL0gK0jSZFxXXXWHVXa-437-227.gif)
 
-这就是 useRef 的第二种用法，可以用它创建一个通用的容器，用来保存变量。
+이것은 useRef의 두 번째 사용법으로, 변수를 저장하기위한 일반 컨테이너를 만드는 데 사용할 수 있습니다.
 
 ## 小结
 
-本章我们学习了 useRef 的两种用法：一是让我们允许访问 Dom 节点；二是成为一个容器，用来缓存变量。第二种用法较为少见，需要多加注意，遇到类似的场景可以尝试使用。
+이 장에서 우리는 useRef의 두 가지 사용법을 배웠습니다. 하나는 Dom 노드에 액세스 할 수 있도록하는 것이고 다른 하나는 변수를 캐시하는 컨테이너가되는 것입니다. 두 번째 사용은 상대적으로 드물고 더 많은주의가 필요합니다. 유사한 시나리오에서 사용해 볼 수 있습니다.
+
+

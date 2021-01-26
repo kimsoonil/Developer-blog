@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "React Hooks 系列之5 useCallback"
+title:  "React Hooks useCallback"
 categories: JavaScript
 tags: React hooks
 author: KSI
@@ -9,26 +9,25 @@ author: KSI
 * content
 {:toc}
 
-掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。
+React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 
-在我们开始深入学习 useCallback 前，先回顾一下性能优化相关的内容，这将有助于我们理解什么是 useCallback，为什么使用它，以及怎么使用它。
+useCallback에 대해 자세히 알아보기 전에 성능 최적화와 관련된 내용을 검토해 보겠습니다. 그러면 useCallback이 무엇인지, 왜 사용하는지, 사용 방법을 이해하는 데 도움이 될 것입니다.
 
-依然先从一个组件多次被复用的代码场景看起。
-
-
+구성 요소가 여러 번 재사용되는 코드 시나리오부터 시작하겠습니다.
 
 
-## 组件多次被复用的场景
 
-有如下的，组件树结构。ParentWrap 包含 Title 组件、2次使用 Count 组件、2次使用 Button 组件。
+## 구성 요소가 여러 번 재사용되는 시나리오
 
-点击 Button，对应的 Count 分别会增加。
+컴포넌트 트리 구조는 다음과 같습니다. ParentWrap에는 Title 구성 요소, Count 구성 요소 2 번, Button 구성 요소가 2 번 포함됩니다.
+
+버튼을 클릭하면 해당 카운트가 각각 증가합니다.
 
 ![](https://gw.alicdn.com/tfs/TB1e0AVGpT7gK0jSZFpXXaTkpXa-1270-595.png)
 
-App.tsx
+App.js
 
-``` jsx
+``` js
 import React from 'react'
 import './App.css'
 
@@ -45,9 +44,9 @@ const App = () => {
 export default App
 ```
 
-ParentComponent.tsx
+ParentComponent.js
 
-``` jsx
+``` js
 import React, { useState } from 'react'
 import Title from './26Title'
 import Count from './26Count'
@@ -86,9 +85,9 @@ function ParentComponenet() {
 export default ParentComponenet
 ```
 
-Title.tsx
+Title.js
 
-``` jsx
+``` js
 import React from 'react'
 
 function Title() {
@@ -101,9 +100,9 @@ function Title() {
 export default Title
 ```
 
-Count.tsx
+Count.js
 
-``` jsx
+``` js
 import React from 'react'
 
 function Count(props: {
@@ -121,9 +120,9 @@ function Count(props: {
 export default Count
 ```
 
-Button.tsx
+Button.js
 
-``` jsx
+``` js
 import React from 'react'
 
 function Button(props: {
@@ -141,13 +140,13 @@ function Button(props: {
 export default Button
 ```
 
-当然，我们可以将所有的 jsx 代码写在一起，我们这么组织代码的主要原因是让大家理解 react 中的性能优化，以及如何使用 useCallback api 进行性能优化。
+물론 모든 jsx 코드를 함께 작성할 수 있습니다. 이러한 방식으로 코드를 구성하는 주된 이유는 모든 사람들이 반응에서 성능 최적화를 이해하고 성능 최적화를 위해 useCallback API를 사용하는 방법을 이해하도록하기 위해서입니다.
 
-页面展示效果如下
+페이지 표시 효과는 다음과 같습니다.
 
 ![](https://gw.alicdn.com/tfs/TB1PhFeGO_1gK0jSZFqXXcpaXXa-702-606.gif)
 
-而我们要关注到的是性能问题，可以在 console 中看到，每次点击时，看到以下日志：
+주의해야 할 점은 콘솔에서 볼 수있는 성능 문제입니다. 클릭 할 때마다 다음 로그가 표시됩니다.
 
 ```
 Rendering Title
@@ -157,17 +156,17 @@ Rendering Salary
 Rendering button Increment salary
 ```
 
-每次状态改变都触发了所有组件的 rerender，这个示例比较简单，但是假如未来遇到20、30、甚至50个组件 rerender 的时候，就一定要考虑到性能问题了。下面讲讲在这个示例中怎么进行优化。
+각 상태 변경은 모든 구성 요소의 렌더러를 트리거합니다.이 예제는 비교적 간단하지만 나중에 20, 30 또는 50 개의 구성 요소 렌더러가 발생할 경우 성능 문제를 고려해야합니다. 이 예에서 최적화하는 방법에 대해 이야기하겠습니다.
 
 ## 使用 React.memo 优化
 
-在本例中，我们当然希望点击增加年龄的按钮时，只有关于年龄的 Count 和 Button 进行 rerender，而其他组件不发生 rerender，点击增加 salary 时也一样。如何才能做到呢？答案是 `React.memo`。
+물론이 예제에서는 나이를 늘리기 위해 버튼을 클릭하면 나이에 대한 Count와 Button 만 렌더링되고 다른 컴포넌트는 렌더링되지 않기를 바랍니다. 급여를 올리기 위해 클릭 할 때도 마찬가지입니다. . 어떻게 할 수 있습니까? 대답은 React.memo입니다.
 
-我们给 Title.tsx, Count.tsx, Button.tsx 添加 `React.memo()`，代码如下：
+Title.tsx, Count.tsx, Button.tsx를 추가 React.memo()하고 코드는 다음과 같습니다.
 
-Title.tsx
+Title.js
 
-``` jsx
+``` js
 import React from 'react'
 
 function Title() {
@@ -181,9 +180,9 @@ export default React.memo(Title)
 
 ```
 
-Count.tsx
+Count.js
 
-``` jsx
+``` js
 import React from 'react'
 
 function Count(props: {
@@ -201,9 +200,9 @@ function Count(props: {
 export default React.memo(Count)
 ```
 
-Button.tsx
+Button.js
 
-``` jsx
+``` js
 import React from 'react'
 
 function Button(props: {
@@ -221,41 +220,41 @@ function Button(props: {
 export default React.memo(Button)
 ```
 
-效果如下：
+효과는 다음과 같습니다.
 
 ![](https://gw.alicdn.com/tfs/TB18aNkGKL2gK0jSZFmXXc7iXXa-702-606.gif)
 
-> React.memo 为高阶组件。它与 React.PureComponent 非常相似，但只适用于函数组件，而不适用 class 组件。
+> React.memo는 고수준 구성 요소입니다. React.PureComponent와 매우 유사하지만 클래스 구성 요소가 아닌 기능 구성 요소에만 적용됩니다.
 
 ``` js
 const MyComponent = React.memo(function MyComponent(props) {
-  /* 使用 props 渲染 */
+  /* props 렌더링 사용하기 */
 });
 ```
 
-> 如果你的函数组件在给定相同 props 的情况下渲染相同的结果，那么你可以通过将其包装在 React.memo 中调用，以此通过记忆组件渲染结果的方式来提高组件的性能表现。这意味着在这种情况下，React 将跳过渲染组件的操作并直接复用最近一次渲染的结果。
+> 기능적 구성 요소가 동일한 props에서 동일한 결과를 렌더링하는 경우 React.memo로 래핑하여 호출하여 구성 요소의 렌더링 결과를 기억하여 구성 요소의 성능을 향상시킬 수 있습니다. 즉,이 경우 React는 컴포넌트 렌더링 작업을 건너 뛰고 가장 최근 렌더링 결과를 직접 재사용합니다.
+> 
+> React.memo는 소품의 변경 사항 만 확인합니다. 기능 구성 요소가 React.memo에 의해 래핑되고 그 구현에 useState 또는 useContext Hook이있는 경우 컨텍스트가 변경 될 때 여전히 다시 렌더링됩니다.
 >
-> React.memo 仅检查 props 变更。如果函数组件被 React.memo 包裹，且其实现中拥有 useState 或 useContext 的 Hook，当 context 发生变化时，它仍会重新渲染。
->
-> 默认情况下其只会对复杂对象做浅层对比，如果你想要控制对比过程，那么请将自定义的比较函数通过第二个参数传入来实现。
+> 기본적으로 복잡한 객체에 대해서만 얕은 비교를 수행합니다. 비교 프로세스를 제어하려면 두 번째 매개 변수를 통해 사용자 정의 비교 함수를 전달하십시오.
 
 ``` js
 function MyComponent(props) {
-  /* 使用 props 渲染 */
+  /* props 렌더링 사용하기 */
 }
 function areEqual(prevProps, nextProps) {
   /*
-  如果把 nextProps 传入 render 方法的返回结果与
-  将 prevProps 传入 render 方法的返回结果一致则返回 true，
-  否则返回 false
+  렌더에 nextProps를 불러오는 방법의 반환과 결과
+  prevProps를 렌더로 불러오는 방법의 결과 일치true로 돌아가면
+  그렇지 않으면 false로 돌아가기
   */
 }
 export default React.memo(MyComponent, areEqual);
 ```
 
-> 此方法仅作为性能优化的方式而存在。但请不要依赖它来“阻止”渲染，因为这会产生 bug。
+> 이 방법은 성능 최적화 방법으로 만 존재합니다. 그러나 렌더링을 "방지"하는 데 의존하지 마십시오. 버그가 발생할 수 있습니다.
 
-但是，使用了 React.memo 后，我们看到点击增加年龄的按钮时，日志变为了
+그러나 React.memo를 사용한 후 버튼을 클릭하여 나이를 늘리면 로그가
 
 ```
 Rendering Age
@@ -263,13 +262,13 @@ Rendering button Increment age
 Rendering button Increment salary
 ```
 
-依然有不相关的 rerender `Rendering button Increment salary`，我们来分析一下。
+여전히 관련없는 렌더러가 `Rendering button Increment salary`있습니다. 분석해 보겠습니다.
 
-在 ParentComponenet.tsx 中，我们看到点击 Increment age 按钮时，导致了 state 变化，ParentComponenet 进行了 rerender。`<Title />` 没有传入属性，React.memo 判断出不需要 rerender，但是 Increment salary 按钮上的属性 incrementSalary 方法，实际上被重新创建了，导致了这个 Button 传入的 props 发生了变化，因此 React.memo 没有阻止 rerender。点击按钮 Increment salary 导致的相同的现象也是同理。那么如何解决呢？答案是使用 useCallback hook。
+ParentComponenet.tsx에서 Increment age 버튼을 클릭하면 상태가 변경되고 ParentComponenet이 렌더링을 수행하는 것을 볼 수 있습니다. `<Title />` 들어오는 속성이 없으면 React.memo는 렌더러가 필요하지 않다고 판단했지만 Increment salary 버튼의 속성 incrementSalary 메서드가 실제로 다시 생성되어 Button이 전달한 props가 변경되었으므로 React.memo는이를 방지하지 못했습니다. 렌더러. 급여 증가 버튼을 클릭하여 발생하는 현상은 동일합니다. 그래서 그것을 해결하는 방법? 대답은 useCallback 후크를 사용하는 것입니다.
 
 ## useCallback
 
-### 什么是 useCallback
+### useCallback란
 
 ``` js
 const memoizedCallback = useCallback(
@@ -280,22 +279,22 @@ const memoizedCallback = useCallback(
 );
 ```
 
-> 返回一个 memoized 回调函数。
+> 메모 된 콜백 함수를 반환합니다.
 >
-> 把内联回调函数及依赖项数组作为参数传入 `useCallback`，它将返回该回调函数的 memoized 版本，该回调函数仅在某个依赖项改变时才会更新。当你把回调函数传递给经过优化的并使用引用相等性去避免非必要渲染（例如 shouldComponentUpdate）的子组件时，它将非常有用。
+> 인라인 콜백 함수와 종속성 배열을 매개 변수 useCallback로 전달하면 콜백 함수의 메모 화 된 버전이 반환됩니다. 콜백 함수는 종속성이 변경 될 때만 업데이트됩니다. 최적화 된 하위 구성 요소에 콜백 함수를 전달하고 불필요한 렌더링 (예 : shouldComponentUpdate)을 피하기 위해 참조 동등성을 사용할 때 매우 유용합니다.
 
-类比到我们的例子中，useCallback 会缓存我们的 `incrementSalary()` 如果 salary 没有变化，直接返回缓存的值，如果 salary 发生变化，也就是 useCallback 的依赖发生变化，那么一个新的方法将被返回。
+우리의 경우와 유사하게, 우리의 useCallback `incrementSalary()`은 급여가 변경되지 않은 경우 캐시에 직접 반환 값을 캐시에, 급여가 변경되면 useCallback 종속 변경 사항을 캐시하므로 새로운 접근 방식이 반환됩니다.
 
-这就可以帮助我们解决只依赖某个变量的子组件避免不必要的 render 问题。
+이는 불필요한 렌더링 문제를 피하기 위해 특정 변수에만 의존하는 하위 구성 요소를 해결하는 데 도움이 될 수 있습니다.
 
-### 如何使用 useCallback
+### useCallback 사용 방법
 
-步骤如下：
+다음과 같이 진행하십시오.
 
 1. import useCallback
-2. 调用 useCallback
+2. call useCallback
 
-我们将 ParentComponenet.tsx 中的 incrementAge 和 incrementSalary 使用 useCallback 改写如下：
+useCallback을 사용하여 다음과 같이 ParentComponenet.tsx에서 incrementAge 및 incrementSalary를 다시 작성합니다.
 
 ``` js
 const incrementAge = useCallback(
@@ -315,12 +314,14 @@ const incrementSalary = useCallback(
 
 ![](https://gw.alicdn.com/tfs/TB1iQVkGLb2gK0jSZK9XXaEgFXa-702-411.gif)
 
-可以看到，已经达到了我们的目的，点击 Increment age 时，salary 的按钮组件也没有 rerender。至此，我们已经完成了所有的性能优化。
+보시다시피 목표가 달성되었습니다. 연령 증가를 클릭하면 급여 버튼 컴포넌트에 렌더러가 없습니다. 지금까지 모든 성능 최적화를 완료했습니다.
+
+
 
 ## 小结
 
-本章我们从一个组件多次被复用的的例子说起，一步一步对其进行性能优化，核心是阻止不必要的 rerender。
+이 장에서는 컴포넌트가 여러 번 재사용되는 예제에서 시작하여 단계별로 성능을 최적화하며, 핵심은 불필요한 렌더러를 방지하는 것입니다.
 
-学习使用了 React.memo 在 props 或 state 没有变化时，阻止组件的 rerender。
+소품이나 상태에 변화가 없을 때 컴포넌트 렌더러를 방지하기 위해 React.memo를 사용하는 방법을 배웁니다.
 
-学习了什么是 useCallback，如何使用 useCallback 缓存一个方法，只依赖某几个变量变化才更新，避免了每次传递给子组件的 props 都被更新，最终也是阻止了子组件不必要的 rerender。
+useCallback이 무엇인지, useCallback을 사용하여 메서드를 캐시하는 방법, 몇 가지 변수 변경에만 의존하여 업데이트하고, 자식 구성 요소에 전달 된 소품이 매번 업데이트되는 것을 방지하고, 궁극적으로 자식 구성 요소의 불필요한 렌더러를 방지하는 방법을 배웠습니다.

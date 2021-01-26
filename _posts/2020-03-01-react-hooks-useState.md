@@ -9,17 +9,6 @@ author: KSI
 * content
 {:toc}
 
-本系列将讲述 React Hooks 的使用方法，从 useState 开始，将包含如下内容：
-
-- [useState](https://juejin.im/post/5e8324ade51d45470921f86a)
-- [useEffect](https://juejin.im/post/5eb910b35188256d58312c7e)
-- [useContext](https://juejin.im/post/5eb912246fb9a0436e47f947)
-- [useReducer](https://juejin.im/post/5ebba47fe51d454dd5062f5b)
-- [useCallback](https://juejin.im/post/5ec2465a5188256d841a552a)
-- [useMemo](https://juejin.im/post/5ec293a55188256d754876fc)
-- [useRef](https://juejin.im/post/5ecbf486f265da7711699c3a)
-- [custom hooks](https://juejin.im/post/5ecd4c86f265da76ff6d0f16)
-
 
 React Hooks API를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 높은 수준으로 마스터 할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
 

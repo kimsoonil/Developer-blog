@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>React Hooks 系列之8 custom Hook</title>
-    <meta name="description" content="掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。截至目前，学习了官方的这么多 hooks api，我们也可以创造一些自己的 hooks，甚至官方也在鼓励开发者将组件逻辑抽象到自定义 hooks 中，方...">
+    <title>React Hooks custom Hook</title>
+    <meta name="description" content="React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.지금까지 많은 공식 후크 API를 학습 한 후 자체 후크 중 일부를 만들...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
@@ -149,7 +149,7 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>React Hooks 系列之8 custom Hook</h1>
+        <h1>React Hooks custom Hook</h1>
         <div class="label">
 
             <div class="label-card">
@@ -207,41 +207,41 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#usedocumenttitle-示例" id="markdown-toc-usedocumenttitle-示例">useDocumentTitle 示例</a>    <ul>
-      <li><a href="#function-普通写法" id="markdown-toc-function-普通写法">function 普通写法</a></li>
-      <li><a href="#抽象出-usedocumenttitle-hook" id="markdown-toc-抽象出-usedocumenttitle-hook">抽象出 useDocumentTitle hook</a></li>
+  <li><a href="#usedocumenttitle" id="markdown-toc-usedocumenttitle">useDocumentTitle</a>    <ul>
+      <li><a href="#function" id="markdown-toc-function">function</a></li>
+      <li><a href="#usedocumenttitle-hook-추상화" id="markdown-toc-usedocumenttitle-hook-추상화">useDocumentTitle hook 추상화</a></li>
     </ul>
   </li>
-  <li><a href="#usecounter-示例" id="markdown-toc-usecounter-示例">useCounter 示例</a>    <ul>
-      <li><a href="#冗余的写法" id="markdown-toc-冗余的写法">冗余的写法</a></li>
-      <li><a href="#usecounter-抽象" id="markdown-toc-usecounter-抽象">useCounter 抽象</a></li>
+  <li><a href="#usecounter" id="markdown-toc-usecounter">useCounter</a>    <ul>
+      <li><a href="#중복문구" id="markdown-toc-중복문구">중복문구</a></li>
+      <li><a href="#usecounter-추상화" id="markdown-toc-usecounter-추상화">useCounter 추상화</a></li>
     </ul>
   </li>
-  <li><a href="#useinput-示例" id="markdown-toc-useinput-示例">useInput 示例</a>    <ul>
-      <li><a href="#function-普通写法-1" id="markdown-toc-function-普通写法-1">function 普通写法</a></li>
+  <li><a href="#useinput" id="markdown-toc-useinput">useInput</a>    <ul>
+      <li><a href="#function-일반쓰기" id="markdown-toc-function-일반쓰기">function 일반쓰기</a></li>
       <li><a href="#抽象出-useinput-hook" id="markdown-toc-抽象出-useinput-hook">抽象出 useInput hook</a></li>
     </ul>
   </li>
-  <li><a href="#小结" id="markdown-toc-小结">小结</a></li>
+  <li><a href="#요약" id="markdown-toc-요약">요약</a></li>
 </ul>
 
-<p>掌握 React Hooks api 将更好的帮助你在工作中使用，对 React 的掌握更上一层楼。本系列将使用大量实例代码和效果展示，非常易于初学者和复习使用。</p>
+<p>React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.</p>
 
-<p>截至目前，学习了官方的这么多 hooks api，我们也可以创造一些自己的 hooks，甚至官方也在鼓励开发者将组件逻辑抽象到自定义 hooks 中，方便复用。</p>
+<p>지금까지 많은 공식 후크 API를 학습 한 후 자체 후크 중 일부를 만들 수도 있으며, 심지어 공식적으로도 개발자가 쉽게 재사용 할 수 있도록 구성 요소 논리를 사용자 지정 후크로 추상화하도록 권장하고 있습니다.</p>
 
-<p>自定义 Hook 是一个函数，其名称以 “use” 开头，函数内部可以调用其他的 Hook。</p>
+<p>사용자 정의 후크는 이름이 “use”로 시작하는 함수이며 다른 후크는 함수 내에서 호출 될 수 있습니다.</p>
 
-<p>通过自定义 Hook，可以将组件逻辑提取到可重用的函数中。</p>
+<p>Hook을 커스터마이징함으로써 컴포넌트 로직을 재사용 가능한 함수로 추출 할 수 있습니다.</p>
 
-<h2 id="usedocumenttitle-示例">useDocumentTitle 示例</h2>
+<h2 id="usedocumenttitle">useDocumentTitle</h2>
 
-<h3 id="function-普通写法">function 普通写法</h3>
+<h3 id="function">function</h3>
 
-<p>我们想创建一个计数器，计数器的值改变后，希望改变页面的 Title</p>
+<p>카운터를 만들고 싶습니다. 카운터의 값이 변경된 후 페이지의 제목을 변경하려고합니다.</p>
 
-<p>DocTitleOne.tsx</p>
+<p>DocTitleOne.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">DocTitleOne</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -249,47 +249,47 @@
     <span class="nb">document</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="s2">`Count - </span><span class="p">${</span><span class="nx">count</span><span class="p">}</span><span class="s2">`</span>
   <span class="p">},</span> <span class="p">[</span><span class="nx">count</span><span class="p">])</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span>
-        <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">button</span>
+        <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span>
           <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="p">}</span><span class="si">}</span>
-      <span class="p">&gt;</span>Count - <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+        <span class="p">}}</span>
+      <span class="o">&gt;</span><span class="nx">Count</span> <span class="o">-</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">DocTitleOne</span>
 
 </code></pre></div></div>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
 
 <span class="k">import</span> <span class="nx">DocTitleOne</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/31DocTitleOne</span><span class="dl">'</span>
 
 <span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">DocTitleOne</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">App</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">DocTitleOne</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>页面展示如下</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1ilw2HUY1gK0jSZFMXXaWcVXa-407-221.gif" alt="" /></p>
 
-<p>运行没有问题，接下来又有一个需求的增量，就是页面要在另一个组件中也能改变页面的 Title，接下来我们创建一个新的组件。</p>
+<p>실행하는 데 문제가 없으며 다른 수요 증가가 있습니다. 즉, 다른 구성 요소에서 페이지 제목을 변경할 수 있으며 새 구성 요소를 만듭니다.</p>
 
-<p>DocTitleTwo.tsx</p>
+<p>DocTitleTwo.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">DocTitleTwo</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -297,22 +297,22 @@
     <span class="nb">document</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="s2">`Count - </span><span class="p">${</span><span class="nx">count</span><span class="p">}</span><span class="s2">`</span>
   <span class="p">},</span> <span class="p">[</span><span class="nx">count</span><span class="p">])</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span>
-        <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">button</span>
+        <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span>
           <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="p">}</span><span class="si">}</span>
-      <span class="p">&gt;</span>Count - <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+        <span class="p">}}</span>
+      <span class="o">&gt;</span><span class="nx">Count</span> <span class="o">-</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">DocTitleTwo</span>
 </code></pre></div></div>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
 
 <span class="k">import</span> <span class="nx">DocTitleOne</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/31DocTitleOne</span><span class="dl">'</span>
@@ -320,29 +320,29 @@
 
 <span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">DocTitleOne</span> <span class="p">/&gt;</span>
-      <span class="p">&lt;</span><span class="nc">DocTitleTwo</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">App</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">DocTitleOne</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">DocTitleTwo</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>页面展示如下</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1sNg1HUz1gK0jSZLeXXb9kVXa-407-221.gif" alt="" /></p>
 
-<p>回顾代码，DocTitleTwo 显然重复了 DocTitleOne 的代码，设想一下如果有 10 个组件都要修改页面 title 的话，你肯定不想重复这些代码。这时就需要自定义 Hook 了。</p>
+<p>코드를 되돌아 보면 DocTitleTwo는 분명히 DocTitleOne의 코드를 반복합니다. 페이지 제목을 수정해야하는 구성 요소가 10 개 있다고 가정 해보면 이러한 코드를 반복하고 싶지 않을 것입니다. 이때 Hook을 커스터마이즈해야합니다.</p>
 
-<p>这个示例中，我们可以创建一个自定义 Hook 来设置页面的 title。然后使用这个自定义 Hook 在不同的组件中。</p>
+<p>이 예에서는 페이지 제목을 설정하는 사용자 지정 후크를 만들 수 있습니다. 그런 다음 다른 구성 요소에서이 사용자 지정 후크를 사용합니다.</p>
 
-<h3 id="抽象出-usedocumenttitle-hook">抽象出 useDocumentTitle hook</h3>
+<h3 id="usedocumenttitle-hook-추상화">useDocumentTitle hook 추상화</h3>
 
-<p>useDocumentTitle.tsx</p>
+<p>useDocumentTitle.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">useDocumentTitle</span><span class="p">(</span><span class="nx">count</span><span class="p">:</span> <span class="nx">number</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -353,53 +353,53 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">useDocumentTitle</span>
 </code></pre></div></div>
 
-<p>DocTitleOne.tsx</p>
+<p>DocTitleOne.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">useDocumentTitle</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./hooks/useDocumentTitle</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">DocTitleOne</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
   <span class="nx">useDocumentTitle</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span>
-        <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">button</span>
+        <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span>
           <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="p">}</span><span class="si">}</span>
-      <span class="p">&gt;</span>Count - <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+        <span class="p">}}</span>
+      <span class="o">&gt;</span><span class="nx">Count</span> <span class="o">-</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">DocTitleOne</span>
 </code></pre></div></div>
 
-<p>DocTitleTwo.tsx</p>
+<p>DocTitleTwo.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">useDocumentTitle</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./hooks/useDocumentTitle</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">DocTitleTwo</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
   <span class="nx">useDocumentTitle</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span>
-        <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">button</span>
+        <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span>
           <span class="nx">setCount</span><span class="p">(</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="p">}</span><span class="si">}</span>
-      <span class="p">&gt;</span>Count - <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+        <span class="p">}}</span>
+      <span class="o">&gt;</span><span class="nx">Count</span> <span class="o">-</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">DocTitleTwo</span>
 </code></pre></div></div>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
 
 <span class="k">import</span> <span class="nx">DocTitleOne</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/31DocTitleOne</span><span class="dl">'</span>
@@ -407,31 +407,31 @@
 
 <span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">DocTitleOne</span> <span class="p">/&gt;</span>
-      <span class="p">&lt;</span><span class="nc">DocTitleTwo</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">App</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">DocTitleOne</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">DocTitleTwo</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>页面展示如下</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1sNg1HUz1gK0jSZLeXXb9kVXa-407-221.gif" alt="" /></p>
 
-<p>我们回顾一下代码</p>
+<p>코드를 검토해 보겠습니다.</p>
 
-<p>在 DocTitleOne 中，引入了我们定义的 useDocumentTitle，传入了 count 这个状态的值。useDocumentTitle 中执行代码，将页面title 初始值设置为 0，然后继续渲染 DocTitleOne jsx 部分。点击按钮时，count 变为 1，触发了 DocTitleOne 的 rerender，useDocumentTitle 中入参也变为了 1，将页面 title 变为 1。</p>
+<p>DocTitleOne에서는 우리가 정의한 useDocumentTitle이 도입되고 count 상태의 값이 전달됩니다. useDocumentTitle에서 코드를 실행하고 페이지 제목의 초기 값을 0으로 설정 한 다음 DocTitleOne js 부분을 계속 렌더링합니다. 버튼을 클릭하면 개수가 1이되어 DocTitleOne의 렌더러가 트리거되고 useDocumentTitle의 입력 매개 변수도 1이되고 페이지 제목이 1이됩니다.</p>
 
-<h2 id="usecounter-示例">useCounter 示例</h2>
+<h2 id="usecounter">useCounter</h2>
 
-<h3 id="冗余的写法">冗余的写法</h3>
+<h3 id="중복문구">중복문구</h3>
 
-<p>CounterOne.tsx</p>
+<p>CounterOne.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">useState</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">useState</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">CounterOne</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -445,21 +445,21 @@
     <span class="nx">setCount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Count - <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">increment</span><span class="si">}</span><span class="p">&gt;</span>increment<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">decrement</span><span class="si">}</span><span class="p">&gt;</span>decrement<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">reset</span><span class="si">}</span><span class="p">&gt;</span>reset<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Count</span> <span class="o">-</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">increment</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">increment</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">decrement</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">decrement</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">reset</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">reset</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">CounterOne</span>
 </code></pre></div></div>
 
-<p>CounterTwo.tsx</p>
+<p>CounterTwo.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">useState</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">useState</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">CounterTwo</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -473,48 +473,48 @@
     <span class="nx">setCount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Count - <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">increment</span><span class="si">}</span><span class="p">&gt;</span>increment<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">decrement</span><span class="si">}</span><span class="p">&gt;</span>decrement<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">reset</span><span class="si">}</span><span class="p">&gt;</span>reset<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Count</span> <span class="o">-</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">increment</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">increment</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">decrement</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">decrement</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">reset</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">reset</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">CounterTwo</span>
 </code></pre></div></div>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">CounterOne</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/32CounterOne</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">CounterTwo</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/32CounterTwo</span><span class="dl">'</span>
 
 <span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">CounterOne</span> <span class="p">/&gt;</span>
-      <span class="p">&lt;</span><span class="nc">CounterTwo</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">App</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">CounterOne</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">CounterTwo</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>页面展示如下</p>
+<p>페이지는 다음과 같이 표시됩니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1Kf78HQL0gK0jSZFxXXXWHVXa-407-347.gif" alt="" /></p>
 
-<p>相同的问题，我们有大量重复代码，接下来我们来看如何使用自定义 hook 来进行优化。</p>
+<p>같은 문제에 대해 반복되는 코드가 많이 있는데, 다음으로 최적화를 위해 사용자 지정 후크를 사용하는 방법을 살펴 보겠습니다.</p>
 
-<h3 id="usecounter-抽象">useCounter 抽象</h3>
+<h3 id="usecounter-추상화">useCounter 추상화</h3>
 
-<p>useCounter.tsx</p>
+<p>useCounter.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">useCounter</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -533,73 +533,73 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">useCounter</span>
 </code></pre></div></div>
 
-<p>CounterOne.tsx</p>
+<p>CounterOne.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">useCounter</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./hooks/useCounter</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">CounterOne</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">increment</span><span class="p">,</span> <span class="nx">decrement</span><span class="p">,</span> <span class="nx">reset</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useCounter</span><span class="p">()</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Count - <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">increment</span><span class="si">}</span><span class="p">&gt;</span>increment<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">decrement</span><span class="si">}</span><span class="p">&gt;</span>decrement<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">reset</span><span class="si">}</span><span class="p">&gt;</span>reset<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Count</span> <span class="o">-</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">increment</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">increment</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">decrement</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">decrement</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">reset</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">reset</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">CounterOne</span>
 </code></pre></div></div>
 
-<p>CounterTwo.tsx</p>
+<p>CounterTwo.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">useCounter</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./hooks/useCounter</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">CounterTwo</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">increment</span><span class="p">,</span> <span class="nx">decrement</span><span class="p">,</span> <span class="nx">reset</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useCounter</span><span class="p">()</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Count - <span class="si">{</span><span class="nx">count</span><span class="si">}</span><span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">increment</span><span class="si">}</span><span class="p">&gt;</span>increment<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">decrement</span><span class="si">}</span><span class="p">&gt;</span>decrement<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">reset</span><span class="si">}</span><span class="p">&gt;</span>reset<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="nx">Count</span> <span class="o">-</span> <span class="p">{</span><span class="nx">count</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/h2</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">increment</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">increment</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">decrement</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">decrement</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">reset</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">reset</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">CounterTwo</span>
 </code></pre></div></div>
 
-<p>App.tsx</p>
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<p>App.js</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">CounterOne</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/32CounterOne</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">CounterTwo</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/32CounterTwo</span><span class="dl">'</span>
 
 <span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">CounterOne</span> <span class="p">/&gt;</span>
-      <span class="p">&lt;</span><span class="nc">CounterTwo</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">App</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">CounterOne</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="nx">CounterTwo</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
 </code></pre></div></div>
 
-<p>页面展示依然如下</p>
+<p>페이지 표시는 여전히 다음과 같습니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1Kf78HQL0gK0jSZFxXXXWHVXa-407-347.gif" alt="" /></p>
 
-<p>可以看到目前我们的代码结构就比较好了，我们还可以在 useCounter 中给 counter 设置初始值，如下</p>
+<p>현재 코드 구조가 더 나은 것을 알 수 있습니다. 다음과 같이 useCounter에서 카운터의 초기 값을 설정할 수도 있습니다.</p>
 
-<p>useCounter.tsx</p>
+<p>useCounter.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">useCounter</span><span class="p">(</span><span class="nx">initialValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span>
@@ -618,14 +618,14 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">useCounter</span>
 </code></pre></div></div>
 
-<p>使用时，对应的可以传入初始值</p>
+<p>사용하면 해당 초기 값을 전달할 수 있습니다.</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">increment</span><span class="p">,</span> <span class="nx">decrement</span><span class="p">,</span> <span class="nx">reset</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useCounter</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">increment</span><span class="p">,</span> <span class="nx">decrement</span><span class="p">,</span> <span class="nx">reset</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useCounter</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>我们还可以修改每次增加或减少的数字，如下</p>
+<p>사용할 때 해당 매개 변수도 추가 할 수 있습니다.</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">useCounter</span><span class="p">(</span><span class="nx">initialValue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span>
@@ -644,20 +644,20 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">useCounter</span>
 </code></pre></div></div>
 
-<p>使用时，对应的也可以增加入参</p>
+<p>사용할 때 해당 매개 변수도 추가 할 수 있습니다.</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">increment</span><span class="p">,</span> <span class="nx">decrement</span><span class="p">,</span> <span class="nx">reset</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useCounter</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">increment</span><span class="p">,</span> <span class="nx">decrement</span><span class="p">,</span> <span class="nx">reset</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useCounter</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </code></pre></div></div>
 
-<h2 id="useinput-示例">useInput 示例</h2>
+<h2 id="useinput">useInput</h2>
 
-<p>示例是一个简单表单，用户可以填写姓名</p>
+<p>예제는 간단한 양식이며 사용자가 이름을 입력 할 수 있습니다.</p>
 
-<h3 id="function-普通写法-1">function 普通写法</h3>
+<h3 id="function-일반쓰기">function 일반쓰기</h3>
 
-<p>UserForm.tsx</p>
+<p>UserForm.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">FormEvent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">FormEvent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">UserForm</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">setFirstName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">)</span>
@@ -667,50 +667,50 @@
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`Hello </span><span class="p">${</span><span class="nx">firstName</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">lastName</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="p">=</span><span class="si">{</span><span class="nx">submitHandler</span><span class="si">}</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">label</span> <span class="na">htmlFor</span><span class="p">=</span><span class="s">""</span><span class="p">&gt;</span>First name<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">input</span>
-            <span class="na">type</span><span class="p">=</span><span class="s">"text"</span>
-            <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">firstName</span><span class="si">}</span>
-            <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">submitHandler</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">label</span> <span class="nx">htmlFor</span><span class="o">=</span><span class="dl">""</span><span class="o">&gt;</span><span class="nx">First</span> <span class="nx">name</span><span class="o">&lt;</span><span class="sr">/label</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">input</span>
+            <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span>
+            <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">firstName</span><span class="p">}</span>
+            <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
               <span class="nx">setFirstName</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-            <span class="p">}</span><span class="si">}</span>
-          <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">label</span> <span class="na">htmlFor</span><span class="p">=</span><span class="s">""</span><span class="p">&gt;</span>Last name<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">input</span>
-            <span class="na">type</span><span class="p">=</span><span class="s">"text"</span>
-            <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">lastName</span><span class="si">}</span>
-            <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="p">}}</span>
+          <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">label</span> <span class="nx">htmlFor</span><span class="o">=</span><span class="dl">""</span><span class="o">&gt;</span><span class="nx">Last</span> <span class="nx">name</span><span class="o">&lt;</span><span class="sr">/label</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">input</span>
+            <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span>
+            <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">lastName</span><span class="p">}</span>
+            <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
               <span class="nx">setLastName</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
-            <span class="p">}</span><span class="si">}</span>
-          <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+            <span class="p">}}</span>
+          <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span><span class="nx">submit</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">UserForm</span>
 </code></pre></div></div>
 
-<p>App.tsx</p>
+<p>App.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span>
 
 <span class="k">import</span> <span class="nx">UserForm</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./components/33UserForm</span><span class="dl">'</span>
 
 <span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"App"</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nc">UserForm</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">App</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">UserForm</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span>
@@ -720,9 +720,9 @@
 
 <h3 id="抽象出-useinput-hook">抽象出 useInput hook</h3>
 
-<p>useInput.tsx</p>
+<p>useInput.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">useInput</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">:</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="p">[</span><span class="nx">value</span><span class="p">,</span> <span class="nx">setValue</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">)</span>
@@ -741,9 +741,9 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">useInput</span>
 </code></pre></div></div>
 
-<p>UserForm.tsx</p>
+<p>UserForm.js</p>
 
-<div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">FormEvent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">FormEvent</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span>
 <span class="k">import</span> <span class="nx">useInput</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./hooks/useInput</span><span class="dl">'</span>
 
 <span class="kd">function</span> <span class="nx">UserForm</span><span class="p">()</span> <span class="p">{</span>
@@ -760,40 +760,40 @@
     <span class="nx">resetLastName</span><span class="p">()</span>
   <span class="p">}</span>
   <span class="k">return</span> <span class="p">(</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-      <span class="p">&lt;</span><span class="nt">form</span> <span class="na">onSubmit</span><span class="p">=</span><span class="si">{</span><span class="nx">submitHandler</span><span class="si">}</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">label</span> <span class="na">htmlFor</span><span class="p">=</span><span class="s">""</span><span class="p">&gt;</span>First name<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">input</span>
-            <span class="na">type</span><span class="p">=</span><span class="s">"text"</span>
-            <span class="si">{</span><span class="p">...</span><span class="nx">bindFirstName</span><span class="si">}</span>
-          <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">label</span> <span class="na">htmlFor</span><span class="p">=</span><span class="s">""</span><span class="p">&gt;</span>Last name<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">input</span>
-            <span class="na">type</span><span class="p">=</span><span class="s">"text"</span>
-            <span class="si">{</span><span class="p">...</span><span class="nx">bindLastName</span><span class="si">}</span>
-          <span class="p">/&gt;</span>
-        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
-      <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-  <span class="p">)</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">form</span> <span class="nx">onSubmit</span><span class="o">=</span><span class="p">{</span><span class="nx">submitHandler</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">label</span> <span class="nx">htmlFor</span><span class="o">=</span><span class="dl">""</span><span class="o">&gt;</span><span class="nx">First</span> <span class="nx">name</span><span class="o">&lt;</span><span class="sr">/label</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">input</span>
+            <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span>
+            <span class="p">{...</span><span class="nx">bindFirstName</span><span class="p">}</span>
+          <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">label</span> <span class="nx">htmlFor</span><span class="o">=</span><span class="dl">""</span><span class="o">&gt;</span><span class="nx">Last</span> <span class="nx">name</span><span class="o">&lt;</span><span class="sr">/label</span><span class="err">&gt;
+</span>          <span class="o">&lt;</span><span class="nx">input</span>
+            <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">text</span><span class="dl">"</span>
+            <span class="p">{...</span><span class="nx">bindLastName</span><span class="p">}</span>
+          <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="o">&lt;</span><span class="nx">button</span><span class="o">&gt;</span><span class="nx">submit</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
 <span class="p">}</span>
 
 <span class="k">export</span> <span class="k">default</span> <span class="nx">UserForm</span>
 </code></pre></div></div>
 
-<p>页面展示</p>
+<p>페이지 표시</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1zXxbH7T2gK0jSZFkXXcIQFXa-696-241.gif" alt="" /></p>
 
-<h2 id="小结">小结</h2>
+<h2 id="요약">요약</h2>
 
-<p>本章我们主要学习了自定义 Hook，举了 3 个例子，帮助我们学习抽象与复用代码。社区上还有很多人写了自己的自定义 Hook，大家也可以前去学习。也鼓励大家创造一些自己的自定义 Hook。</p>
+<p>이 장에서 우리는 주로 커스텀 후크에 대해 배웠고 코드를 추상화하고 재사용하는 방법을 배우는 데 도움이되는 3 가지 예제를 제공했습니다. 커뮤니티에는 여전히 자신의 맞춤 후크를 작성한 많은 사람들이 있으며, 가서 배울 수도 있습니다. 모든 사람이 자신 만의 고유 한 후크를 만들도록 권장됩니다.</p>
 
-<p>至此，本系列完结。祝一切顺利，大家都能学到东西。</p>
+<p>이 시점에서이 시리즈는 끝났습니다. 최선을 다하고 모두가 무언가를 배울 수 있기를 바랍니다.</p>
 
         </article>
         <hr>
@@ -1032,7 +1032,7 @@
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2020/05/26/react-hooks7-useRef/">React Hooks 系列之7 useRef</a></p>
+        <p><strong>上一篇</strong> <a href="/2020/05/26/react-hooks7-useRef/">React Hooks useRef</a></p>
         
     </div>
     <div class="nex">
