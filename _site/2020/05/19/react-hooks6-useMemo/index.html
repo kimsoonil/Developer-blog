@@ -210,10 +210,10 @@
   <li><a href="#카운터" id="markdown-toc-카운터">카운터</a></li>
   <li><a href="#usememo" id="markdown-toc-usememo">useMemo</a>    <ul>
       <li><a href="#최적화" id="markdown-toc-최적화">최적화</a></li>
-      <li><a href="#usememo-与-usecallback-的区别" id="markdown-toc-usememo-与-usecallback-的区别">useMemo 与 useCallback 的区别</a></li>
+      <li><a href="#usememo와-usecallback의-차이점" id="markdown-toc-usememo와-usecallback의-차이점">useMemo와 useCallback의 차이점</a></li>
     </ul>
   </li>
-  <li><a href="#小结" id="markdown-toc-小结">小结</a></li>
+  <li><a href="#정리" id="markdown-toc-정리">정리</a></li>
 </ul>
 
 <p>React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.</p>
@@ -379,21 +379,21 @@
 <span class="k">export</span> <span class="k">default</span> <span class="nx">Counter</span>
 </code></pre></div></div>
 
-<p>效果如下</p>
+<p>효과는 다음과 같습니다.</p>
 
 <p><img src="https://gw.alicdn.com/tfs/TB1Oz_bb5cKOu4jSZKbXXc19XXa-702-286.gif" alt="" /></p>
 
-<p>我们看到点击第二个按钮时，不会有任何卡顿，这是因为使用了 useMemo 只依赖了 counterOne 变量，点击第二个按钮时，isEven 读取的是缓存值，不需要再重新计算是否为偶数。</p>
+<p>두 번째 버튼을 클릭하면 지연이 발생하지 않습니다. 이는 useMemo가 counterOne 변수에만 의존하기 때문입니다. 두 번째 버튼을 클릭하면 isEven이 캐시 된 값을 읽고 IsEven이 있는지 여부를 다시 계산할 필요가 없습니다. 짝수.</p>
 
-<h3 id="usememo-与-usecallback-的区别">useMemo 与 useCallback 的区别</h3>
+<h3 id="usememo와-usecallback의-차이점">useMemo와 useCallback의 차이점</h3>
 
-<p>useCallback 是缓存了函数自身，而 useMemo 是缓存了函数的返回值。</p>
+<p>useCallback은 함수 자체를 캐시하고 useMemo는 함수의 반환 값을 캐시합니다.</p>
 
-<h2 id="小结">小结</h2>
+<h2 id="정리">정리</h2>
 
-<p>本章通过示例展示了 useMemo 在性能优化中的作用。通过缓存函数的返回值，避免不必要的调用，从而避免了组件 rerender。</p>
+<p>이 장에서는 예제를 통해 성능 최적화에서 useMemo의 역할을 설명합니다. 함수의 반환 값을 캐싱함으로써 불필요한 호출을 피하고 컴포넌트 렌더러를 피할 수 있습니다.</p>
 
-<p>最后有分析了 useMemo 与 useCallback 的区别，即 useMemo 是缓存了函数的返回值，useCallback 是缓存了函数自身。这两个 api 都是性能优化的方法。</p>
+<p>마지막으로 useMemo와 useCallback의 차이가 분석됩니다. 즉, useMemo는 함수의 반환 값을 캐시하고 useCallback은 함수 자체를 캐시합니다. 이 두 API는 모두 성능 최적화 방법입니다.</p>
 
         </article>
         <hr>
@@ -566,6 +566,12 @@
             
         
             
+            
+                
+                    
+                
+                    
+                
             
                 
                     

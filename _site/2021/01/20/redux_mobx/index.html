@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>React Facebook login</title>
-    <meta name="description" content="https://github.com/keppelen/react-facebook-login 해당 라이브러리를 적용하였습니다.https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출">
+    <title>프론트엔드 상태관리 mobX vs redux</title>
+    <meta name="description" content="  프론트엔드 상태관리 mobX vs redux프론트엔드 상태관리 mobX vs redux            mobX      redux                  처리속도 빠름      많은 개발도구, 라이브러리 redux-saga redux-thunk            ...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2021/01/21/react-facebook-login/">
+    <link rel="canonical" href="http://localhost:4000/2021/01/20/redux_mobx/">
     <link rel="alternate" type="application/rss+xml" title="Centrarium" href="http://localhost:4000/feed.xml ">
 
 
@@ -149,11 +149,11 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>React Facebook login</h1>
+        <h1>프론트엔드 상태관리 mobX vs redux</h1>
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>2021-01-21
+                <i class="fa fa-calendar"></i>2021-01-20
             </div>
 
             <div class="label-card">
@@ -194,11 +194,11 @@
         <!--a href="/tag/#React" title="Tag: React" rel="tag">React</a-->
         <a href="/tag/#React" title="Tag: React" rel="tag">React</a>&nbsp;
     
-        <!--a href="/tag/#Facebook" title="Tag: Facebook" rel="tag">Facebook</a-->
-        <a href="/tag/#Facebook" title="Tag: Facebook" rel="tag">Facebook</a>&nbsp;
+        <!--a href="/tag/#redux" title="Tag: redux" rel="tag">redux</a-->
+        <a href="/tag/#redux" title="Tag: redux" rel="tag">redux</a>&nbsp;
     
-        <!--a href="/tag/#login" title="Tag: login" rel="tag">login</a-->
-        <a href="/tag/#login" title="Tag: login" rel="tag">login</a>
+        <!--a href="/tag/#mobX" title="Tag: mobX" rel="tag">mobX</a-->
+        <a href="/tag/#mobX" title="Tag: mobX" rel="tag">mobX</a>
     
   
 
@@ -210,98 +210,58 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#function" id="markdown-toc-function">function</a></li>
+  <li><a href="#프론트엔드-상태관리-mobx-vs-redux" id="markdown-toc-프론트엔드-상태관리-mobx-vs-redux">프론트엔드 상태관리 mobX vs redux</a></li>
 </ul>
+<h3 id="프론트엔드-상태관리-mobx-vs-redux">프론트엔드 상태관리 mobX vs redux</h3>
 
-<p>https://github.com/keppelen/react-facebook-login 해당 라이브러리를 적용하였습니다.</p>
+<table>
+  <thead>
+    <tr>
+      <th>mobX</th>
+      <th>redux</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>처리속도 빠름</td>
+      <td>많은 개발도구, 라이브러리<br /> <a href="https://github.com/redux-saga/redux-saga">redux-saga</a><br /> <a href="https://github.com/reduxjs/redux-thunk">redux-thunk</a></td>
+    </tr>
+    <tr>
+      <td>코드가 적음</td>
+      <td>디버그 툴이 존재</td>
+    </tr>
+    <tr>
+      <td>도입하기 편함</td>
+      <td>하나의 store를 가짐</td>
+    </tr>
+    <tr>
+      <td>여러 개의 store를 가질 수 있음</td>
+      <td>store의 데이터는 불변성을 가짐</td>
+    </tr>
+    <tr>
+      <td>유연함</td>
+      <td>대량의 데이터를 사용시 유리함</td>
+    </tr>
+  </tbody>
+</table>
 
-<p>https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출</p>
+<p><br /></p>
 
-<p><img src="https://kimsoonil.github.io/img/facebook_clientId.png" alt="facebook_clientId" /></p>
+<p>mobX 와 redux는 다음과 같은 특징이 있고 각기 목적에 따라 사용성이 다르다고 할수 있습니다</p>
 
-<p>해당 프로젝트에 <code class="language-plaintext highlighter-rouge">npm install react-facebook-login</code> or <code class="language-plaintext highlighter-rouge">yarn add react-facebook-login</code> 추가</p>
+<p>redux : 코드는 복잡하고 도입하기 힘들지만 대량의 데이터 많은 사용자들의 처리하기 수월</p>
 
-<h3 id="function">function</h3>
+<p>mobX : 코드가 적고 속도가 더 빠르며 도입하기 편하지만 redux 보다 상대적으로 덜 큰 프로젝트에 도입하기 적절</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
-  <span class="k">import</span> <span class="nx">FacebookLogin</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-facebook-login</span><span class="dl">'</span><span class="p">;</span>
+<p>참고</p>
 
-  <span class="kd">class</span> <span class="nx">MyComponent</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-    <span class="nx">responseFacebook</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-    <span class="p">}</span>
+<p><a href="https://velog.io/@silverj-kim/Front-endReact-Mobx-vs-Redux-Redux-toolkit"> https://velog.io/@silverj-kim/Front-endReact-Mobx-vs-Redux-Redux-toolkit</a></p>
 
-    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">FacebookLogin</span>
-          <span class="nx">appId</span><span class="o">=</span><span class="dl">"</span><span class="s2">1088597931155576</span><span class="dl">"</span>
-          <span class="nx">autoLoad</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
-          <span class="nx">fields</span><span class="o">=</span><span class="dl">"</span><span class="s2">name,email,picture</span><span class="dl">"</span>
-          <span class="nx">scope</span><span class="o">=</span><span class="dl">"</span><span class="s2">public_profile,user_friends,user_actions.books</span><span class="dl">"</span>
-          <span class="nx">callback</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">responseFacebook</span><span class="p">}</span>
-        <span class="sr">/</span><span class="err">&gt;
-</span>      <span class="p">)</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<p><a href="https://boxfoxs.tistory.com/383">https://boxfoxs.tistory.com/383 </a></p>
 
-  <span class="k">export</span> <span class="k">default</span> <span class="nx">MyComponent</span><span class="p">;</span>
-</code></pre></div></div>
-<p>git에서 나와있는 코드는 위와 같다 이 코드에서 필요한 것만 내 코드에 적용하였다.</p>
+<p><a href="https://woowabros.github.io/experience/2019/01/02/kimcj-react-mobx.html"> https://woowabros.github.io/experience/2019/01/02/kimcj-react-mobx.html</a></p>
 
-<p>facebook.js</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kd">const</span> <span class="nx">responseFacebook</span> <span class="o">=</span> <span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-<span class="p">}</span>
-  
-  <span class="k">return</span><span class="p">(</span>
-  <span class="o">&lt;</span><span class="nx">FacebookLogin</span>
-        <span class="nx">appId</span><span class="o">=</span><span class="p">{</span><span class="nx">appId</span><span class="p">}</span>
-        <span class="nx">autoLoad</span><span class="o">=</span><span class="p">{</span><span class="kc">false</span><span class="p">}</span> 
-        <span class="nx">fields</span><span class="o">=</span><span class="dl">"</span><span class="s2">name,email,picture</span><span class="dl">"</span>
-        
-        <span class="nx">callback</span><span class="o">=</span><span class="p">{</span><span class="nx">responseFacebook</span><span class="p">}</span> 
-        <span class="nx">render</span><span class="o">=</span><span class="p">{</span><span class="nx">renderProps</span> <span class="o">=&gt;</span> <span class="p">(</span>
-            <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">classes</span><span class="p">.</span><span class="nx">facebookBtn</span><span class="p">}</span>
-               <span class="nx">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">renderProps</span><span class="p">.</span><span class="nx">onClick</span><span class="p">}</span><span class="o">&gt;</span>
-               <span class="o">&lt;</span><span class="nx">Icon</span> <span class="nx">icon</span><span class="o">=</span><span class="p">{</span><span class="nx">facebookIcon</span><span class="p">}</span>
-               <span class="nx">color</span><span class="o">=</span><span class="p">{</span><span class="dl">"</span><span class="s2">#fff</span><span class="dl">"</span><span class="p">}</span>
-               <span class="nx">width</span><span class="o">=</span><span class="dl">"</span><span class="s2">26</span><span class="dl">"</span> <span class="nx">height</span><span class="o">=</span><span class="dl">"</span><span class="s2">26</span><span class="dl">"</span> 
-               <span class="o">/&gt;</span>
-               
-            <span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
-</span>          <span class="p">)}</span>
-        <span class="sr">/</span><span class="err">&gt;
-</span>
-</code></pre></div></div>
-
-<p>response</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
-  <span class="nl">accessToken</span><span class="p">:</span> <span class="dl">"</span><span class="s2">EAAC8Lo5zQewBAN4W710ZAy6NDQWWw2VI2NZCWBgNg3wl3J6sjZAaaVcaKtsEzpYmenZCtj3aZAFDUSyodqZBSDkqRFBfUsfRHZBpYDig0rftTJQkD5akZAXR6jADFkb0TdeaLh76SB1UU04pKZAepRkTMUfcFLohZARgx59jpRq479cZBm6GIxAT7flkqwmLZCYRmngXZA3MJBk0aaQZDZD</span><span class="dl">"</span>
-  <span class="nx">data_access_expiration_time</span><span class="p">:</span> <span class="mi">1618276974</span>
-  <span class="nx">email</span><span class="p">:</span> <span class="dl">"</span><span class="s2">slskdkfdl@naver.com</span><span class="dl">"</span>
-  <span class="nx">expiresIn</span><span class="p">:</span> <span class="mi">5826</span>
-  <span class="nx">graphDomain</span><span class="p">:</span> <span class="dl">"</span><span class="s2">facebook</span><span class="dl">"</span>
-  <span class="nx">id</span><span class="p">:</span> <span class="dl">"</span><span class="s2">3820135101398199</span><span class="dl">"</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">김순일</span><span class="dl">"</span>
-  <span class="nx">picture</span><span class="p">:</span> 
-    <span class="nx">data</span><span class="p">:{</span>
-      <span class="nl">height</span><span class="p">:</span> <span class="mi">50</span>
-      <span class="nx">is_silhouette</span><span class="p">:</span> <span class="kc">false</span>
-      <span class="nx">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=3820135101398199&amp;height=50&amp;width=50&amp;ext=1613094362&amp;hash=AeQJYMpEBMsBwNwCzZQ</span><span class="dl">"</span>
-      <span class="nx">width</span><span class="p">:</span> <span class="mi">50</span>
-     <span class="p">}</span>
-  <span class="nl">signedRequest</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Urywddab952I8d5IHY0WVFiWccYkTOnucSo98x6BVuk.eyJ1c2VyX2lkIjoiMzgyMDEzNTEwMTM5ODE5OSIsImNvZGUiOiJBUUJFamFjQTJxc3hrRmt5c3ZaWmxEN1ZxUGxYS01meHkzb0s1X1RiTmFZblF1SER1U2RWTU45Zk9LU3hKY19SMGJvWWN0YkpSc2FJZmFFVndlT1pLeXBndGkxU1QtNFdNVnpiY3d2NXVNQmFQOHVaNi1YdFVPNVJHUVpyOXZ6MEQtRnNjSV9WazdjR21STEpRVTVkU0pzWmhOSzdibFE5TkwwTGMtNWtOajg3VlJLZDhiaWJlbWhEUWRKOHZxa3d3cTZseUYyaUxHQ2x0MUZzYktsZmxOcWEzR2N2SnU5MWktN2VWZ1hLOEczelJjaG9yX2FkMm51UHJ4dG9oUUxyZS01N216NU0yQ3lVckwwbEZLVFB2c04xck9raS15aXFiazV5SUFLbUJDYzF0dC1ibUZoelZhZC1RRWdab09LRzEtT3ExM1ItX0VYMnZYMjU0SGVZb2RZeSIsImFsZ29yaXRobSI6IkhNQUMtU0hBMjU2IiwiaXNzdWVkX2F0IjoxNjEwNTAwOTc0fQ</span><span class="dl">"</span>
-  <span class="nx">userID</span><span class="p">:</span> <span class="dl">"</span><span class="s2">3820135101398199</span><span class="dl">"</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<p>Logout</p>
-
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">window</span><span class="p">.</span><span class="nx">FB</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
-</code></pre></div></div>
-
+<p><a href="https://medium.com/@punkyoon/mobx를-사용하면-안되는-경우-a49d24b44580"> https://medium.com/@punkyoon/mobx를-사용하면-안되는-경우-a49d24b44580</a></p>
 
         </article>
         <hr>
@@ -473,7 +433,7 @@
                     
                         
                         <li class="relatedPost">
-                            <a href="/2021/01/20/redux_mobx/">프론트엔드 상태관리 mobX vs redux
+                            <a href="/2021/01/21/react-facebook-login/">React Facebook login
                             
                             </a>
                         </li>
@@ -586,13 +546,13 @@
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2021/01/20/redux_mobx/">프론트엔드 상태관리 mobX vs redux</a></p>
+        <p><strong>上一篇</strong> <a href="/2020/05/27/react-hooks8-customHooks/">React Hooks custom Hook</a></p>
         
     </div>
     <div class="nex">
 
         
-        <p><strong>下一篇</strong> <a href="/2021/01/21/react-google-login/">React Google login</a></p>
+        <p><strong>下一篇</strong> <a href="/2021/01/21/react-facebook-login/">React Facebook login</a></p>
         
     </div>
 </div>
@@ -610,8 +570,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2021/01/21/react-facebook-login/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2021/01/21/react-facebook-login/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2021/01/20/redux_mobx/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2021/01/20/redux_mobx/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

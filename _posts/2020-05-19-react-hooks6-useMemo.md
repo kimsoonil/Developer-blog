@@ -181,18 +181,18 @@ function Counter() {
 export default Counter
 ```
 
-效果如下
+효과는 다음과 같습니다.
 
 ![](https://gw.alicdn.com/tfs/TB1Oz_bb5cKOu4jSZKbXXc19XXa-702-286.gif)
 
-我们看到点击第二个按钮时，不会有任何卡顿，这是因为使用了 useMemo 只依赖了 counterOne 变量，点击第二个按钮时，isEven 读取的是缓存值，不需要再重新计算是否为偶数。
+두 번째 버튼을 클릭하면 지연이 발생하지 않습니다. 이는 useMemo가 counterOne 변수에만 의존하기 때문입니다. 두 번째 버튼을 클릭하면 isEven이 캐시 된 값을 읽고 IsEven이 있는지 여부를 다시 계산할 필요가 없습니다. 짝수.
 
-### useMemo 与 useCallback 的区别
+### useMemo와 useCallback의 차이점
 
-useCallback 是缓存了函数自身，而 useMemo 是缓存了函数的返回值。
+useCallback은 함수 자체를 캐시하고 useMemo는 함수의 반환 값을 캐시합니다.
 
-## 小结
+## 정리
 
-本章通过示例展示了 useMemo 在性能优化中的作用。通过缓存函数的返回值，避免不必要的调用，从而避免了组件 rerender。
+이 장에서는 예제를 통해 성능 최적화에서 useMemo의 역할을 설명합니다. 함수의 반환 값을 캐싱함으로써 불필요한 호출을 피하고 컴포넌트 렌더러를 피할 수 있습니다.
 
-最后有分析了 useMemo 与 useCallback 的区别，即 useMemo 是缓存了函数的返回值，useCallback 是缓存了函数自身。这两个 api 都是性能优化的方法。
+마지막으로 useMemo와 useCallback의 차이가 분석됩니다. 즉, useMemo는 함수의 반환 값을 캐시하고 useCallback은 함수 자체를 캐시합니다. 이 두 API는 모두 성능 최적화 방법입니다.

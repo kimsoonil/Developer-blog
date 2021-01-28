@@ -5,8 +5,8 @@
     <description>Zoom in Coding from the Basic.</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 26 Jan 2021 11:37:04 +0900</pubDate>
-    <lastBuildDate>Tue, 26 Jan 2021 11:37:04 +0900</lastBuildDate>
+    <pubDate>Thu, 28 Jan 2021 14:41:38 +0900</pubDate>
+    <lastBuildDate>Thu, 28 Jan 2021 14:41:38 +0900</lastBuildDate>
     <generator>Jekyll v3.9.0</generator>
     
       <item>
@@ -151,6 +151,60 @@ https://developers.facebook.com/apps/에서 앱을 만들고 앱ID 추출
       </item>
     
       <item>
+        <title>프론트엔드 상태관리 mobX vs redux</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#프론트엔드-상태관리-mobx-vs-redux&quot; id=&quot;markdown-toc-프론트엔드-상태관리-mobx-vs-redux&quot;&gt;프론트엔드 상태관리 mobX vs redux&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;프론트엔드-상태관리-mobx-vs-redux&quot;&gt;프론트엔드 상태관리 mobX vs redux&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;mobX&lt;/th&gt;
+      &lt;th&gt;redux&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;처리속도 빠름&lt;/td&gt;
+      &lt;td&gt;많은 개발도구, 라이브러리&lt;br /&gt; &lt;a href=&quot;https://github.com/redux-saga/redux-saga&quot;&gt;redux-saga&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://github.com/reduxjs/redux-thunk&quot;&gt;redux-thunk&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;코드가 적음&lt;/td&gt;
+      &lt;td&gt;디버그 툴이 존재&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;도입하기 편함&lt;/td&gt;
+      &lt;td&gt;하나의 store를 가짐&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;여러 개의 store를 가질 수 있음&lt;/td&gt;
+      &lt;td&gt;store의 데이터는 불변성을 가짐&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;유연함&lt;/td&gt;
+      &lt;td&gt;대량의 데이터를 사용시 유리함&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+</description>
+        <pubDate>Wed, 20 Jan 2021 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2021/01/20/redux_mobx/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021/01/20/redux_mobx/</guid>
+        
+        <category>React</category>
+        
+        <category>redux</category>
+        
+        <category>mobX</category>
+        
+        
+        <category>JavaScript</category>
+        
+      </item>
+    
+      <item>
         <title>React Hooks custom Hook</title>
         <description>
 React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
@@ -207,29 +261,6 @@ React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 Rea
         <pubDate>Tue, 19 May 2020 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/2020/05/19/react-hooks6-useMemo/</link>
         <guid isPermaLink="true">http://localhost:4000/2020/05/19/react-hooks6-useMemo/</guid>
-        
-        <category>React</category>
-        
-        <category>hooks</category>
-        
-        
-        <category>JavaScript</category>
-        
-      </item>
-    
-      <item>
-        <title>React Hooks useCallback</title>
-        <description>
-React Hooks api를 마스터하면 작업에서 더 잘 사용할 수 있고 React를 더 잘 이해할 수 있습니다. 이 시리즈에서는 초보자와 리뷰어가 사용하기 매우 쉬운 많은 예제 코드와 효과 데모를 사용합니다.
-
-useCallback에 대해 자세히 알아보기 전에 성능 최적화와 관련된 내용을 검토해 보겠습니다. 그러면 useCallback이 무엇인지, 왜 사용하는지, 사용 방법을 이해하는 데 도움이 될 것입니다.
-
-구성 요소가 여러 번 재사용되는 코드 시나리오부터 시작하겠습니다.
-
-</description>
-        <pubDate>Mon, 18 May 2020 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2020/05/18/react-hooks5-useCallback/</link>
-        <guid isPermaLink="true">http://localhost:4000/2020/05/18/react-hooks5-useCallback/</guid>
         
         <category>React</category>
         
